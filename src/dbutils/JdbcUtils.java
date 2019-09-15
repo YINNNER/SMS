@@ -10,13 +10,13 @@ import java.util.Map;
 
 public class JdbcUtils {
     //数据库用户名  
-    private static final String USERNAME = "root";
+    private static final String USERNAME = "sms_user";
     //数据库密码  
-    private static final String PASSWORD = "610319";
+    private static final String PASSWORD = "123456";
     //驱动信息   
     private static final String DRIVER = "com.mysql.jdbc.Driver";
     //数据库地址  
-    private static final String URL = "jdbc:mysql://localhost:3306/sms?characterEncoding=UTF-8";
+    private static final String URL = "jdbc:mysql://192.168.2.25:3306/sms?characterEncoding=UTF-8";
     private Connection connection;
     private PreparedStatement pstmt;
     private ResultSet resultSet;
