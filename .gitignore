@@ -1,5 +1,5 @@
 .idea/
 out/
 web/classes/
-SMS.iml
+*.iml
 frontend-test/src/bootstrap*/
