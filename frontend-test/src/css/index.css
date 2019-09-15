@@ -8,8 +8,7 @@
  */
 
 .sub-header {
-  padding-bottom: 10px;
-  border-bottom: 1px solid #eee;
+  padding-bottom: 20px;
   text-align: center;
 }
 
@@ -40,7 +39,10 @@
   border: none;
 }
 
-
+.nav-title{
+  display: inline-flex;
+  margin: 15px 0;
+}
 
 /*
  * Sidebar
@@ -126,4 +128,12 @@
 .placeholder img {
   display: inline-block;
   border-radius: 50%;
+}
+
+
+/*
+ * form
+ */
+.form-group {
+  margin-bottom: 25px;
 }
