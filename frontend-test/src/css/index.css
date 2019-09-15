@@ -92,10 +92,34 @@
 .nav-sidebar > li > a:focus {
   color: #444444!important;
 }
-  
-  /*
-	 * Main content
-	 */
+
+
+/*
+ * Sub-Sidebar
+ */
+.sub-bar {
+  font-size: 12px;
+  background-color: #fff;
+  color: #444444;
+}
+
+.sub-bar a{
+  background-color: #fff;
+  color: #444444;
+}
+
+.sub-bar .nav-sidebar > .active > a{
+  color: #20a0ff!important;
+  background-color: #eee;
+}
+.sub-bar .nav-sidebar > li > a:hover,
+.sub-bar .nav-sidebar > li > a:focus {
+  color: #20a0ff!important;
+}
+
+/*
+ * Main content
+ */
 
 .main {
   padding: 20px;
