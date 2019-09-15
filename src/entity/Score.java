@@ -5,6 +5,20 @@ public class Score {
     private int coz_id;
     private float score;
 
+    public Score() {
+    }
+
+    public Score(int stu_id, int coz_id) {
+        this.stu_id = stu_id;
+        this.coz_id = coz_id;
+    }
+
+    public Score(int stu_id, int coz_id, float score) {
+        this.stu_id = stu_id;
+        this.coz_id = coz_id;
+        this.score = score;
+    }
+
     public int getStu_id() {
         return stu_id;
     }
@@ -19,5 +33,14 @@ public class Score {
 
     public void setScore(float score) {
         this.score = score;
+    }
+
+    @Override
+    public String toString() {
+        return "Score{" +
+                "stu_id=" + stu_id +
+                ", coz_id=" + coz_id +
+                ", score=" + score +
+                '}';
     }
 }

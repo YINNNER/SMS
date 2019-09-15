@@ -25,4 +25,18 @@ public class Class {
     public void setClass_name(String class_name) {
         this.class_name = class_name;
     }
+
+    public Class(int class_id, String class_name, int maj_id, int inst_id) {
+        this.class_id = class_id;
+        this.class_name = class_name;
+        this.maj_id = maj_id;
+        this.inst_id = inst_id;
+    }
+
+    public Class(int class_id) {
+        this.class_id = class_id;
+    }
+
+    public Class() {
+    }
 }

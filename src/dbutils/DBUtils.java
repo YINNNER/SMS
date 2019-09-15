@@ -103,6 +103,27 @@ public class DBUtils {
     }
 
     /**
+     * 更新数据库表数据
+     * @param table:table name
+     * @param params:where field params name
+     * @param values:where field params value
+     * @return flag
+     */
+    public boolean updateWithTwoKey(String table, List<Object> params, List<Object> values) {
+
+        test.getConnection();
+        StringBuilder sql = new StringBuilder("update " + table + " set ");
+        int size = params.size();
+        for (int i = 0; i < size - 3; i++) {
+            sql.append(params.get(i)).append(" = ? , ");
+        }
+
+        sql.append(params.get(size - 3)).append(" = ? where ").append(params.get(size - 2)).append(" = ? ").append("and ").append(params.get(size - 1)).append(" = ? ");
+
+        return execute(sql.toString(), values);
+    }
+
+    /**
      * 删除数据库表数据
      * @param table:table name
      * @param params:where field params name
@@ -244,6 +265,23 @@ public class DBUtils {
         }
         else
             System.out.println("修改失败");
+
+        List<Object> params_update_2 = new ArrayList<Object>();
+        params_update_2.add("score");
+        params_update_2.add("coz_id");
+        params_update_2.add("stu_id");
+
+        List<Object> values_update_2 = new ArrayList<Object>();
+        values_update_2.add(99.5);
+        values_update_2.add(1);
+        values_update_2.add(1);
+
+        if (dBUtils.updateWithTwoKey("score_table", params_update_2, values_update_2)) {
+            System.out.println("修改成功");
+        }
+        else
+            System.out.println("修改失败");
+
 
         // 利用反射查询单条记录
         List<Object> params_query_ref_one = new ArrayList<Object>();
