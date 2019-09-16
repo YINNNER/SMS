@@ -36,7 +36,6 @@ public class StudentManagementServlet extends HttpServlet {
 
         //修改学生信息
         if (type.contains("modifyStudent")){
-            int stu_id = Integer.parseInt(request.getParameter("stu_id"));
             Student student = (Student) request.getAttribute("modifiedStudent");
             boolean flag = studentDAO.modifyStuInfoById(student);
         }
