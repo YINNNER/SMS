@@ -11,7 +11,7 @@
     <title>Student Management System</title>
 
     <!-- Bootstrap core CSS -->
-    <link href="bootstrap-3.3.7-dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet">
 
     <!-- Custom styles for this page -->
     <link href="css/index.css" rel="stylesheet">
@@ -110,8 +110,7 @@
 	  <!-- Bootstrap core JavaScript
 		================================================== -->
 	  <!-- Placed at the end of the document so the pages load faster -->
-	  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-	  <script>window.jQuery || document.write('<script src="../../assets/js/vendor/jquery.min.js"><\/script>')</script>
-	  <script src="../../dist/js/bootstrap.min.js"></script>
+	  <script>window.jQuery || document.write('<script src="bootstrap/js/vendor/jquery.min.js"><\/script>')</script>
+	  <script src="bootstrap/js/bootstrap.min.js"></script>
   </body>
 </html>
