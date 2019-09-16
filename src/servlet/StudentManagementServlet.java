@@ -32,6 +32,7 @@ public class StudentManagementServlet extends HttpServlet {
         if (type.contains("addStudent")){
             Student student = (Student) request.getAttribute("myStudent");
             boolean flag = studentDAO.addStuInfo(student);
+            request.getRequestDispatcher("student-info-add.jsp").forward(request, response);
         }
 
         //修改学生信息
