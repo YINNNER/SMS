@@ -61,8 +61,6 @@ public class QueryStudentServlet extends HttpServlet {
         //提交查询
         if (param.contains("querySubmit")) {
             List<StudentFront> queryResults = new ArrayList<>();
-            int inst_id = Integer.parseInt(request.getParameter("inst_id"));
-            int maj_id = Integer.parseInt(request.getParameter("maj_id"));
             int class_id = Integer.parseInt(request.getParameter("class_id"));
 
             List<Student> students = studentDAO.queryStuInfoByClass(class_id);

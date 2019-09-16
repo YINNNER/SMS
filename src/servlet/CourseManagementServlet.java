@@ -45,25 +45,56 @@ public class CourseManagementServlet extends HttpServlet {
 
         // 添加课程
         if (param.contains("addCourse")){
-            Course course = (Course) request.getAttribute("addCourse");
+            Course course = getCourseInfo(request);
             boolean flag = courseDAO.addCourseInfo(course);
+            request.setAttribute("flag", flag);
+            if (flag) {
+                request.getRequestDispatcher(".jsp").forward(request, response);
+            }
+            else {
+                request.getRequestDispatcher(".jsp").forward(request, response);
+            }
         }
 
         // 修改课程
         if (param.contains("modifiedCourse")){
-            Course course = (Course) request.getAttribute("modifiedCourse");
+            Course course = getCourseInfo(request);
             boolean flag = courseDAO.modifyCourseInfoById(course);
+            request.setAttribute("flag", flag);
+            if (flag) {
+                request.getRequestDispatcher(".jsp").forward(request, response);
+            }
+            else {
+                request.getRequestDispatcher(".jsp").forward(request, response);
+            }
         }
 
         // 删除课程
         if (param.contains("deleteCourse")){
             int coz_id = Integer.parseInt(request.getParameter("coz_id"));
             boolean flag = courseDAO.deleteCourseInfoById(coz_id);
+            request.setAttribute("flag", flag);
+            request.getRequestDispatcher(".jsp").forward(request, response);
         }
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         this.doPost(request, response);
+    }
+
+    private Course getCourseInfo(HttpServletRequest request) {
+        int coz_id = Integer.parseInt(request.getParameter("coz_id"));
+        String coz_name = request.getParameter("coz_name");
+        String coz_place = request.getParameter("coz_place");
+        int coz_credit = Integer.parseInt(request.getParameter("coz_credit"));
+        int inst_id = Integer.parseInt(request.getParameter("inst_id"));
+        int maj_id = Integer.parseInt(request.getParameter("maj_id"));
+        int tch_id = Integer.parseInt(request.getParameter("tch_id"));
+        String coz_time = request.getParameter("coz_time");
+        int coz_year = Integer.parseInt(request.getParameter("coz_year"));
+        int coz_semester = Integer.parseInt(request.getParameter("coz_semester"));
+
+        return new Course(coz_id, coz_name, coz_place, coz_credit, inst_id, maj_id, tch_id, coz_time, coz_year, coz_semester);
     }
 
     /**
