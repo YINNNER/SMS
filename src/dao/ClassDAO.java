@@ -204,7 +204,7 @@ public class ClassDAO {
      * @param cls: 班级对象
      * @return flag
      */
-    public boolean modifyClassInfoById(Class cls) {
+    public boolean modifyClassInfo(Class cls) {
         boolean flag = false;
         List<Object> params = new ArrayList<Object>();
         params.add("class_name");

@@ -133,6 +133,32 @@ public class MajorDAO {
     }
 
     /**
+     * 根据id修改专业信息
+     * @param major: 专业对象
+     * @return flag
+     */
+    public boolean modifyMajorInfo(Major major) {
+        boolean flag = false;
+        List<Object> params = new ArrayList<Object>();
+        params.add("maj_name");
+        params.add("inst_id");
+        params.add("maj_id");
+
+        List<Object> values = new ArrayList<Object>();
+        values.add(major.getMaj_name());
+        values.add(major.getInst_id());
+        values.add(major.getMaj_id());
+
+        if (dBUtils.update("major_table", params, values)) {
+            System.out.println("修改成功");
+            flag = true;
+        }
+        else
+            System.out.println("修改失败");
+        return flag;
+    }
+
+    /**
      * 通过id删除学院信息
      * @param id：学院id号
      * @return flag
