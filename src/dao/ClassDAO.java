@@ -55,26 +55,23 @@ public class ClassDAO {
     }
 
     /**
-     * 通过年级、专业id获得所有班级信息
-     * @param inst_id：年级id号
+     * 通过专业id获得所有班级信息
      * @param maj_id：专业id号
      * @return List<Class>
      */
-    public List<Class> queryAllClassInfoByInstMaj(int inst_id, int maj_id){
+    public List<Class> queryAllClassInfoByMaj(int maj_id){
         List<Class> classList = new ArrayList<>();
         List<Object> params = new ArrayList<>();
-        params.add("inst_id");
         params.add("maj_id");
         List<Object> values = new ArrayList<>();
-        values.add(inst_id);
         values.add(maj_id);
 
         try {
             classList = dBUtils.querySubsetRef("class_table", params, values, Class.class);
             System.out.print(classList);
-            System.out.println("通过年级、专业id获得所有班级信息成功");
+            System.out.println("通过专业id获得所有班级信息成功");
         } catch (Exception e) {
-            System.out.println("通过年级、专业id获得所有班级信息失败");
+            System.out.println("通过专业id获得所有班级信息失败");
             e.printStackTrace();
         }
 
@@ -233,7 +230,7 @@ public class ClassDAO {
     public static void main(String[] args) {
         ClassDAO classDAO = new ClassDAO();
         classDAO.queryAllClassInfo();
-        classDAO.queryAllClassInfoByInstMaj(1, 1);
+        classDAO.queryAllClassInfoByMaj(1);
         Class cls = new Class(3);
         Class cls_duplicate = new Class(2, "软工一班",1, 1 );
         System.out.println(classDAO.checkClassExist(cls));

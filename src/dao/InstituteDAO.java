@@ -14,6 +14,26 @@ public class InstituteDAO {
     }
 
     /**
+     * 获得所有学院信息
+     * @return 学院列表
+     */
+    public List<Institute> queryAllInstInfo(){
+        List<Institute> instituteList = new ArrayList<>();
+        List<Object> params = new ArrayList<Object>();
+        List<Object> values = new ArrayList<Object>();
+        try {
+            instituteList = dBUtils.querySubsetRef("institute_table", params, values, Institute.class);
+            System.out.print(instituteList);
+            System.out.println("获得所有学院信息成功");
+        } catch (Exception e) {
+            System.out.println("获得所有学院信息失败");
+            e.printStackTrace();
+        }
+
+        return instituteList;
+    }
+
+    /**
      * 通过id查找学院
      * @param id：id号
      * @return 学院对象

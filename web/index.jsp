@@ -15,6 +15,11 @@
 
     <!-- Custom styles for this page -->
     <link href="css/index.css" rel="stylesheet">
+	<script type="text/javascript" src="js/query-student-option.js"></script>
+	<script type="text/javascript">
+		getInst();
+	</script>
+
   </head>
   <body>
 	  <div class="container-fluid">
@@ -54,16 +59,12 @@
 					
 					  <h4 class="sub-header">学生查询</h4>
 					
-					  <form class="form-horizontal">
+					  <form class="form-horizontal" action="servlet/queryStudent">
 						  <div class="form-group">
 							  <label for="chooseInstitute" class="col-sm-2 col-sm-offset-1 control-label">学院</label>
 							  <div class="col-sm-6">
-								  <select class="form-control" id="chooseInstitute">
-									  <option>1</option>
-									  <option>2</option>
-									  <option>3</option>
-									  <option>4</option>
-									  <option>5</option>
+								  <select class="form-control" id="chooseInstitute" name="inst_id" onchange="getMajor()">
+
 								  </select>
 							  </div>
 						  </div>
@@ -71,12 +72,8 @@
 						  <div class="form-group">
 							  <label for="chooseMajor" class="col-sm-2 col-sm-offset-1 control-label">专业</label>
 							  <div class="col-sm-6">
-								  <select class="form-control" id="chooseMajor">
-									  <option>1</option>
-									  <option>2</option>
-									  <option>3</option>
-									  <option>4</option>
-									  <option>5</option>
+								  <select class="form-control" id="chooseMajor" name="maj_id" onchange="getClass()">
+
 								  </select>
 							  </div>
 						  </div>
@@ -84,19 +81,14 @@
 						  <div class="form-group">
 							  <label for="chooseClass" class="col-sm-2 col-sm-offset-1 control-label">班级</label>
 							  <div class="col-sm-6">
-								  <select class="form-control" id="chooseClass">
-									  <option>1</option>
-									  <option>2</option>
-									  <option>3</option>
-									  <option>4</option>
-									  <option>5</option>
+								  <select class="form-control" id="chooseClass" name="class_id">
 								  </select>
 							  </div>
 						  </div>
 						
 						  <div class="form-group">
 							  <div class="col-sm-offset-5 col-sm-2">
-								  <button type="submit" class="btn btn-default">查询</button>
+								  <button type="submit" class="btn btn-default" name="param" value="querySubmit">查询</button>
 							  </div>
 						  </div>
 					  </form>
