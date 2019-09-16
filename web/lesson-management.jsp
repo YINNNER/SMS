@@ -80,7 +80,7 @@
 							
 							<div class="form-group">
 								<div class="col-sm-offset-5 col-sm-2">
-									<button type="submit" class="btn btn-default" name="param" value="querySubmit">查询</button>
+									<button type="submit" class="btn btn-default" name="param" value="queryCourse">查询</button>
 								</div>
 							</div>
 						</form>

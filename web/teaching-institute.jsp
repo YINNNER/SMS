@@ -1,4 +1,5 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <html>
 	<head>
 		<meta charset="utf-8">
@@ -68,23 +69,30 @@
 					</nav>
 					
 					<div class="col-sm-12 col-md-12 main">
-						
-						<div class="table-responsive">
-							<table class="table table-striped">
-								<thead>
+						<table class="table table-striped">
+							<thead>
 								<tr>
-									<th>#</th>
-									<th>Header</th>
-									<th>Header</th>
-									<th>Header</th>
-									<th>Header</th>
+									<th>学院编号</th>
+									<th>学院名</th>
+									<th>专业个数</th>
+									<th>学生人数</th>
+									<th>修改</th>
+									<th>删除</th>
 								</tr>
-								</thead>
-								<tbody>
-								
-								</tbody>
-							</table>
-						</div>
+							</thead>
+							<tbody>
+								<c:forEach items="${requestScope.queryResult}" var="institute">
+								<tr>
+									<td>${institute.inst_id}</td>
+									<td>${institute.inst_name}</td>
+									<td>${institute.maj_num}</td>
+									<td>${institute.stu_num}</td>
+									<td><button class="btn btn-default">修改</button></td>
+									<td><button class="btn btn-default">删除</button></td>
+								</tr>
+							</c:forEach>
+							</tbody>
+						</table>
 					</div>
 				
 				</div>

@@ -74,7 +74,7 @@
 					
 					<div class="col-sm-12 col-md-12 main">
 						
-						<form class="form-horizontal">
+						<form class="form-horizontal" action="queryMajor">
 							<div class="form-group">
 								<label for="chooseInstitute" class="col-sm-2 col-sm-offset-2 control-label">学院</label>
 								<div class="col-sm-3">
@@ -83,27 +83,35 @@
 									</select>
 								</div>
 								<div class="col-sm-2">
-									<button type="submit" class="btn btn-default" name="param" value="querySubmit">查询</button>
+									<button type="submit" class="btn btn-default" name="param" value="queryMajor">查询</button>
 								</div>
 							</div>
 						</form>
 						
-						<div class="table-responsive">
-							<table class="table table-striped">
-								<thead>
-									<tr>
-										<th>#</th>
-										<th>Header</th>
-										<th>Header</th>
-										<th>Header</th>
-										<th>Header</th>
-									</tr>
-								</thead>
-								<tbody>
-								
-								</tbody>
-							</table>
-						</div>
+						<table class="table table-striped">
+							<thead>
+								<tr>
+									<th>学院编号</th>
+									<th>学院名</th>
+									<th>专业个数</th>
+									<th>学生人数</th>
+									<th>修改</th>
+									<th>删除</th>
+								</tr>
+							</thead>
+							<tbody>
+								<c:forEach items="${requestScope.queryResult}" var="institute">
+								<tr>
+									<td>${institute.inst_id}</td>
+									<td>${institute.inst_name}</td>
+									<td>${institute.maj_num}</td>
+									<td>${institute.stu_num}</td>
+									<td><button class="btn btn-default">修改</button></td>
+									<td><button class="btn btn-default">删除</button></td>
+								</tr>
+							</c:forEach>
+							</tbody>
+						</table>
 					</div>
 				
 				</div>
