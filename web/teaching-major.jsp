@@ -1,4 +1,5 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <html>
 	<head>
 		<meta charset="utf-8">
@@ -41,7 +42,7 @@
 						<span class="navbar-brand" id="sub-nav-name" style="font-size: 14px; padding: 5px;"></span>
 					</div>
 					<ul class="nav nav-sidebar">
-						<li><a href="teaching-institute.jsp" style="border-top: 2px solid #eee;">学院</a></li>
+						<li><a href="queryInstitute?param=queryInstitute" style="border-top: 2px solid #eee;">学院</a></li>
 						<li class="active"><a href="#">专业</a></li>
 						<li><a href="teaching-class.jsp">班级</a></li>
 					</ul>
@@ -74,7 +75,7 @@
 					
 					<div class="col-sm-12 col-md-12 main">
 						
-						<form class="form-horizontal">
+						<form class="form-horizontal" action="queryMajor">
 							<div class="form-group">
 								<label for="chooseInstitute" class="col-sm-2 col-sm-offset-2 control-label">学院</label>
 								<div class="col-sm-3">
@@ -83,27 +84,37 @@
 									</select>
 								</div>
 								<div class="col-sm-2">
-									<button type="submit" class="btn btn-default" name="param" value="querySubmit">查询</button>
+									<button type="submit" class="btn btn-default" name="param" value="queryMajor">查询</button>
 								</div>
 							</div>
 						</form>
 						
-						<div class="table-responsive">
-							<table class="table table-striped">
-								<thead>
-									<tr>
-										<th>#</th>
-										<th>Header</th>
-										<th>Header</th>
-										<th>Header</th>
-										<th>Header</th>
-									</tr>
-								</thead>
-								<tbody>
-								
-								</tbody>
-							</table>
-						</div>
+						<table class="table table-striped">
+							<thead>
+								<tr>
+									<th>专业编号</th>
+									<th>专业名</th>
+									<th>班级个数</th>
+									<th>学生人数</th>
+									<th>修改</th>
+									<th>删除</th>
+								</tr>
+							</thead>
+							<tbody>
+								<c:if test="${not empty requestScope.queryResult}">
+									<c:forEach items="${requestScope.queryResult}" var="major">
+										<tr>
+											<td>${major.maj_id}</td>
+											<td>${major.maj_name}</td>
+											<td>${major.class_num}</td>
+											<td>${major.stu_num}</td>
+											<td><button class="btn btn-default">修改</button></td>
+											<td><button class="btn btn-default">删除</button></td>
+										</tr>
+									</c:forEach>
+								</c:if>
+							</tbody>
+						</table>
 					</div>
 				
 				</div>

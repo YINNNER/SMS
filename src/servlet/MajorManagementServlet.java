@@ -40,7 +40,7 @@ public class MajorManagementServlet extends HttpServlet {
             }
 
             request.setAttribute("queryResult", queryResults);
-            request.getRequestDispatcher(".jsp").forward(request, response);
+            request.getRequestDispatcher("teaching-major.jsp").forward(request, response);
         }
 
         // 添加学院
