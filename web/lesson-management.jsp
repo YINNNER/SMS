@@ -31,7 +31,7 @@
 					</div>
 					<ul class="nav nav-sidebar">
 						<li><a href="index.jsp">学生管理</a></li>
-						<li><a href="teaching-institute.jsp">教学管理</a></li>
+						<li><a href="queryInstitute?param=queryInstitute">教学管理</a></li>
 						<li class="active"><a href="#">课程管理 <span class="sr-only">(current)</span></a></li>
 					</ul>
 				</div>
