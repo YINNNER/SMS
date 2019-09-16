@@ -104,7 +104,7 @@ public class InstituteDAO {
      * @param institute: 学院对象
      * @return flag
      */
-    public boolean modifyInstInfoById(Institute institute) {
+    public boolean modifyInstInfo(Institute institute) {
         boolean flag = false;
         List<Object> params = new ArrayList<Object>();
         params.add("inst_name");
