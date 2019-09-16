@@ -22,7 +22,7 @@
 				
 				<div class="col-sm-3 col-md-2 sidebar">
 					<div class="navbar-header">
-						<a class="navbar-brand" id="nav-name" href="#">学生管理系统</a>
+						<a class="navbar-brand" id="nav-name" href="index.jsp">学生管理系统</a>
 					</div>
 					<ul class="nav nav-sidebar">
 						<li><a href="index.jsp">学生管理</a></li>
@@ -46,12 +46,6 @@
 					
 					<nav class="col-sm-12 col-md-12 navbar my-top-nav">
 						<div class="container-fluid" style="text-align: center">
-			  
-			              <span class="nav navbar-nav navbar-left">
-			                <button type="button" class="btn btn-default btn-lg">
-			                  <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
-			                </button>
-			              </span >
 							
 							<div class="navbar-header">
 								<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
@@ -75,7 +69,36 @@
 					
 					<div class="col-sm-12 col-md-12 main">
 						
-						<h2 class="sub-header">Section title</h2>
+						<form class="form-horizontal">
+							<div class="form-group">
+								<label for="chooseInstitute" class="col-sm-2 control-label">学院</label>
+								<div class="col-sm-3">
+									<select class="form-control" id="chooseInstitute">
+										<option>1</option>
+										<option>2</option>
+										<option>3</option>
+										<option>4</option>
+										<option>5</option>
+									</select>
+								</div>
+								
+								<label for="chooseMajor" class="col-sm-2 control-label">专业</label>
+								<div class="col-sm-3">
+									<select class="form-control" id="chooseMajor">
+										<option>1</option>
+										<option>2</option>
+										<option>3</option>
+										<option>4</option>
+										<option>5</option>
+									</select>
+								</div>
+								
+								<div class="col-sm-2">
+									<button type="submit" class="btn btn-default">查询</button>
+								</div>
+							</div>
+						</form>
+						
 						<div class="table-responsive">
 							<table class="table table-striped">
 								<thead>

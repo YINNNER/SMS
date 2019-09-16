@@ -25,9 +25,9 @@
 						<a class="navbar-brand" id="nav-name" href="index.jsp">学生管理系统</a>
 					</div>
 					<ul class="nav nav-sidebar">
-						<li><a href="index.jsp">学生管理</a></li>
+						<li class="active"><a href="#">学生管理 <span class="sr-only">(current)</span></a></li>
 						<li><a href="teaching-institute.jsp">教学管理</a></li>
-						<li class="active"><a href="#">课程管理 <span class="sr-only">(current)</span></a></li>
+						<li><a href="lesson-management.jsp">课程管理</a></li>
 					</ul>
 				</div>
 				
@@ -37,7 +37,7 @@
 						<div class="container-fluid" style="text-align: center">
 		  
 		              <span class="nav navbar-nav navbar-left">
-		                <button type="button" class="btn btn-default btn-lg" onclick="location='lesson-management.jsp'">
+		                <button type="button" class="btn btn-default btn-lg" onclick="location='index.jsp'">
 		                  <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
 		                </button>
 		              </span >
@@ -51,10 +51,10 @@
 								</button>
 							</div>
 							
-							<h4 class="nav-title">课程列表</h4>
+							<h4 class="nav-title">学生列表</h4>
 							
 							<span class="nav navbar-nav navbar-right">
-		                <button type="button" class="btn btn-default btn-lg">
+		                <button type="button" class="btn btn-default btn-lg" onclick="location='student-info-add.jsp'">
 		                  <span class="glyphicon glyphicon glyphicon-plus" aria-hidden="true"></span>
 		                </button>
 		              </span>
@@ -196,7 +196,7 @@
 				</div>
 			</div>
 		</div>
-	
+		
 		<!-- Bootstrap core JavaScript
 		================================================== -->
 		<!-- Placed at the end of the document so the pages load faster -->

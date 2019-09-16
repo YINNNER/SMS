@@ -25,22 +25,34 @@
 						<a class="navbar-brand" id="nav-name" href="index.jsp">学生管理系统</a>
 					</div>
 					<ul class="nav nav-sidebar">
-						<li><a href="index.jsp">学生管理</a></li>
+						<li class="active"><a href="#">学生管理 <span class="sr-only">(current)</span></a></li>
 						<li><a href="teaching-institute.jsp">教学管理</a></li>
-						<li class="active"><a href="#">课程管理 <span class="sr-only">(current)</span></a></li>
+						<li><a href="lesson-management.jsp">课程管理</a></li>
 					</ul>
 				</div>
 				
-				<div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 my-nav-container">
+				<div class="col-sm-2 col-sm-offset-3 col-md-1 col-md-offset-2 sidebar sub-bar">
+					<div class="navbar-header">
+						<span class="navbar-brand" id="sub-nav-name" style="font-size: 14px; padding: 5px;"></span>
+					</div>
+					<ul class="nav nav-sidebar">
+						<li><a href="student-selection.jsp" style="border-top: 2px solid #eee;">选课</a></li>
+						<li><a href="student-score.jsp">成绩</a></li>
+						<li><a href="student-statistic.jsp">统计</a></li>
+						<li class="active"><a href="#">信息</a></li>
+					</ul>
+				</div>
+				
+				<div class="col-sm-7 col-sm-offset-5 col-md-9 col-md-offset-3 my-nav-container">
 					
 					<nav class="col-sm-12 col-md-12 navbar my-top-nav">
 						<div class="container-fluid" style="text-align: center">
-		  
-		              <span class="nav navbar-nav navbar-left">
-		                <button type="button" class="btn btn-default btn-lg" onclick="location='lesson-management.jsp'">
-		                  <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
-		                </button>
-		              </span >
+	  
+	              <span class="nav navbar-nav navbar-left">
+	                <button type="button" class="btn btn-default btn-lg"  onclick="history.back()">
+	                  <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+	                </button>
+	              </span >
 							
 							<div class="navbar-header">
 								<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
@@ -51,19 +63,20 @@
 								</button>
 							</div>
 							
-							<h4 class="nav-title">课程列表</h4>
+							<h4 class="nav-title">学生信息</h4>
 							
 							<span class="nav navbar-nav navbar-right">
-		                <button type="button" class="btn btn-default btn-lg">
-		                  <span class="glyphicon glyphicon glyphicon-plus" aria-hidden="true"></span>
-		                </button>
-		              </span>
+	                <button type="button" class="btn btn-default btn-lg">
+	                  <span class="glyphicon glyphicon glyphicon-plus" aria-hidden="true"></span>
+	                </button>
+	              </span>
 						
 						</div>
 					</nav>
 					
 					<div class="col-sm-12 col-md-12 main">
 						
+						<h2 class="sub-header">Section title</h2>
 						<div class="table-responsive">
 							<table class="table table-striped">
 								<thead>
@@ -196,7 +209,7 @@
 				</div>
 			</div>
 		</div>
-	
+		
 		<!-- Bootstrap core JavaScript
 		================================================== -->
 		<!-- Placed at the end of the document so the pages load faster -->
