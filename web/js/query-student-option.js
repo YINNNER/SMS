@@ -2,7 +2,7 @@ function getInst() {
     //使用get提交，将url和想要传递到后台的参数进行拼接，便于后台获取数据
     var request = new XMLHttpRequest(); // 新建XMLHttpRequest对象
     // 发送请求:
-    request.open("GET", "servlet/queryStudent?param=queryInst");
+    request.open("GET", "queryStudent?param=queryInst");
     request.send();
     // ajax.open("GET", "servlet/queryStudent?param=queryInst", true);
     //监听Ajax的状态变化
@@ -37,7 +37,7 @@ function getMajor() {
     //使用get提交，将url和想要传递到后台的参数进行拼接，便于后台获取数据
     var request = new XMLHttpRequest(); // 新建XMLHttpRequest对象
     // 发送请求:
-    request.open("GET", "servlet/queryStudent?param=queryMaj&inst_id=" + inst_id);
+    request.open("GET", "queryStudent?param=queryMaj&inst_id=" + inst_id);
     request.send();
     //监听Ajax的状态变化
     request.onreadystatechange = function () {
@@ -69,7 +69,7 @@ function getClass() {
     //使用get提交，将url和想要传递到后台的参数进行拼接，便于后台获取数据
     var request = new XMLHttpRequest(); // 新建XMLHttpRequest对象
     // 发送请求:
-    request.open("GET", "servlet/queryStudent?param=queryClass&maj_id=" + maj_id);
+    request.open("GET", "queryStudent?param=queryClass&maj_id=" + maj_id);
     request.send();
     //监听Ajax的状态变化
     request.onreadystatechange = function () {

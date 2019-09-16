@@ -13,7 +13,7 @@
             <div class="web_login" id="web_login">
                 <div class="login-box">
                     <div class="login_form">
-                        <form action="servlet/login" id="login_form" class="loginForm">
+                        <form action="login" id="login_form" class="loginForm">
                             <div class="uinArea" id="uinArea">
                                 <label class="input-tips" for="u">账号：</label>
                                 <div class="inputOuter" id="uArea">

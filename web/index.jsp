@@ -59,7 +59,7 @@
 					
 					  <h4 class="sub-header">学生查询</h4>
 					
-					  <form class="form-horizontal" action="servlet/queryStudent">
+					  <form class="form-horizontal" action="queryStudent">
 						  <div class="form-group">
 							  <label for="chooseInstitute" class="col-sm-2 col-sm-offset-1 control-label">学院</label>
 							  <div class="col-sm-6">
