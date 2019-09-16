@@ -43,6 +43,23 @@ public class CourseManagementServlet extends HttpServlet {
             request.getRequestDispatcher("lesson-list.jsp").forward(request, response);
         }
 
+        // 添加课程
+        if (param.contains("addCourse")){
+            Course course = (Course) request.getAttribute("addCourse");
+            boolean flag = courseDAO.addCourseInfo(course);
+        }
+
+        // 修改课程
+        if (param.contains("modifiedCourse")){
+            Course course = (Course) request.getAttribute("modifiedCourse");
+            boolean flag = courseDAO.modifyCourseInfoById(course);
+        }
+
+        // 删除课程
+        if (param.contains("deleteCourse")){
+            int coz_id = Integer.parseInt(request.getParameter("coz_id"));
+            boolean flag = courseDAO.deleteCourseInfoById(coz_id);
+        }
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

@@ -136,6 +136,46 @@ public class CourseDAO {
     }
 
     /**
+     * 根据id修改课程信息
+     * @param course: 学生对象
+     * @return flag
+     */
+    public boolean modifyCourseInfoById(Course course) {
+        boolean flag = false;
+        List<Object> params = new ArrayList<Object>();
+        params.add("coz_name");
+        params.add("coz_place");
+        params.add("coz_credit");
+        params.add("inst_id");
+        params.add("maj_id");
+        params.add("tch_id");
+        params.add("coz_time");
+        params.add("coz_year");
+        params.add("coz_semester");
+        params.add("coz_id");
+
+        List<Object> values = new ArrayList<Object>();
+        values.add(course.getCoz_name());
+        values.add(course.getCoz_place());
+        values.add(course.getCoz_credit());
+        values.add(course.getInst_id());
+        values.add(course.getMaj_id());
+        values.add(course.getTch_id());
+        values.add(course.getCoz_time());
+        values.add(course.getCoz_year());
+        values.add(course.getCoz_semester());
+        values.add(course.getCoz_id());
+
+        if (dBUtils.update("course_table", params, values)) {
+            System.out.println("修改成功");
+            flag = true;
+        }
+        else
+            System.out.println("修改失败");
+        return flag;
+    }
+
+    /**
      * 通过id删除课程信息
      * @param id：课程id号
      * @return flag
