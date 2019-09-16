@@ -4,10 +4,8 @@ import dao.ClassDAO;
 import dao.InstituteDAO;
 import dao.MajorDAO;
 import dao.StudentDAO;
+import entity.*;
 import entity.Class;
-import entity.Institute;
-import entity.Major;
-import entity.Student;
 import org.json.JSONArray;
 
 import javax.servlet.ServletException;
@@ -16,6 +14,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 @WebServlet(name = "QueryStudentServlet")
@@ -61,11 +60,19 @@ public class QueryStudentServlet extends HttpServlet {
 
         //提交查询
         if (param.contains("querySubmit")) {
+            List<StudentFront> queryResults = new ArrayList<>();
             int inst_id = Integer.parseInt(request.getParameter("inst_id"));
             int maj_id = Integer.parseInt(request.getParameter("maj_id"));
             int class_id = Integer.parseInt(request.getParameter("class_id"));
 
-            List<Student> queryResults = studentDAO.queryStuInfoByClass(inst_id, maj_id, class_id);
+            List<Student> students = studentDAO.queryStuInfoByClass(inst_id, maj_id, class_id);
+            for (Student student:students) {
+                Institute institute = instituteDAO.queryInstInfoById(student.getInst_id());
+                Major major = majorDAO.queryMajInfoById(student.getMaj_id());
+                Class cls = classDAO.queryClassInfoById(student.getClass_id());
+                StudentFront studentFront = new StudentFront(student, institute, major, cls);
+                queryResults.add(studentFront);
+            }
 
             request.setAttribute("queryResult", queryResults);
             request.getRequestDispatcher("student-list.jsp").forward(request, response);
