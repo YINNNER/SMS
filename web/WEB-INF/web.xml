@@ -44,4 +44,34 @@
         <url-pattern>/queryCourse</url-pattern>
     </servlet-mapping>
 
+    <servlet>
+        <servlet-name>queryInstitute</servlet-name>
+        <servlet-class>servlet.InstituteManagementServlet</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>queryInstitute</servlet-name>
+        <url-pattern>/queryInstitute</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>queryMajor</servlet-name>
+        <servlet-class>servlet.MajorManagementServlet</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>queryMajor</servlet-name>
+        <url-pattern>/queryMajor</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>queryClass</servlet-name>
+        <servlet-class>servlet.ClassManagementServlet</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>queryClass</servlet-name>
+        <url-pattern>/queryClass</url-pattern>
+    </servlet-mapping>
+
 </web-app>
