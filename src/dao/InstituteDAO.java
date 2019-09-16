@@ -100,6 +100,31 @@ public class InstituteDAO {
     }
 
     /**
+     * 根据id修改学院信息
+     * @param institute: 学院对象
+     * @return flag
+     */
+    public boolean modifyInstInfoById(Institute institute) {
+        boolean flag = false;
+        List<Object> params = new ArrayList<Object>();
+        params.add("inst_name");
+        params.add("inst_id");
+
+        List<Object> values = new ArrayList<Object>();
+        values.add(institute.getInst_name());
+        values.add(institute.getInst_id());
+
+
+        if (dBUtils.update("institute_table", params, values)) {
+            System.out.println("修改成功");
+            flag = true;
+        }
+        else
+            System.out.println("修改失败");
+        return flag;
+    }
+
+    /**
      * 通过id删除学院信息
      * @param id：学院id号
      * @return flag
