@@ -65,7 +65,7 @@ public class QueryStudentServlet extends HttpServlet {
             int maj_id = Integer.parseInt(request.getParameter("maj_id"));
             int class_id = Integer.parseInt(request.getParameter("class_id"));
 
-            List<Student> students = studentDAO.queryStuInfoByClass(inst_id, maj_id, class_id);
+            List<Student> students = studentDAO.queryStuInfoByClass(class_id);
             for (Student student:students) {
                 Institute institute = instituteDAO.queryInstInfoById(student.getInst_id());
                 Major major = majorDAO.queryMajInfoById(student.getMaj_id());
