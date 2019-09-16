@@ -29,8 +29,6 @@ public class InstituteManagementServlet extends HttpServlet {
         // 获得学院信息
         if (param.contains("queryInstitute")) {
             List<InstituteFront> queryResults = new ArrayList<>();
-            int inst_id = Integer.parseInt(request.getParameter("inst_id"));
-            int maj_id = Integer.parseInt(request.getParameter("maj_id"));
             List<Institute> institutes = instituteDAO.queryAllInstInfo();
             for (Institute institute:institutes) {
                 int maj_num = majorDAO.queryAllMajByInstId(institute.getInst_id()).size();
