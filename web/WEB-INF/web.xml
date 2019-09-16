@@ -14,4 +14,24 @@
         <url-pattern>/servlet/login</url-pattern>
     </servlet-mapping>
 
+    <servlet>
+        <servlet-name>queryStudent</servlet-name>
+        <servlet-class>servlet.QueryStudentServlet</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>queryStudent</servlet-name>
+        <url-pattern>/servlet/queryStudent</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>studentManagement</servlet-name>
+        <servlet-class>servlet.StudentManagementServlet</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>studentManagement</servlet-name>
+        <url-pattern>/servlet/studentManagement</url-pattern>
+    </servlet-mapping>
+
 </web-app>

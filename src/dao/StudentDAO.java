@@ -55,6 +55,37 @@ public class StudentDAO {
         return student;
     }
 
+
+    /**
+     * 查询指定班级的学生
+     * @param inst_id：学院id号
+     * @param maj_id：专业id号
+     * @param class_id：班级id号
+     * @return list 学生列表
+     */
+    public List<Student> queryStuInfoByClass(int inst_id, int maj_id, int class_id){
+        List<Student> studentList = new ArrayList<>();
+        List<Object> params = new ArrayList<Object>();
+        params.add("inst_id");
+        params.add("maj_id");
+        params.add("class_id");
+
+        List<Object> values = new ArrayList<>();
+        values.add(inst_id);
+        values.add(maj_id);
+        values.add(class_id);
+        try {
+            studentList = dBUtils.querySubsetRef("student_table", params, values, Student.class);
+            System.out.print(studentList);
+            System.out.println(class_id + " 查询指定班级的学生成功");
+        } catch (Exception e) {
+            System.out.println(class_id + " 查询指定班级的学生失败");
+            e.printStackTrace();
+        }
+
+        return studentList;
+    }
+
     /**
      * 自定义查找满足条件的学生
      * @param params：条件名
