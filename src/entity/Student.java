@@ -70,6 +70,25 @@ public class Student {
         this.stu_political = stu_political;
     }
 
+    public Student(int stu_id, int inst_id, int maj_id, int class_id, String stu_name, String stu_sex, Date stu_birth_date, String stu_birth_place, String stu_political) {
+        this.stu_id = stu_id;
+        this.inst_id = inst_id;
+        this.maj_id = maj_id;
+        this.class_id = class_id;
+        this.stu_name = stu_name;
+        this.stu_sex = stu_sex;
+        this.stu_birth_date = stu_birth_date;
+        this.stu_birth_place = stu_birth_place;
+        this.stu_political = stu_political;
+    }
+
+    public Student(int stu_id) {
+        this.stu_id = stu_id;
+    }
+
+    public Student() {
+    }
+
     @Override
     public String toString() {
         return "Student{" +
