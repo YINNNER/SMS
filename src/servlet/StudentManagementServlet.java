@@ -30,7 +30,7 @@ public class StudentManagementServlet extends HttpServlet {
 
         //添加学生信息
         if (type.contains("addStudent")){
-            Student student = (Student) request.getAttribute("addStudent");
+            Student student = (Student) request.getAttribute("myStudent");
             boolean flag = studentDAO.addStuInfo(student);
         }
 
@@ -48,7 +48,7 @@ public class StudentManagementServlet extends HttpServlet {
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
+        this.doPost(request, response);
     }
 
     /**

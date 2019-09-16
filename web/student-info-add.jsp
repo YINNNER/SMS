@@ -59,8 +59,8 @@
 					<div class="col-sm-12 col-md-12 main">
 						
 						<form class="form-horizontal" action="studentManagement">
-							<%--<jsp:useBean id="addStudent" class="entity.Student" scope="request" />--%>
-							<%--<jsp:setProperty name="addStudent" property="*"/>--%>
+							<jsp:useBean id="myStudent" class="entity.Student" scope="request" />
+							<jsp:setProperty name="myStudent" property="*"/>
 							
 							<div class="form-group">
 								<label for="inputId" class="col-sm-2 col-sm-offset-1 control-label">学号</label>
@@ -94,7 +94,7 @@
 							</div>
 							<div class="form-group">
 								
-								<label for="inputMajor" class="col-sm-2 col-sm-offset-1 control-label">班级</label>
+								<label for="inputClass" class="col-sm-2 col-sm-offset-1 control-label">班级</label>
 								<div class="col-sm-6">
 									<input type="text" class="form-control" id="inputClass" name="class_id"  placeholder="班级">
 								</div>

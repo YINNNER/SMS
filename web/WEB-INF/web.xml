@@ -34,4 +34,14 @@
         <url-pattern>/studentManagement</url-pattern>
     </servlet-mapping>
 
+    <servlet>
+        <servlet-name>queryCourse</servlet-name>
+        <servlet-class>servlet.CourseManagementServlet</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>queryCourse</servlet-name>
+        <url-pattern>/queryCourse</url-pattern>
+    </servlet-mapping>
+
 </web-app>
