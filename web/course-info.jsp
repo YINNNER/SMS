@@ -21,13 +21,35 @@
 		<script type="text/javascript" src="js/query-student-option.js"></script>
 		<script type="text/javascript">
         getInst();
+        getTeacher();
 		</script>
 		<script>window.jQuery || document.write('<script src="bootstrap/js/vendor/jquery.min.js"><\/script>')</script>
 		<script type="text/javascript">
+        function urlSearch() {
+            var name,value;
+            var str=location.href; //取得整个地址栏
+            var num=str.indexOf("?");
+            str=str.substr(num+1); //取得所有参数   stringvar.substr(start [, length ]
+
+            var arr=str.split("&"); //各个参数放到数组里
+		        var result = {};
+            console.log(arr);
+            for(var i=0;i < arr.length;i++){
+                num=arr[i].indexOf("=");
+                if(num>0){
+                    name=arr[i].substring(0,num);
+                    value=arr[i].substr(num+1);
+                    result[name]=value;
+                }
+            }
+            return result;
+        }
+			
         $(document).ready(function () {
-            var coz_id = "${requestScope.coz_id}";
+            result = urlSearch();
+            var coz_id = result["coz_id"];
             if(coz_id!==""){
-            
+              getSingleCourse(coz_id);
             }
             
             var add_flag = "${requestScope.add_flag}";
@@ -101,21 +123,6 @@
 					</nav>
 					
 					<div class="col-sm-12 col-md-12 main">
-						
-						<%--&lt;%&ndash;判断是否添加成功&ndash;%&gt;--%>
-						<%--<c:if test="${not empty requestScope.flag}">--%>
-							<%--<c:if test="${requestScope.flag == true}">--%>
-								<%--<script>--%>
-                    <%--alert("添加成功！");--%>
-                    <%--window.location.href='index.jsp';--%>
-								<%--</script>--%>
-							<%--</c:if>--%>
-							<%--<c:if test="${requestScope.flag == false}">--%>
-								<%--<script>--%>
-                    <%--alert("添加失败！");--%>
-								<%--</script>--%>
-							<%--</c:if>--%>
-						<%--</c:if>--%>
 						
 						<form class="form-horizontal" action="courseManagement">
 							
