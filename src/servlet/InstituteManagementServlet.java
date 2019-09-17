@@ -36,9 +36,7 @@ public class InstituteManagementServlet extends HttpServlet {
                 InstituteFront instituteFront = new InstituteFront(institute, maj_num, stu_num);
                 queryResults.add(instituteFront);
             }
-
             request.setAttribute("queryResult", queryResults);
-            request.getRequestDispatcher("teaching-institute.jsp").forward(request, response);
         }
 
         // 添加学院
@@ -46,7 +44,6 @@ public class InstituteManagementServlet extends HttpServlet {
             Institute institute = getInstInfo(request);
             boolean flag = instituteDAO.addInstInfo(institute);
             request.setAttribute("add_flag", flag);
-            request.getRequestDispatcher("teaching-institute.jsp").forward(request, response);
         }
 
         // 修改学院信息
@@ -54,16 +51,16 @@ public class InstituteManagementServlet extends HttpServlet {
             Institute institute = getInstInfo(request);
             boolean flag = instituteDAO.modifyInstInfo(institute);
             request.setAttribute("modify_flag", flag);
-            request.getRequestDispatcher("teaching-institute.jsp").forward(request, response);
         }
 
         // 删除学院
         if (param.contains("deleteInstitute")){
             int inst_id = Integer.parseInt(request.getParameter("inst_id"));
             boolean flag = instituteDAO.deleteInstInfoById(inst_id);
-            request.setAttribute("flag", flag);
-            request.getRequestDispatcher(".jsp").forward(request, response);
+            request.setAttribute("delete_flag", flag);
         }
+
+        request.getRequestDispatcher("teaching-institute.jsp").forward(request, response);
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

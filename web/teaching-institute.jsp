@@ -16,39 +16,19 @@
 		
 		<!-- Custom styles for this page -->
 		<link href="css/index.css" rel="stylesheet">
+		
 		<!-- Custom scripts for this page -->
 		<script>window.jQuery || document.write('<script src="bootstrap/js/vendor/jquery.min.js"><\/script>')</script>
+		<script type="text/javascript" src="js/teaching-operation.js"></script>
 		<script type="text/javascript">
-				function addInst() {
-            $('tbody').append('<tr></tr>');
-            var tr = $('tbody tr:last');
-            // form = form.find('tr');
-				    var td_id = '<td><input type="text" class="form-control" id="inputId" name="inst_id" placeholder="学院编号"></td>';
-				    var td_name = '<td><input type="text" class="form-control" id="inputName" name="inst_name" placeholder="学院名"></td>';
-				    tr.append(td_id);
-				    tr.append(td_name);
-				    tr.append('<td>0</td><td>0</td>');
-				    var td_confirm = '<td><button type="submit" class="btn btn-default" onclick="confirmAddInst()">确定</button></td>';
-						tr.append(td_confirm);
-        }
-        
-        function confirmAddInst() {
-		        window.location.href = 'instituteManagement?param=addInstitute&inst_id=' +
-                $('#inputId').val() + '&inst_name=' + $('#inputName').val();
-        }
-        
         $(document).ready(function () {
+            url = 'instituteManagement?param=queryInstitute';
             var add_flag = "${requestScope.add_flag}";
-            if (add_flag!==""){
-                if (add_flag === "true"){
-                    alert("添加成功！");
-                }
-                else {
-                    alert("添加失败！");
-                    var tr = $('tbody tr:last');
-                    $('tbody').removeChild(tr);
-                }
-            }
+            if (add_flag !=="") addOpt(add_flag, url);
+            var modify_flag = "${requestScope.modify_flag}";
+            if (modify_flag !=="") modifyOpt(modify_flag, url);
+            var delete_flag = "${requestScope.delete_flag}";
+            if (delete_flag !=="") deleteOpt(delete_flag, url);
         });
 		</script>
 	</head>
@@ -116,18 +96,17 @@
 								</tr>
 							</thead>
 							<tbody>
-								<c:forEach items="${requestScope.queryResult}" var="institute">
+								<c:forEach items="${requestScope.queryResult}" var="institute" varStatus="i">
 								<tr>
 									<td>${institute.inst_id}</td>
 									<td>${institute.inst_name}</td>
 									<td>${institute.maj_num}</td>
 									<td>${institute.stu_num}</td>
-									<td><button class="btn btn-default">修改</button></td>
+									<td><button class="btn btn-default" onclick="modify(${i.count}, 0)">修改</button></td>
 									<td>
-										<form action="courseManagement">
-											<input type="hidden" name="inst_id" value="${institute.inst_id}">
-											<button class="btn btn-default"
-											        type="submit" name="param" value="deleteInstitute">删除</button>
+										<form action="instituteManagement">
+											<input type="hidden" name="inst_id" id="inst_id" value="${institute.inst_id}">
+											<button class="btn btn-default" type="submit" name="param" value="deleteInstitute">删除</button>
 										</form>
 									</td>
 								</tr>
@@ -143,7 +122,6 @@
 		<!-- Bootstrap core JavaScript
 		================================================== -->
 		<!-- Placed at the end of the document so the pages load faster -->
-		<script>window.jQuery || document.write('<script src="bootstrap/js/vendor/jquery.min.js"><\/script>')</script>
 		<script src="bootstrap/js/bootstrap.min.js"></script>
 	</body>
 </html>
