@@ -175,7 +175,7 @@ function getSingleCourse(coz_id) {
             var chooseInstitute = document.getElementById("chooseInstitute");
             var chooseMajor = document.getElementById("chooseMajor");
             var chooseTeacher = document.getElementById("chooseTeacher");
-            var inputPlace = document.getElementById("inputTime");
+            var inputPlace = document.getElementById("inputPlace");
             var inputTime = document.getElementById("inputTime");
             var inputYear = document.getElementById("inputYear");
             var chooseSemester = document.getElementById("chooseSemester");

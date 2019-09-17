@@ -70,7 +70,8 @@
 							<c:if test="${requestScope.flag == true}">
 								<script>
                     alert("删除成功！");
-                    window.location.href='index.jsp';
+					var class_id = "${sessionScope.class_id}";
+                    window.location.href='queryStudent?param=querySubmit&class_id='+class_id;
 								</script>
 							</c:if>
 							<c:if test="${requestScope.flag == false}">

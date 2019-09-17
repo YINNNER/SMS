@@ -68,8 +68,8 @@ public class StudentManagementServlet extends HttpServlet {
         //删除学生
         if (type.contains("deleteStudent")){
             int stu_id = Integer.parseInt(request.getParameter("stu_id"));
-//            boolean flag = studentDAO.deleteStuInfoById(stu_id);
-            boolean flag = true;
+            boolean flag = studentDAO.deleteStuInfoById(stu_id);
+            //boolean flag = true;
             request.setAttribute("flag", flag);
             HttpSession session = request.getSession();
             session.setAttribute("class_id", request.getParameter("class_id"));
