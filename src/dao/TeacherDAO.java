@@ -36,4 +36,23 @@ public class TeacherDAO {
 
         return teacher;
     }
+
+    /**
+     * 查找所有老师
+     * @return List<Teacher>
+     */
+    public List<Teacher> queryAllTch(){
+        List<Teacher> teacherList = new ArrayList<>();
+        List<Object> params = new ArrayList<Object>();
+        List<Object> values = new ArrayList<>();
+        try {
+            teacherList = dBUtils.querySubsetRef("teacher_table", params, values, Teacher.class);
+            System.out.print(teacherList);
+            System.out.println("查找所有老师老师成功");
+        } catch (Exception e) {
+            System.out.println("查找所有老师失败");
+            e.printStackTrace();
+        }
+        return teacherList;
+    }
 }

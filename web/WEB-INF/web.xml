@@ -74,4 +74,14 @@
         <url-pattern>/classManagement</url-pattern>
     </servlet-mapping>
 
+    <servlet>
+        <servlet-name>queryTeacher</servlet-name>
+        <servlet-class>servlet.QueryTeacherServlet</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>queryTeacher</servlet-name>
+        <url-pattern>/queryTeacher</url-pattern>
+    </servlet-mapping>
+
 </web-app>
