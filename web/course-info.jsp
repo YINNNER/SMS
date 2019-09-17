@@ -30,14 +30,25 @@
             
             }
             
-            var flag = "${requestScope.flag}";
-            if (flag!==""){
-                if (flag === "true"){
+            var add_flag = "${requestScope.add_flag}";
+            if (add_flag!==""){
+                if (add_flag === "true"){
                     alert("添加成功！");
                     window.location.href='course-management.jsp';
                 }
                 else {
                     alert("添加失败！");
+                }
+            }
+
+            var modify_flag = "${requestScope.modify_flag}";
+            if (modify_flag!==""){
+                if (modify_flag === "true"){
+                    alert("修改成功！");
+                    window.location.href='course-management.jsp';
+                }
+                else {
+                    alert("修改失败！");
                 }
             }
         });
@@ -180,7 +191,12 @@
 							</div>
 							<div class="form-group">
 								<div class="col-sm-offset-5 col-sm-2">
-									<button type="submit" class="btn btn-default" name="param" value="addCourse">确定</button>
+									<c:if test="${not empty requestScope.type}">
+										<button type="submit" class="btn btn-default" name="param" value="modifiedCourse">确定</button>
+									</c:if>
+									<c:if test="${empty requestScope.type}">
+										<button type="submit" class="btn btn-default" name="param" value="addCourse">确定</button>
+									</c:if>
 								</div>
 							</div>
 						</form>

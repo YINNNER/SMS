@@ -120,7 +120,11 @@
 											<td>${course.coz_time}</td>
 											<td>${course.coz_year}</td>
 											<td>${course.coz_semester}</td>
-											<td><button class="btn btn-default" onclick="location='course-info.jsp?coz_id=${course.coz_id}'">修改</button></td>
+											<td>
+												<button class="btn btn-default"
+											            onclick="location='course-info.jsp?coz_id=${course.coz_id}&type=modify'">修改
+												</button>
+											</td>
 											<td>
 												<form action="courseManagement">
 													<input type="hidden" name="coz_id" value="${course.coz_id}">

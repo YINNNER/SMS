@@ -53,7 +53,7 @@ public class CourseManagementServlet extends HttpServlet {
         if (param.contains("addCourse")){
             Course course = getCourseInfo(request);
             boolean flag = courseDAO.addCourseInfo(course);
-            request.setAttribute("flag", flag);
+            request.setAttribute("add_flag", flag);
             request.getRequestDispatcher("course-info.jsp").forward(request, response);
         }
 
@@ -61,13 +61,8 @@ public class CourseManagementServlet extends HttpServlet {
         if (param.contains("modifiedCourse")){
             Course course = getCourseInfo(request);
             boolean flag = courseDAO.modifyCourseInfoById(course);
-            request.setAttribute("flag", flag);
-            if (flag) {
-                request.getRequestDispatcher(".jsp").forward(request, response);
-            }
-            else {
-                request.getRequestDispatcher(".jsp").forward(request, response);
-            }
+            request.setAttribute("modify_flag", flag);
+            request.getRequestDispatcher("course-info.jsp").forward(request, response);
         }
 
         // 删除课程

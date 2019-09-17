@@ -75,7 +75,7 @@
 					
 					<div class="col-sm-12 col-md-12 main">
 						
-						<form class="form-horizontal" action="queryClass">
+						<form class="form-horizontal" action="classManagement">
 							<div class="form-group">
 								<label for="chooseInstitute" class="col-sm-2 control-label">学院</label>
 								<div class="col-sm-3">

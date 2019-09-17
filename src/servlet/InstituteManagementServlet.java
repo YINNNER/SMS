@@ -45,26 +45,16 @@ public class InstituteManagementServlet extends HttpServlet {
         if (param.contains("addInstitute")){
             Institute institute = getInstInfo(request);
             boolean flag = instituteDAO.addInstInfo(institute);
-            request.setAttribute("flag", flag);
-            if (flag) {
-                request.getRequestDispatcher(".jsp").forward(request, response);
-            }
-            else {
-                request.getRequestDispatcher(".jsp").forward(request, response);
-            }
+            request.setAttribute("add_flag", flag);
+            request.getRequestDispatcher("teaching-institute.jsp").forward(request, response);
         }
 
         // 修改学院信息
         if (param.contains("modifiedInstitute")){
             Institute institute = getInstInfo(request);
             boolean flag = instituteDAO.modifyInstInfo(institute);
-            request.setAttribute("flag", flag);
-            if (flag) {
-                request.getRequestDispatcher(".jsp").forward(request, response);
-            }
-            else {
-                request.getRequestDispatcher(".jsp").forward(request, response);
-            }
+            request.setAttribute("modify_flag", flag);
+            request.getRequestDispatcher("teaching-institute.jsp").forward(request, response);
         }
 
         // 删除学院

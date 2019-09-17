@@ -16,6 +16,41 @@
 		
 		<!-- Custom styles for this page -->
 		<link href="css/index.css" rel="stylesheet">
+		<!-- Custom scripts for this page -->
+		<script>window.jQuery || document.write('<script src="bootstrap/js/vendor/jquery.min.js"><\/script>')</script>
+		<script type="text/javascript">
+				function addInst() {
+            $('tbody').append('<tr></tr>');
+            var tr = $('tbody tr:last');
+            // form = form.find('tr');
+				    var td_id = '<td><input type="text" class="form-control" id="inputId" name="inst_id" placeholder="学院编号"></td>';
+				    var td_name = '<td><input type="text" class="form-control" id="inputName" name="inst_name" placeholder="学院名"></td>';
+				    tr.append(td_id);
+				    tr.append(td_name);
+				    tr.append('<td>0</td><td>0</td>');
+				    var td_confirm = '<td><button type="submit" class="btn btn-default" onclick="confirmAddInst()">确定</button></td>';
+						tr.append(td_confirm);
+        }
+        
+        function confirmAddInst() {
+		        window.location.href = 'instituteManagement?param=addInstitute&inst_id=' +
+                $('#inputId').val() + '&inst_name=' + $('#inputName').val();
+        }
+        
+        $(document).ready(function () {
+            var add_flag = "${requestScope.add_flag}";
+            if (add_flag!==""){
+                if (add_flag === "true"){
+                    alert("添加成功！");
+                }
+                else {
+                    alert("添加失败！");
+                    var tr = $('tbody tr:last');
+                    $('tbody').removeChild(tr);
+                }
+            }
+        });
+		</script>
 	</head>
 	<body>
 		<div class="container-fluid">
@@ -60,7 +95,7 @@
 							<h4 class="nav-title">学院管理</h4>
 							
 							<span class="nav navbar-nav navbar-right">
-	                <button type="button" class="btn btn-default btn-lg">
+	                <button type="button" class="btn btn-default btn-lg" onclick="addInst()">
 	                  <span class="glyphicon glyphicon glyphicon-plus" aria-hidden="true"></span>
 	                </button>
 	              </span>
@@ -88,7 +123,13 @@
 									<td>${institute.maj_num}</td>
 									<td>${institute.stu_num}</td>
 									<td><button class="btn btn-default">修改</button></td>
-									<td><button class="btn btn-default">删除</button></td>
+									<td>
+										<form action="courseManagement">
+											<input type="hidden" name="inst_id" value="${institute.inst_id}">
+											<button class="btn btn-default"
+											        type="submit" name="param" value="deleteInstitute">删除</button>
+										</form>
+									</td>
 								</tr>
 							</c:forEach>
 							</tbody>
