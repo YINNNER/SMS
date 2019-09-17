@@ -134,7 +134,7 @@
 											<td><button class="btn btn-default"  onclick="modify(${i.count}, 2)">修改</button></td>
 											<td>
 												<form action="classManagement">
-													<input type="hidden" name="class_id" id="class_id" value="${myClass.maj_id}">
+													<input type="hidden" name="class_id" id="class_id" value="${myClass.class_id}">
 													<input type="hidden" name="maj_id" id="maj_id" value="${myClass.maj_id}">
 													<input type="hidden" name="inst_id" value="${myClass.inst_id}">
 													<button class="btn btn-default" type="submit" name="param" value="deleteClass">删除</button>

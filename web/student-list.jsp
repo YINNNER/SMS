@@ -104,7 +104,12 @@
 												<td>${student.inst_name}</td>
 												<td>${student.maj_name}</td>
 												<td>${student.class_name}</td>
-												<td><button class="btn btn-default">查看</button></td>
+												<%--使用encodeURI解决中文编码问题--%>
+												<td>
+													<button class="btn btn-default" onclick="location=encodeURI('courseSelection?param=' +
+																	'queryCourseSelection' +'&stu_id=${student.stu_id}&stu_name=${student.stu_name}')">查看
+													</button>
+												</td>
 												<td>
 													<form action="studentManagement">
 														<input type="hidden" name="stu_id" value="${student.stu_id}">

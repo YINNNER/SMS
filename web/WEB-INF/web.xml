@@ -84,4 +84,14 @@
         <url-pattern>/queryTeacher</url-pattern>
     </servlet-mapping>
 
+    <servlet>
+        <servlet-name>courseSelection</servlet-name>
+        <servlet-class>servlet.CourseSelectionServlet</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>courseSelection</servlet-name>
+        <url-pattern>/courseSelection</url-pattern>
+    </servlet-mapping>
+
 </web-app>

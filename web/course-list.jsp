@@ -113,7 +113,7 @@
 											<td>${course.coz_semester}</td>
 											<td>
 												<button class="btn btn-default"
-											            onclick="location='course-info.jsp?coz_id=${course.coz_id}&type=modify'">修改
+											            onclick="location='course-info.jsp?coz_id=${course.coz_id}'">修改
 												</button>
 											</td>
 											<td>

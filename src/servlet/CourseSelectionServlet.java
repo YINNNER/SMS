@@ -15,8 +15,8 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-@WebServlet(name = "ClassSelectionServlet")
-public class ClassSelectionServlet extends HttpServlet {
+@WebServlet(name = "CourseSelectionServlet")
+public class CourseSelectionServlet extends HttpServlet {
     private CourseSelectDAO courseSelectDAO;
     private TeacherDAO teacherDAO;
     private ScoreDAO scoreDAO;
@@ -41,7 +41,9 @@ public class ClassSelectionServlet extends HttpServlet {
             }
 
             request.setAttribute("queryResult", queryResults);
-            request.getRequestDispatcher(".jsp").forward(request, response);
+            request.setAttribute("stu_id", stu_id);
+            request.setAttribute("stu_name", request.getParameter("stu_name"));
+            request.getRequestDispatcher("student-selection.jsp").forward(request, response);
         }
 
         // 添加课程

@@ -15,6 +15,11 @@
 		
 		<!-- Custom styles for this page -->
 		<link href="css/index.css" rel="stylesheet">
+		
+		<!-- Custom scripts for this page -->
+		<script>window.jQuery || document.write('<script src="bootstrap/js/vendor/jquery.min.js"><\/script>')</script>
+		<script type="text/javascript" src="js/util.js"></script>
+		<script type="text/javascript" src="js/student-info.js"></script>
 	</head>
 	<body>
 		<div class="container-fluid">
