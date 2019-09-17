@@ -16,11 +16,28 @@
 		
 		<!-- Custom styles for this page -->
 		<link href="css/index.css" rel="stylesheet">
+		
 		<!-- Custom scripts for this page -->
 		<script type="text/javascript" src="js/query-student-option.js"></script>
 		<script type="text/javascript">
         getInst();
 		</script>
+		<script>window.jQuery || document.write('<script src="bootstrap/js/vendor/jquery.min.js"><\/script>')</script>
+		<script type="text/javascript" src="js/teaching-operation.js"></script>
+		<script type="text/javascript">
+        $(document).ready(function () {
+            var inst_id = "${sessionScope.inst_id}";
+            url = 'majorManagement?param=queryMajor&inst_id=' + inst_id;
+            
+            var add_flag = "${requestScope.add_flag}";
+            if (add_flag !=="") addOpt(add_flag, url);
+            var modify_flag = "${requestScope.modify_flag}";
+            if (modify_flag !=="") modifyOpt(modify_flag, url);
+            var delete_flag = "${requestScope.delete_flag}";
+            if (delete_flag !=="") deleteOpt(delete_flag, url);
+        });
+		</script>
+		
 	</head>
 	<body>
 		<div class="container-fluid">
@@ -65,7 +82,7 @@
 							<h4 class="nav-title">专业管理</h4>
 							
 							<span class="nav navbar-nav navbar-right">
-			                <button type="button" class="btn btn-default btn-lg">
+			                <button type="button" class="btn btn-default btn-lg" onclick="addMajor()">
 			                  <span class="glyphicon glyphicon glyphicon-plus" aria-hidden="true"></span>
 			                </button>
 			              </span>
@@ -102,14 +119,20 @@
 							</thead>
 							<tbody>
 								<c:if test="${not empty requestScope.queryResult}">
-									<c:forEach items="${requestScope.queryResult}" var="major">
+									<c:forEach items="${requestScope.queryResult}" var="major" varStatus="i">
 										<tr>
 											<td>${major.maj_id}</td>
 											<td>${major.maj_name}</td>
 											<td>${major.class_num}</td>
 											<td>${major.stu_num}</td>
-											<td><button class="btn btn-default">修改</button></td>
-											<td><button class="btn btn-default">删除</button></td>
+											<td><button class="btn btn-default" onclick="modify(${i.count}, 1)">修改</button></td>
+											<td>
+												<form action="majorManagement">
+													<input type="hidden" name="maj_id" id="maj_id" value="${major.maj_id}">
+													<input type="hidden" name="inst_id" value="${major.inst_id}">
+													<button class="btn btn-default" type="submit" name="param" value="deleteMajor">删除</button>
+												</form>
+											</td>
 										</tr>
 									</c:forEach>
 								</c:if>
@@ -124,7 +147,6 @@
 		<!-- Bootstrap core JavaScript
 		================================================== -->
 		<!-- Placed at the end of the document so the pages load faster -->
-		<script>window.jQuery || document.write('<script src="bootstrap/js/vendor/jquery.min.js"><\/script>')</script>
 		<script src="bootstrap/js/bootstrap.min.js"></script>
 	</body>
 </html>

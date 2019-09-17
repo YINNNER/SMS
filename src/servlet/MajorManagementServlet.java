@@ -12,6 +12,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
@@ -40,42 +41,32 @@ public class MajorManagementServlet extends HttpServlet {
             }
 
             request.setAttribute("queryResult", queryResults);
-            request.getRequestDispatcher("teaching-major.jsp").forward(request, response);
         }
 
         // 添加学院
         if (param.contains("addMajor")){
             Major major = getMajorInfo(request);
             boolean flag = majorDAO.addMajInfo(major);
-            request.setAttribute("flag", flag);
-            if (flag) {
-                request.getRequestDispatcher(".jsp").forward(request, response);
-            }
-            else {
-                request.getRequestDispatcher(".jsp").forward(request, response);
-            }
+            request.setAttribute("add_flag", flag);
         }
 
         // 修改学院信息
         if (param.contains("modifiedMajor")){
             Major major = getMajorInfo(request);
             boolean flag = majorDAO.modifyMajorInfo(major);
-            request.setAttribute("flag", flag);
-            if (flag) {
-                request.getRequestDispatcher(".jsp").forward(request, response);
-            }
-            else {
-                request.getRequestDispatcher(".jsp").forward(request, response);
-            }
+            request.setAttribute("modify_flag", flag);
         }
 
         // 删除学院
         if (param.contains("deleteMajor")){
             int maj_id = Integer.parseInt(request.getParameter("maj_id"));
             boolean flag = majorDAO.deleteMajInfoById(maj_id);
-            request.setAttribute("flag", flag);
-            request.getRequestDispatcher(".jsp").forward(request, response);
+            request.setAttribute("delete_flag", flag);
         }
+
+        HttpSession session = request.getSession();
+        session.setAttribute("inst_id", request.getParameter("inst_id"));
+        request.getRequestDispatcher("teaching-major.jsp").forward(request, response);
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
