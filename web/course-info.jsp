@@ -18,9 +18,8 @@
 		<link href="css/index.css" rel="stylesheet">
 		
 		<!-- Custom scripts for this page -->
-		<script type="text/javascript" src="js/query-student-option.js"></script>
+		<script type="text/javascript" src="js/course-operation.js"></script>
 		<script type="text/javascript">
-        getInst();
         getTeacher();
 		</script>
 		<script>window.jQuery || document.write('<script src="bootstrap/js/vendor/jquery.min.js"><\/script>')</script>
@@ -46,11 +45,7 @@
         }
 			
         $(document).ready(function () {
-            result = urlSearch();
-            var coz_id = result["coz_id"];
-            if(coz_id!==""){
-              getSingleCourse(coz_id);
-            }
+
             
             var add_flag = "${requestScope.add_flag}";
             if (add_flag!==""){

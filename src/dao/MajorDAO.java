@@ -92,7 +92,7 @@ public class MajorDAO {
      */
     public boolean checkInstExist(Major major) {
         boolean flag = true;
-        int id = major.getInst_id();
+        int id = major.getMaj_id();
         String majName = major.getMaj_name();
         Major maj = queryMajInfoById(id);
         Major query_maj = queryMajInfoByInstIdMajName(id, majName);
