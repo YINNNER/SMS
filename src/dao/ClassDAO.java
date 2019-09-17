@@ -138,7 +138,7 @@ public class ClassDAO {
         int id = cls.getClass_id();
         String name = cls.getClass_name();
         Class query_cls = queryClassInfoById(id);
-        Class query_cls_name = queryClassInfoByInstMajName(cls.getInst_id(), cls.getMaj_id(), cls.getClass_name());
+        Class query_cls_name = queryClassInfoByInstMajName(cls.getInst_id(), cls.getMaj_id(), name);
         if (query_cls == null && query_cls_name == null)
             flag = false;
         return flag;

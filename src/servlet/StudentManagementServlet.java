@@ -57,12 +57,7 @@ public class StudentManagementServlet extends HttpServlet {
             Student student = getStudentInfo(request);
             boolean flag = studentDAO.modifyStuInfoById(student);
             request.setAttribute("flag", flag);
-            if (flag) {
-                request.getRequestDispatcher("student-info.jsp").forward(request, response);
-            }
-            else {
-                request.getRequestDispatcher("student-info-add.jsp").forward(request, response);
-            }
+            request.getRequestDispatcher("student-info-add.jsp").forward(request, response);
         }
 
         //删除学生
@@ -79,6 +74,8 @@ public class StudentManagementServlet extends HttpServlet {
     }
 
     private Student getStudentInfo(HttpServletRequest request) {
+        HttpSession session = request.getSession();
+        session.setAttribute("class_id", request.getParameter("class_id"));
         DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
         int stu_id = Integer.parseInt(request.getParameter("stu_id"));
         String stu_name = request.getParameter("stu_name");
