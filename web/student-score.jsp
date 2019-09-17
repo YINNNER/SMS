@@ -19,7 +19,26 @@
 		<!-- Custom scripts for this page -->
 		<script>window.jQuery || document.write('<script src="bootstrap/js/vendor/jquery.min.js"><\/script>')</script>
 		<script type="text/javascript" src="js/util.js"></script>
-		<script type="text/javascript" src="js/student-info.js"></script>
+		<script type="text/javascript">
+        $(document).ready(function () {
+            // var result = urlSearch();
+            var stu_id = "${requestScope.stu_id}";
+            var stu_name = decodeURI("${sessionScope.stu_name}");  // 使用decodeURI解决中文编码问题
+            // var a_list = $(".sub-bar .nav-sidebar a");
+            // for(var i = 0; i < a_list.length; i++) {
+            //     var a = a_list[i];
+            //     if (a.href===location.href + "#") continue;
+            //     var base_url = a.href.split("?")[0];
+            //     var url = base_url + "?stu_id=" + stu_id + "&stu_name=" + stu_name;
+            //     a.href = url;
+            // }
+
+            $('#sub-nav-name').text(stu_name);
+            // if ($('#select-class') != null) {
+            //     $('.stu_id').val(stu_id);
+            // }
+        });
+		</script>
 	</head>
 	<body>
 		<div class="container-fluid">
@@ -51,13 +70,7 @@
 				<div class="col-sm-7 col-sm-offset-5 col-md-9 col-md-offset-3 my-nav-container">
 					
 					<nav class="col-sm-12 col-md-12 navbar my-top-nav">
-						<div class="container-fluid" style="text-align: center">
-	  
-	              <span class="nav navbar-nav navbar-left">
-	                <button type="button" class="btn btn-default btn-lg" onclick="history.back()">
-	                  <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
-	                </button>
-	              </span >
+						<div class="container-fluid" style="text-align: center">、
 							
 							<div class="navbar-header">
 								<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
@@ -74,170 +87,37 @@
 	                <button type="button" class="btn btn-default btn-lg">
 	                  <span class="glyphicon glyphicon glyphicon-plus" aria-hidden="true"></span>
 	                </button>
-	              </span>
+							</span>
 						
 						</div>
 					</nav>
 					
 					<div class="col-sm-12 col-md-12 main">
 						
-						<form class="form-horizontal">
+						<form class="form-horizontal" action="scoreManagement">
 							<div class="form-group">
 								<label for="chooseYear" class="col-sm-2 control-label">学年</label>
 								<div class="col-sm-3">
-									<select class="form-control" id="chooseYear">
-										<option>1</option>
-										<option>2</option>
-										<option>3</option>
-										<option>4</option>
-										<option>5</option>
-									</select>
+									<input type="number" class="form-control" id="chooseYear" name="coz_year">
 								</div>
 								
 								<label for="chooseTerm" class="col-sm-2 control-label">学期</label>
 								<div class="col-sm-3">
-									<select class="form-control" id="chooseTerm">
+									<select class="form-control" id="chooseTerm" name="coz_semester">
 										<option>1</option>
 										<option>2</option>
 										<option>3</option>
-										<option>4</option>
-										<option>5</option>
 									</select>
 								</div>
 								
 								<div class="col-sm-2">
-									<button type="submit" class="btn btn-default">查询</button>
+									<input type="hidden" name="stu_id" value="${sessionScope.stu_id}">
+									<button type="submit" class="btn btn-default" name="param" value="queryScoreBySemester">查询</button>
 								</div>
 							</div>
 						</form>
 						
-						<div class="table-responsive">
-							<table class="table table-striped">
-								<thead>
-								<tr>
-									<th>#</th>
-									<th>Header</th>
-									<th>Header</th>
-									<th>Header</th>
-									<th>Header</th>
-								</tr>
-								</thead>
-								<tbody>
-								<tr>
-									<td>1,001</td>
-									<td>Lorem</td>
-									<td>ipsum</td>
-									<td>dolor</td>
-									<td>sit</td>
-								</tr>
-								<tr>
-									<td>1,002</td>
-									<td>amet</td>
-									<td>consectetur</td>
-									<td>adipiscing</td>
-									<td>elit</td>
-								</tr>
-								<tr>
-									<td>1,003</td>
-									<td>Integer</td>
-									<td>nec</td>
-									<td>odio</td>
-									<td>Praesent</td>
-								</tr>
-								<tr>
-									<td>1,003</td>
-									<td>libero</td>
-									<td>Sed</td>
-									<td>cursus</td>
-									<td>ante</td>
-								</tr>
-								<tr>
-									<td>1,004</td>
-									<td>dapibus</td>
-									<td>diam</td>
-									<td>Sed</td>
-									<td>nisi</td>
-								</tr>
-								<tr>
-									<td>1,005</td>
-									<td>Nulla</td>
-									<td>quis</td>
-									<td>sem</td>
-									<td>at</td>
-								</tr>
-								<tr>
-									<td>1,006</td>
-									<td>nibh</td>
-									<td>elementum</td>
-									<td>imperdiet</td>
-									<td>Duis</td>
-								</tr>
-								<tr>
-									<td>1,007</td>
-									<td>sagittis</td>
-									<td>ipsum</td>
-									<td>Praesent</td>
-									<td>mauris</td>
-								</tr>
-								<tr>
-									<td>1,008</td>
-									<td>Fusce</td>
-									<td>nec</td>
-									<td>tellus</td>
-									<td>sed</td>
-								</tr>
-								<tr>
-									<td>1,009</td>
-									<td>augue</td>
-									<td>semper</td>
-									<td>porta</td>
-									<td>Mauris</td>
-								</tr>
-								<tr>
-									<td>1,010</td>
-									<td>massa</td>
-									<td>Vestibulum</td>
-									<td>lacinia</td>
-									<td>arcu</td>
-								</tr>
-								<tr>
-									<td>1,011</td>
-									<td>eget</td>
-									<td>nulla</td>
-									<td>Class</td>
-									<td>aptent</td>
-								</tr>
-								<tr>
-									<td>1,012</td>
-									<td>taciti</td>
-									<td>sociosqu</td>
-									<td>ad</td>
-									<td>litora</td>
-								</tr>
-								<tr>
-									<td>1,013</td>
-									<td>torquent</td>
-									<td>per</td>
-									<td>conubia</td>
-									<td>nostra</td>
-								</tr>
-								<tr>
-									<td>1,014</td>
-									<td>per</td>
-									<td>inceptos</td>
-									<td>himenaeos</td>
-									<td>Curabitur</td>
-								</tr>
-								<tr>
-									<td>1,015</td>
-									<td>sodales</td>
-									<td>ligula</td>
-									<td>in</td>
-									<td>libero</td>
-								</tr>
-								</tbody>
-							</table>
-						</div>
+						
 					</div>
 				
 				</div>

@@ -39,9 +39,7 @@ public class ScoreManagementServlet extends HttpServlet {
                 ScoreFront scoreFront = new ScoreFront(stu_id, course, score, teacher);
                 queryResults.add(scoreFront);
             }
-
             request.setAttribute("queryResult", queryResults);
-            request.getRequestDispatcher(".jsp").forward(request, response);
         }
 
         // 获取学生某学期的成绩信息
@@ -57,9 +55,7 @@ public class ScoreManagementServlet extends HttpServlet {
                 ScoreFront scoreFront = new ScoreFront(stu_id, course, score, teacher);
                 queryResults.add(scoreFront);
             }
-
             request.setAttribute("queryResult", queryResults);
-            request.getRequestDispatcher(".jsp").forward(request, response);
         }
 
         // 添加成绩
@@ -76,22 +72,17 @@ public class ScoreManagementServlet extends HttpServlet {
             Score score = (Score) getScoreInfo(request);
             boolean flag = scoreDAO.modifyScoreSelect(score);
             request.setAttribute("flag", flag);
-            if (flag) {
-                request.getRequestDispatcher(".jsp").forward(request, response);
-            }
-            else {
-                request.getRequestDispatcher(".jsp").forward(request, response);
-            }
         }
 
-        // 删除学生选课信息
+        // 删除学生成绩信息
         if (param.contains("deleteScore")) {
             int stu_id = Integer.parseInt(request.getParameter("stu_id"));
             int coz_id = Integer.parseInt(request.getParameter("coz_id"));
             boolean flag = scoreDAO.deleteScoreSelectById(stu_id, coz_id);
             request.setAttribute("flag", flag);
-            request.getRequestDispatcher(".jsp").forward(request, response);
         }
+
+        request.getRequestDispatcher("student-score.jsp").forward(request, response);
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
