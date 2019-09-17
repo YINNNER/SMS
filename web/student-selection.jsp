@@ -1,4 +1,5 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <html>
 	<head>
 		<meta charset="utf-8">
@@ -15,6 +16,30 @@
 		
 		<!-- Custom styles for this page -->
 		<link href="css/index.css" rel="stylesheet">
+		
+		<!-- Custom scripts for this page -->
+		<script>window.jQuery || document.write('<script src="bootstrap/js/vendor/jquery.min.js"><\/script>')</script>
+		<script type="text/javascript" src="js/util.js"></script>
+		<script type="text/javascript">
+        $(document).ready(function () {
+            // var result = urlSearch();
+            var stu_id = "${requestScope.stu_id}";
+            var stu_name = decodeURI("${requestScope.stu_name}");  // 使用decodeURI解决中文编码问题
+            // var a_list = $(".sub-bar .nav-sidebar a");
+            // for(var i = 0; i < a_list.length; i++) {
+            //     var a = a_list[i];
+            //     if (a.href===location.href + "#") continue;
+            //     var base_url = a.href.split("?")[0];
+            //     var url = base_url + "?stu_id=" + stu_id + "&stu_name=" + stu_name;
+            //     a.href = url;
+            // }
+
+            $('#sub-nav-name').text(stu_name);
+            // if ($('#select-class') != null) {
+            //     $('.stu_id').val(stu_id);
+            // }
+        });
+		</script>
 	</head>
 	<body>
 		<div class="container-fluid">
@@ -37,7 +62,10 @@
 					</div>
 					<ul class="nav nav-sidebar">
 						<li class="active"><a href="#" style="border-top: 2px solid #eee;">选课</a></li>
-						<li><a href="student-score.jsp">成绩</a></li>
+						<li>
+							<a href="scoreManagement?param=queryScore&stu_id=${requestScope.stu_id}&stu_name=${requestScope.stu_name}">成绩
+							</a>
+						</li>
 						<li><a href="student-statistic.jsp">统计</a></li>
 						<li><a href="student-info.jsp">信息</a></li>
 					</ul>
@@ -63,7 +91,7 @@
 								</button>
 							</div>
 							
-							<h4 class="nav-title">选课列表</h4>
+							<h4 class="nav-title" id="select-class">选课列表</h4>
 							
 							<span class="nav navbar-nav navbar-right">
 	                <button type="button" class="btn btn-default btn-lg">
@@ -76,131 +104,43 @@
 					
 					<div class="col-sm-12 col-md-12 main">
 						
-						<h2 class="sub-header">Section title</h2>
 						<div class="table-responsive">
 							<table class="table table-striped">
 								<thead>
-								<tr>
-									<th>#</th>
-									<th>Header</th>
-									<th>Header</th>
-									<th>Header</th>
-									<th>Header</th>
+									<tr>
+										<th>课程号</th>
+										<th>课程名</th>
+										<th>教师名</th>
+										<th>学分</th>
+										<th>上课地点</th>
+										<th>上课时间</th>
+										<th>学年</th>
+										<th>学期</th>
+										<th>删除</th>
 								</tr>
 								</thead>
 								<tbody>
-								<tr>
-									<td>1,001</td>
-									<td>Lorem</td>
-									<td>ipsum</td>
-									<td>dolor</td>
-									<td>sit</td>
-								</tr>
-								<tr>
-									<td>1,002</td>
-									<td>amet</td>
-									<td>consectetur</td>
-									<td>adipiscing</td>
-									<td>elit</td>
-								</tr>
-								<tr>
-									<td>1,003</td>
-									<td>Integer</td>
-									<td>nec</td>
-									<td>odio</td>
-									<td>Praesent</td>
-								</tr>
-								<tr>
-									<td>1,003</td>
-									<td>libero</td>
-									<td>Sed</td>
-									<td>cursus</td>
-									<td>ante</td>
-								</tr>
-								<tr>
-									<td>1,004</td>
-									<td>dapibus</td>
-									<td>diam</td>
-									<td>Sed</td>
-									<td>nisi</td>
-								</tr>
-								<tr>
-									<td>1,005</td>
-									<td>Nulla</td>
-									<td>quis</td>
-									<td>sem</td>
-									<td>at</td>
-								</tr>
-								<tr>
-									<td>1,006</td>
-									<td>nibh</td>
-									<td>elementum</td>
-									<td>imperdiet</td>
-									<td>Duis</td>
-								</tr>
-								<tr>
-									<td>1,007</td>
-									<td>sagittis</td>
-									<td>ipsum</td>
-									<td>Praesent</td>
-									<td>mauris</td>
-								</tr>
-								<tr>
-									<td>1,008</td>
-									<td>Fusce</td>
-									<td>nec</td>
-									<td>tellus</td>
-									<td>sed</td>
-								</tr>
-								<tr>
-									<td>1,009</td>
-									<td>augue</td>
-									<td>semper</td>
-									<td>porta</td>
-									<td>Mauris</td>
-								</tr>
-								<tr>
-									<td>1,010</td>
-									<td>massa</td>
-									<td>Vestibulum</td>
-									<td>lacinia</td>
-									<td>arcu</td>
-								</tr>
-								<tr>
-									<td>1,011</td>
-									<td>eget</td>
-									<td>nulla</td>
-									<td>Class</td>
-									<td>aptent</td>
-								</tr>
-								<tr>
-									<td>1,012</td>
-									<td>taciti</td>
-									<td>sociosqu</td>
-									<td>ad</td>
-									<td>litora</td>
-								</tr>
-								<tr>
-									<td>1,013</td>
-									<td>torquent</td>
-									<td>per</td>
-									<td>conubia</td>
-									<td>nostra</td>
-								</tr>
-								<tr>
-									<td>1,014</td>
-									<td>per</td>
-									<td>inceptos</td>
-									<td>himenaeos</td>
-									<td>Curabitur</td>
-								</tr>
-								<tr>
-									<td>1,015</td>
-									<td>sodales</td>
-									<td>ligula</td>
-									<td>in</td>
-									<td>libero</td>
-								</tr>
+									<c:forEach items="${requestScope.queryResult}" var="course">
+										<tr>
+											<td>${course.coz_id}</td>
+											<td>${course.coz_name}</td>
+											<td>${course.tch_name}</td>
+											<td>${course.coz_credit}</td>
+											<td>${course.coz_place}</td>
+											<td>${course.coz_time}</td>
+											<td>${course.coz_year}</td>
+											<td>${course.coz_semester}</td>
+											<td>
+												<form action="courseSelection">
+													<input type="hidden" name="coz_id" value="${course.coz_id}">
+													<input type="hidden" name="stu_id" class="stu_id" value="${requestScope.stu_id}">
+													<button class="btn btn-default"
+													        type="submit" name="param" value="deleteCourseSelection">删除</button>
+												</form>
+											</td>
+										
+										</tr>
+									</c:forEach>
 								</tbody>
 							</table>
 						</div>
@@ -213,7 +153,6 @@
 		<!-- Bootstrap core JavaScript
 		================================================== -->
 		<!-- Placed at the end of the document so the pages load faster -->
-		<script>window.jQuery || document.write('<script src="bootstrap/js/vendor/jquery.min.js"><\/script>')</script>
 		<script src="bootstrap/js/bootstrap.min.js"></script>
 	</body>
 </html>
