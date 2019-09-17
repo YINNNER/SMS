@@ -24,8 +24,10 @@ public class GpaDAO {
         int credit = 0;
         List<Score> scores = scoreDAO.queryAllScoreInfoByStuId(stu_id);
         for (Score score : scores) {
-            Course course = courseDAO.queryCourseInfoByCourseId(score.getCoz_id());
-            credit += course.getCoz_credit();
+            if (score.getScore() != null) {
+                Course course = courseDAO.queryCourseInfoByCourseId(score.getCoz_id());
+                credit += course.getCoz_credit();
+            }
         }
         return credit;
     }
@@ -34,8 +36,10 @@ public class GpaDAO {
         int credit = 0;
         List<Score> scores = scoreDAO.queryScoreBySemester(stu_id, year, semester);
         for (Score score : scores) {
-            Course course = courseDAO.queryCourseInfoByCourseId(score.getCoz_id());
-            credit += course.getCoz_credit();
+            if (score.getScore() != null) {
+                Course course = courseDAO.queryCourseInfoByCourseId(score.getCoz_id());
+                credit += course.getCoz_credit();
+            }
         }
         return credit;
     }
@@ -45,6 +49,8 @@ public class GpaDAO {
         Map<String, List<Course>> courseMap = new HashMap<>();
         List<Score> scores = scoreDAO.queryAllScoreInfoByStuId(stu_id);
         for (Score score : scores) {
+            if (score.getScore() == null)
+                continue;
             Course course = courseDAO.queryCourseInfoByCourseId(score.getCoz_id());
             int year = course.getCoz_year();
             int semester = course.getCoz_semester();
@@ -68,10 +74,13 @@ public class GpaDAO {
             int credit = getTotalCreditBySemester(stu_id, year, semester);;
             float totalGPA = 0;
             for (Course course : mapValue) {
-                float score = scoreDAO.queryScoreById(stu_id, course.getCoz_id()).getScore();
-                totalGPA += GPAUtils.getGPAByScore(score) * course.getCoz_credit();
+                Float score = scoreDAO.queryScoreById(stu_id, course.getCoz_id()).getScore();
+                if (score != null)
+                    totalGPA += GPAUtils.getGPAByScore(score) * course.getCoz_credit();
             }
-            float gpa = totalGPA / credit;
+            float gpa = 0;
+            if (credit != 0)
+                gpa = totalGPA / credit;
             AnalysisFront analysisFront = new AnalysisFront(year, semester, credit, gpa);
             analysisFronts.add(analysisFront);
         }
@@ -80,9 +89,9 @@ public class GpaDAO {
 
     public static void main(String[] args) {
         GpaDAO gpaDAO = new GpaDAO();
-        int totalCredit = gpaDAO.getTotalCredit(1);
-        int gpa = gpaDAO.getTotalCreditBySemester(1, 2019, 1);
-        List<AnalysisFront> analysisFronts = gpaDAO.getAnalysisResult(1);
+        int totalCredit = gpaDAO.getTotalCredit(2);
+        int gpa = gpaDAO.getTotalCreditBySemester(2, 2019, 1);
+        List<AnalysisFront> analysisFronts = gpaDAO.getAnalysisResult(2);
 
         System.out.println(totalCredit);
         System.out.println(gpa);
