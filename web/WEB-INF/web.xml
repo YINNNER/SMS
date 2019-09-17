@@ -94,4 +94,24 @@
         <url-pattern>/courseSelection</url-pattern>
     </servlet-mapping>
 
+    <servlet>
+        <servlet-name>scoreManagement</servlet-name>
+        <servlet-class>servlet.ScoreManagementServlet</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>scoreManagement</servlet-name>
+        <url-pattern>/scoreManagement</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>gpaAnalysis</servlet-name>
+        <servlet-class>servlet.AnalysisServlet</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>gpaAnalysis</servlet-name>
+        <url-pattern>/gpaAnalysis</url-pattern>
+    </servlet-mapping>
+
 </web-app>
