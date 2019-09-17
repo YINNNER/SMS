@@ -40,7 +40,7 @@ public class CourseManagementServlet extends HttpServlet {
             }
 
             request.setAttribute("queryResult", queryResults);
-            request.getRequestDispatcher("lesson-list.jsp").forward(request, response);
+            request.getRequestDispatcher("course-list.jsp").forward(request, response);
         }
 
         // 添加课程
@@ -48,12 +48,7 @@ public class CourseManagementServlet extends HttpServlet {
             Course course = getCourseInfo(request);
             boolean flag = courseDAO.addCourseInfo(course);
             request.setAttribute("flag", flag);
-            if (flag) {
-                request.getRequestDispatcher(".jsp").forward(request, response);
-            }
-            else {
-                request.getRequestDispatcher(".jsp").forward(request, response);
-            }
+            request.getRequestDispatcher("course-info.jsp").forward(request, response);
         }
 
         // 修改课程

@@ -33,7 +33,7 @@
 					<ul class="nav nav-sidebar">
 						<li><a href="index.jsp">学生管理</a></li>
 						<li class="active"><a href="#">教学管理</a></li>
-						<li><a href="lesson-management.jsp">课程管理</a></li>
+						<li><a href="course-management.jsp">课程管理</a></li>
 					</ul>
 				</div>
 				

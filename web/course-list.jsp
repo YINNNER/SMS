@@ -38,7 +38,7 @@
 						<div class="container-fluid" style="text-align: center">
 		  
 		              <span class="nav navbar-nav navbar-left">
-		                <button type="button" class="btn btn-default btn-lg" onclick="location='lesson-management.jsp'">
+		                <button type="button" class="btn btn-default btn-lg" onclick="location='course-management.jsp'">
 		                  <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
 		                </button>
 		              </span >
@@ -55,7 +55,7 @@
 							<h4 class="nav-title">课程列表</h4>
 							
 							<span class="nav navbar-nav navbar-right">
-		                <button type="button" class="btn btn-default btn-lg">
+		                <button type="button" class="btn btn-default btn-lg" onclick="location='course-info.jsp'">
 		                  <span class="glyphicon glyphicon glyphicon-plus" aria-hidden="true"></span>
 		                </button>
 		              </span>

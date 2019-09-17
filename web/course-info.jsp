@@ -1,5 +1,4 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <html>
 	<head>
 		<meta charset="utf-8">
@@ -16,11 +15,6 @@
 		
 		<!-- Custom styles for this page -->
 		<link href="css/index.css" rel="stylesheet">
-		<!-- Custom scripts for this page -->
-		<script type="text/javascript" src="js/query-student-option.js"></script>
-		<script type="text/javascript">
-        getInst();
-		</script>
 	</head>
 	<body>
 		<div class="container-fluid">
@@ -31,9 +25,9 @@
 						<a class="navbar-brand" id="nav-name" href="index.jsp">学生管理系统</a>
 					</div>
 					<ul class="nav nav-sidebar">
-						<li class="active"><a href="#">学生管理 <span class="sr-only">(current)</span></a></li>
+						<li><a href="index.jsp">学生管理</a></li>
 						<li><a href="queryInstitute?param=queryInstitute">教学管理</a></li>
-						<li><a href="course-management.jsp">课程管理</a></li>
+						<li class="active"><a href="#">课程管理 <span class="sr-only">(current)</span></a></li>
 					</ul>
 				</div>
 				
@@ -41,12 +35,12 @@
 					
 					<nav class="col-sm-12 col-md-12 navbar my-top-nav">
 						<div class="container-fluid" style="text-align: center">
-		  
-							<span class="nav navbar-nav navbar-left">
-		                <button type="button" class="btn btn-default btn-lg"  onclick="history.back()">
-		                  <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
-		                </button>
-		              </span >
+	  
+	              <span class="nav navbar-nav navbar-left">
+	                <button type="button" class="btn btn-default btn-lg"  onclick="history.back()">
+	                  <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+	                </button>
+	              </span >
 							
 							<div class="navbar-header">
 								<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
@@ -57,8 +51,14 @@
 								</button>
 							</div>
 							
-							<h4 class="nav-title">添加学生信息</h4>
+							<h4 class="nav-title">课程信息</h4>
 							
+							<span class="nav navbar-nav navbar-right">
+	                <button type="button" class="btn btn-default btn-lg">
+	                  <span class="glyphicon glyphicon glyphicon-plus" aria-hidden="true"></span>
+	                </button>
+	              </span>
+						
 						</div>
 					</nav>
 					
@@ -79,27 +79,24 @@
 							</c:if>
 						</c:if>
 						
-						<form class="form-horizontal" action="studentManagement">
+						<form class="form-horizontal" action="courseManagement">
 							
 							<div class="form-group">
-								<label for="inputId" class="col-sm-2 col-sm-offset-1 control-label">学号</label>
+								<label for="inputId" class="col-sm-2 col-sm-offset-1 control-label">课程号</label>
 								<div class="col-sm-6">
-									<input type="text" class="form-control" id="inputId" name="stu_id" placeholder="学号">
+									<input type="text" class="form-control" id="inputId" name="coz_id" placeholder="课程号">
 								</div>
 							</div>
 							<div class="form-group">
-								<label for="inputName" class="col-sm-2 col-sm-offset-1 control-label">姓名</label>
+								<label for="inputName" class="col-sm-2 col-sm-offset-1 control-label">课程名</label>
 								<div class="col-sm-6">
-									<input type="text" class="form-control" id="inputName" name="stu_name" placeholder="姓名">
+									<input type="text" class="form-control" id="inputName" name="coz_name" placeholder="课程名">
 								</div>
 							</div>
 							<div class="form-group">
-								<label for="inputSex" class="col-sm-2 col-sm-offset-1 control-label">性别</label>
+								<label for="inputCredit" class="col-sm-2 col-sm-offset-1 control-label">学分</label>
 								<div class="col-sm-6">
-									<select class="form-control" id="inputSex" name="stu_sex">
-										<option>男</option>
-										<option>女</option>
-									</select>
+									<input type="text" class="form-control" id="inputCredit" name="coz_credit" placeholder="学分">
 								</div>
 							</div>
 							<div class="form-group">
@@ -119,34 +116,39 @@
 								</div>
 							</div>
 							<div class="form-group">
-								
-								<label for="chooseClass" class="col-sm-2 col-sm-offset-1 control-label">班级</label>
+								<label for="chooseTeacher" class="col-sm-2 col-sm-offset-1 control-label">老师</label>
 								<div class="col-sm-6">
-									<select class="form-control" id="chooseClass" name="class_id">
+									<select class="form-control" id="chooseTeacher" name="tch_id">
 									</select>
 								</div>
 							</div>
 							<div class="form-group">
-								<label for="inputBirth" class="col-sm-2 col-sm-offset-1 control-label">出生年月</label>
+								<label for="inputPlace" class="col-sm-2 col-sm-offset-1 control-label">上课地点</label>
 								<div class="col-sm-6">
-									<input type="date" class="form-control" id="inputBirth" name="stu_birth_date"  placeholder="年/月/日">
+									<input type="text" class="form-control" id="inputPlace" name="coz_place" placeholder="上课地点">
 								</div>
 							</div>
 							<div class="form-group">
-								<label for="inputBirthPlace" class="col-sm-2 col-sm-offset-1 control-label">籍贯</label>
+								<label for="inputTime" class="col-sm-2 col-sm-offset-1 control-label">上课时间</label>
 								<div class="col-sm-6">
-									<input type="text" class="form-control" id="inputBirthPlace" name="stu_birth_place"  placeholder="籍贯">
+									<input type="text" class="form-control" id="inputTime" name="coz_time" placeholder="上课时间">
 								</div>
 							</div>
 							<div class="form-group">
-								<label for="inputPolitical" class="col-sm-2 col-sm-offset-1 control-label">政治面貌</label>
+								<label for="inputYear" class="col-sm-2 col-sm-offset-1 control-label">学年</label>
 								<div class="col-sm-6">
-									<input type="text" class="form-control" id="inputPolitical" name="stu_political" placeholder="政治面貌">
+									<input type="number" class="form-control" id="inputYear" name="coz_year"  placeholder="学年">
+								</div>
+							</div>
+							<div class="form-group">
+								<label for="inputSemester" class="col-sm-2 col-sm-offset-1 control-label">学期</label>
+								<div class="col-sm-6">
+									<input type="number" class="form-control" id="inputSemester" name="coz_year"  placeholder="学期">
 								</div>
 							</div>
 							<div class="form-group">
 								<div class="col-sm-offset-5 col-sm-2">
-									<button type="submit" class="btn btn-default" name="type" value="addStudent">确定</button>
+									<button type="submit" class="btn btn-default" name="param" value="addCourse">确定</button>
 								</div>
 							</div>
 						</form>
