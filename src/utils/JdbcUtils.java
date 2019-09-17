@@ -16,7 +16,7 @@ public class JdbcUtils {
     //驱动信息   
     private static final String DRIVER = "com.mysql.jdbc.Driver";
     //数据库地址  
-    private static final String URL = "jdbc:mysql://192.168.2.25:3306/sms?characterEncoding=UTF-8";
+    private static final String URL = "jdbc:mysql://192.168.1.106:3306/sms?characterEncoding=UTF-8";
     private Connection connection;
     private PreparedStatement pstmt;
     private ResultSet resultSet;
@@ -106,9 +106,9 @@ public class JdbcUtils {
             for (int i = 0; i < col_len; i++) {
                 String cols_name = metaData.getColumnName(i + 1);
                 Object cols_value = resultSet.getObject(cols_name);
-                if (cols_value == null) {
-                    cols_value = "";
-                }
+                //if (cols_value == null) {
+                //    cols_value = "";
+                //}
                 map.put(cols_name, cols_value);
             }
         }
@@ -140,9 +140,9 @@ public class JdbcUtils {
             for (int i = 0; i < cols_len; i++) {
                 String cols_name = metaData.getColumnName(i + 1);
                 Object cols_value = resultSet.getObject(cols_name);
-                if (cols_value == null) {
-                    cols_value = "";
-                }
+                //if (cols_value == null) {
+                //    cols_value = "";
+                //}
                 map.put(cols_name, cols_value);
             }
             list.add(map);
@@ -179,9 +179,9 @@ public class JdbcUtils {
             for (int i = 0; i < cols_len; i++) {
                 String cols_name = metaData.getColumnName(i + 1);
                 Object cols_value = resultSet.getObject(cols_name);
-                if (cols_value == null) {
-                    cols_value = "";
-                }
+                //if (cols_value == null) {
+                //    cols_value = "";
+                //}
                 Field field = cls.getDeclaredField(cols_name);
                 field.setAccessible(true); //打开javabean的访问权限  
                 field.set(resultObject, cols_value);
@@ -219,9 +219,9 @@ public class JdbcUtils {
             for (int i = 0; i < cols_len; i++) {
                 String cols_name = metaData.getColumnName(i + 1);
                 Object cols_value = resultSet.getObject(cols_name);
-                if (cols_value == null) {
-                    cols_value = "";
-                }
+                //if (cols_value == null) {
+                //    cols_value = "";
+                //}
                 Field field = cls.getDeclaredField(cols_name);
                 field.setAccessible(true); //打开javabean的访问权限  
                 field.set(resultObject, cols_value);

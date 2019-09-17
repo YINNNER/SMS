@@ -3,7 +3,7 @@ package entity;
 public class Score {
     private int stu_id;
     private int coz_id;
-    private float score;
+    private Float score;
 
     public Score() {
     }
@@ -27,11 +27,11 @@ public class Score {
         return coz_id;
     }
 
-    public float getScore() {
+    public Float getScore() {
         return score;
     }
 
-    public void setScore(float score) {
+    public void setScore(Float score) {
         this.score = score;
     }
 

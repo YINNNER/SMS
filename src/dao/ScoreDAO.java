@@ -135,7 +135,4 @@ public class ScoreDAO {
         return flag;
     }
 
-    public static void main(String[] args) {
-
-    }
 }
