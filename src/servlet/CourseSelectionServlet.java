@@ -41,7 +41,7 @@ public class CourseSelectionServlet extends HttpServlet {
             }
 
             request.setAttribute("queryResult", queryResults);
-            request.setAttribute("stu_id", stu_id);
+            request.getSession().setAttribute("stu_id", request.getParameter("stu_id"));
             request.getSession().setAttribute("stu_name", request.getParameter("stu_name"));
             request.getRequestDispatcher("student-selection.jsp").forward(request, response);
         }

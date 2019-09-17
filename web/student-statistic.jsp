@@ -18,8 +18,12 @@
 		
 		<!-- Custom scripts for this page -->
 		<script>window.jQuery || document.write('<script src="bootstrap/js/vendor/jquery.min.js"><\/script>')</script>
-		<script type="text/javascript" src="js/util.js"></script>
-		<script type="text/javascript" src="js/student-info.js"></script>
+		<script type="text/javascript">
+        $(document).ready(function () {
+            var stu_name = decodeURI("${sessionScope.stu_name}");  // 使用decodeURI解决中文编码问题
+            $('#sub-nav-name').text(stu_name);
+        });
+		</script>
 	</head>
 	<body>
 		<div class="container-fluid">
@@ -41,10 +45,10 @@
 						<span class="navbar-brand" id="sub-nav-name" style="font-size: 14px; padding: 5px;"></span>
 					</div>
 					<ul class="nav nav-sidebar">
-						<li><a href="student-selection.jsp" style="border-top: 2px solid #eee;">选课</a></li>
-						<li><a href="student-score.jsp">成绩</a></li>
+						<li><a href="courseSelection?param=queryCourseSelection&stu_id=${sessionScope.stu_id}" style="border-top: 2px solid #eee;">选课</a></li>
+						<li><a href="scoreManagement?param=queryScore&stu_id=${sessionScope.stu_id}">成绩</a></li>
 						<li class="active"><a href="#">统计</a></li>
-						<li><a href="student-info.jsp">信息</a></li>
+						<li><a href="studentManagement?type=querySingleStudent&stu_id=${sessionScope.stu_id}">信息</a></li>
 					</ul>
 				</div>
 				
@@ -53,7 +57,7 @@
 					<nav class="col-sm-12 col-md-12 navbar my-top-nav">
 						<div class="container-fluid" style="text-align: center">
 	  
-	              <span class="nav navbar-nav navbar-left">
+							<span class="nav navbar-nav navbar-left">
 	                <button type="button" class="btn btn-default btn-lg" onclick="history.back()">
 	                  <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
 	                </button>

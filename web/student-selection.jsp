@@ -19,25 +19,10 @@
 		
 		<!-- Custom scripts for this page -->
 		<script>window.jQuery || document.write('<script src="bootstrap/js/vendor/jquery.min.js"><\/script>')</script>
-		<script type="text/javascript" src="js/util.js"></script>
 		<script type="text/javascript">
         $(document).ready(function () {
-            // var result = urlSearch();
-            var stu_id = "${requestScope.stu_id}";
             var stu_name = decodeURI("${sessionScope.stu_name}");  // 使用decodeURI解决中文编码问题
-            // var a_list = $(".sub-bar .nav-sidebar a");
-            // for(var i = 0; i < a_list.length; i++) {
-            //     var a = a_list[i];
-            //     if (a.href===location.href + "#") continue;
-            //     var base_url = a.href.split("?")[0];
-            //     var url = base_url + "?stu_id=" + stu_id + "&stu_name=" + stu_name;
-            //     a.href = url;
-            // }
-
             $('#sub-nav-name').text(stu_name);
-            // if ($('#select-class') != null) {
-            //     $('.stu_id').val(stu_id);
-            // }
         });
 		</script>
 	</head>
@@ -62,9 +47,9 @@
 					</div>
 					<ul class="nav nav-sidebar">
 						<li class="active"><a href="#" style="border-top: 2px solid #eee;">选课</a></li>
-						<li><a href="scoreManagement?param=queryScore&stu_id=${requestScope.stu_id}">成绩</a></li>
-						<li><a href="gpaAnalysis?stu_id=${requestScope.stu_id}">统计</a></li>
-						<li><a href="studentManagement?param=querySingleStudent&stu_id=${requestScope.stu_id}">信息</a></li>
+						<li><a href="scoreManagement?param=queryScore&stu_id=${sessionScope.stu_id}">成绩</a></li>
+						<li><a href="gpaAnalysis?stu_id=${sessionScope.stu_id}">统计</a></li>
+						<li><a href="studentManagement?type=querySingleStudent&stu_id=${sessionScope.stu_id}">信息</a></li>
 					</ul>
 				</div>
 				
@@ -130,7 +115,7 @@
 											<td>
 												<form action="courseSelection">
 													<input type="hidden" name="coz_id" value="${course.coz_id}">
-													<input type="hidden" name="stu_id" class="stu_id" value="${requestScope.stu_id}">
+													<input type="hidden" name="stu_id" class="stu_id" value="${sessionScope.stu_id}">
 													<button class="btn btn-default"
 													        type="submit" name="param" value="deleteCourseSelection">删除</button>
 												</form>
