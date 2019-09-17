@@ -14,6 +14,7 @@
 		<!-- Bootstrap core CSS -->
 		<link href="bootstrap/css/bootstrap.min.css" rel="stylesheet">
 		
+		<script>window.jQuery || document.write('<script src="bootstrap/js/vendor/jquery.min.js"><\/script>')</script>
 		<!-- Custom styles for this page -->
 		<link href="css/index.css" rel="stylesheet">
 	</head>
@@ -65,6 +66,32 @@
 					
 					<div class="col-sm-12 col-md-12 main">
 						
+						<c:if test="${not empty requestScope.flag}">
+							<input type="hidden" value="${requestScope.flag}" id="flag"/>
+							<c:if test="${requestScope.flag == true}">
+								<input type="hidden" value="${sessionScope.class_id}" id="class_id"/>
+								<script>
+                    alert("删除成功！");
+                    var class_id = $("#class_id").attr("value");
+                    console.log(class_id);
+                    var requery = function () {
+                        var url = 'queryStudent?param=querySubmit&class_id=' + class_id;
+                        console.log(url);
+                        // 使用get提交，将url和想要传递到后台的参数进行拼接，便于后台获取数据
+                        var request = new XMLHttpRequest();  // 新建XMLHttpRequest对象
+                        // 发送请求:
+                        request.open("GET", url);
+                        request.send();
+                    }();
+								</script>
+							</c:if>
+							<c:if test="${requestScope.flag == false}">
+								<script>
+										alert("删除失败！");
+								</script>
+							</c:if>
+						</c:if>
+						
 						<div class="table-responsive">
 							<table class="table table-striped">
 								<thead>
@@ -81,17 +108,24 @@
 								</thead>
 								<tbody>
 									<c:forEach items="${requestScope.queryResult}" var="student">
-										<tr>
-											<td>${student.stu_id}</td>
-											<td>${student.stu_name}</td>
-											<td>${student.stu_sex}</td>
-											<td>${student.inst_name}</td>
-											<td>${student.maj_name}</td>
-											<td>${student.class_name}</td>
-											<td><button class="btn btn-default">查看</button></td>
-											<td><button class="btn btn-default">删除</button></td>
-										</tr>
-									</c:forEach>
+											<tr>
+												<td>${student.stu_id}</td>
+												<td>${student.stu_name}</td>
+												<td>${student.stu_sex}</td>
+												<td>${student.inst_name}</td>
+												<td>${student.maj_name}</td>
+												<td>${student.class_name}</td>
+												<td><button class="btn btn-default">查看</button></td>
+												<td>
+													<form action="studentManagement">
+														<input type="hidden" name="stu_id" value="${student.stu_id}">
+														<input type="hidden" name="class_id" value="${student.class_id}">
+														<button class="btn btn-default"
+														        type="submit" name="type" value="deleteStudent">删除</button>
+													</form>
+												</td>
+											</tr>
+										</c:forEach>
 								</tbody>
 							</table>
 						</div>
@@ -104,7 +138,6 @@
 		<!-- Bootstrap core JavaScript
 		================================================== -->
 		<!-- Placed at the end of the document so the pages load faster -->
-		<script>window.jQuery || document.write('<script src="bootstrap/js/vendor/jquery.min.js"><\/script>')</script>
 		<script src="bootstrap/js/bootstrap.min.js"></script>
 	</body>
 </html>

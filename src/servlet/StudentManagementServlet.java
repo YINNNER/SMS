@@ -8,6 +8,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import java.io.IOException;
 
 @WebServlet(name = "StudentManagementServlet")
@@ -43,7 +44,12 @@ public class StudentManagementServlet extends HttpServlet {
         //删除学生
         if (type.contains("deleteStudent")){
             int stu_id = Integer.parseInt(request.getParameter("stu_id"));
-            boolean flag = studentDAO.deleteStuInfoById(stu_id);
+//            boolean flag = studentDAO.deleteStuInfoById(stu_id);
+            boolean flag = true;
+            request.setAttribute("flag", flag);
+            HttpSession session = request.getSession();
+            session.setAttribute("class_id", request.getParameter("class_id"));
+            request.getRequestDispatcher("student-list.jsp").forward(request, response);
         }
     }
 
