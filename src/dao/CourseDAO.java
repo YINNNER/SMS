@@ -64,6 +64,36 @@ public class CourseDAO {
     }
 
     /**
+     * 获得某学生某学期的课程信息
+     * @param stu_id：学院id
+     * @param year：学年
+     * @param semester：学期
+     * @return List<Course>
+     */
+    public List<Course> queryAllCourseInfoByInstMajId(int stu_id, int year, int semester){
+        List<Course> courseList = new ArrayList<>();
+        List<Object> params = new ArrayList<>();
+        params.add("stu_id");
+        params.add("year");
+        params.add("semester");
+        List<Object> values = new ArrayList<>();
+        values.add(stu_id);
+        values.add(year);
+        values.add(semester);
+
+        try {
+            courseList = dBUtils.querySubsetRef("course_table", params, values, Course.class);
+            System.out.print(courseList);
+            System.out.println("获得某学生所有课程信息成功");
+        } catch (Exception e) {
+            System.out.println("获得某学生所有课程信息失败");
+            e.printStackTrace();
+        }
+
+        return courseList;
+    }
+
+    /**
      * 判断是否已经存在课程id相同的课程
      * @param course: 课程对象
      * @return flag

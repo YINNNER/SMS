@@ -48,7 +48,7 @@ public class ScoreDAO {
      */
     public List<Score> queryScoreBySemester(int stu_Id, int coz_year, int coz_semester){
         List<Score> allScoreList = queryAllScoreInfoByStuId(stu_Id);
-        List<Score> scoreList = queryAllScoreInfoByStuId(stu_Id);
+        List<Score> scoreList = new ArrayList<>();
 
         for (Score score : allScoreList){
             int coz_id = score.getCoz_id();
@@ -57,6 +57,31 @@ public class ScoreDAO {
             }
         }
         return scoreList;
+    }
+
+    /**
+     * 获得某学生某课程的成绩信息
+     * @param stu_id：学号
+     * @param coz_id：课程号
+     * @return List<Score>
+     */
+    public Score queryScoreById(int stu_id, int coz_id){
+        Score score = new Score();
+        List<Object> params = new ArrayList<>();
+        params.add("stu_id");
+        params.add("coz_id");
+        List<Object> values = new ArrayList<>();
+        values.add(stu_id);
+        values.add(coz_id);
+        try {
+            score = dBUtils.queryOneRef("score_table", params, values, Score.class);
+            System.out.print(score);
+            System.out.println("获得某学生某课程的成绩信息成功");
+        } catch (Exception e) {
+            System.out.println("获得某学生某课程的成绩信息失败");
+            e.printStackTrace();
+        }
+        return score;
     }
 
     /**
@@ -86,11 +111,10 @@ public class ScoreDAO {
 
     /**
      * 通过id修改课程信息
-     * @param stu_id：学生id号
-     * @param coz_id：课程id号
+     * @param score：成绩对象
      * @return flag
      */
-    public boolean modifyScoreSelectById(int stu_id, int coz_id, int score) {
+    public boolean modifyScoreSelect(Score score) {
         boolean flag = false;
         List<Object> params = new ArrayList<Object>();
         params.add("score");
@@ -98,9 +122,9 @@ public class ScoreDAO {
         params.add("coz_id");
 
         List<Object> values = new ArrayList<Object>();
-        values.add(score);
-        values.add(stu_id);
-        values.add(coz_id);
+        values.add(score.getScore());
+        values.add(score.getStu_id());
+        values.add(score.getCoz_id());
 
         if (dBUtils.updateWithTwoKey("score_table", params, values)) {
             System.out.println("修改课程信息成功");

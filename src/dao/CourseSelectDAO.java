@@ -10,8 +10,7 @@ import java.util.List;
 public class CourseSelectDAO {
     private DBUtils dBUtils;
     private CourseDAO courseDAO;
-    private static final int CURRENTCOZYEAR = 2019;
-    private static final int CURRENTCOZSEMSETER = 1;
+
 
     public CourseSelectDAO() {
         dBUtils = new DBUtils();
@@ -19,11 +18,40 @@ public class CourseSelectDAO {
     }
 
     /**
+     * 获得某学生所有课程
+     * @param stu_id：学生id
+     * @return List<Course>
+     */
+    public List<Course> queryAllCourseIdInfoByStuId(int stu_id){
+        List<Course> allCourseList = new ArrayList<>();
+        List<Score> allCourseSelectList = new ArrayList<>();
+        List<Object> params = new ArrayList<>();
+        params.add("stu_id");
+        List<Object> values = new ArrayList<>();
+        values.add(stu_id);
+        try {
+            // 得到学生所有的选课信息
+            allCourseSelectList = dBUtils.querySubsetRef("score_table", params, values, Score.class);
+            System.out.print(allCourseSelectList);
+            System.out.println("获得某学生所有课程信息成功");
+        } catch (Exception e) {
+            System.out.println("获得某学生所有课程信息失败");
+            e.printStackTrace();
+        }
+
+        for (Score score : allCourseSelectList) {
+            allCourseList.add(courseDAO.queryCourseInfoByCourseId(score.getCoz_id()));
+        }
+        System.out.println(allCourseList);
+        return allCourseList;
+    }
+
+    /**
      * 获得某学生当前学期所有课程
      * @param stu_id：学生id
      * @return List<Course>
      */
-    public List<Course> queryAllCurrentCourseIdInfoByStuId(int stu_id){
+    public List<Course> queryAllCurrentCourseIdInfoByStuId(int stu_id, int year, int semester){
         List<Course> courseList = new ArrayList<>();
         List<Course> allCourseList = new ArrayList<>();
         List<Score> allCourseSelectList = new ArrayList<>();
@@ -46,7 +74,7 @@ public class CourseSelectDAO {
         }
 
         for (Course course : allCourseList) {
-            if (courseDAO.checkCourseSemester(course.getCoz_id(), CURRENTCOZYEAR, CURRENTCOZSEMSETER)) {
+            if (courseDAO.checkCourseSemester(course.getCoz_id(), year, semester)) {
                 courseList.add(course);
             }
         }
@@ -152,7 +180,7 @@ public class CourseSelectDAO {
 
     public static void main(String[] args) {
         CourseSelectDAO courseSelectDAO = new CourseSelectDAO();
-        courseSelectDAO.queryAllCurrentCourseIdInfoByStuId(1);
+        courseSelectDAO.queryAllCurrentCourseIdInfoByStuId(1, 2019, 1);
         courseSelectDAO.queryCourseSelectByCozIdStuId(1, 1);
         Score score = new Score(1, 2);
         courseSelectDAO.addCourseSelect(score);
