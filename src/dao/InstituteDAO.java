@@ -1,6 +1,6 @@
 package dao;
 
-import dbutils.DBUtils;
+import utils.DBUtils;
 import entity.Institute;
 
 import java.util.ArrayList;
