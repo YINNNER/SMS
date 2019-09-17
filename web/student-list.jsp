@@ -38,7 +38,7 @@
 					<nav class="col-sm-12 col-md-12 navbar my-top-nav">
 						<div class="container-fluid" style="text-align: center">
 		  
-		              <span class="nav navbar-nav navbar-left">
+							<span class="nav navbar-nav navbar-left">
 		                <button type="button" class="btn btn-default btn-lg" onclick="location='index.jsp'">
 		                  <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
 		                </button>
@@ -70,7 +70,7 @@
 							<c:if test="${requestScope.flag == true}">
 								<script>
                     alert("删除成功！");
-					var class_id = "${sessionScope.class_id}";
+										var class_id = "${sessionScope.class_id}";
                     window.location.href='queryStudent?param=querySubmit&class_id='+class_id;
 								</script>
 							</c:if>

@@ -25,18 +25,9 @@
             if (flag!==""){
                 if (flag === "true"){
                     alert("删除成功！");
-                    window.location.href='course-management.jsp';
-                    <%--var inst_id = "${sessionScope.inst_id}";--%>
-                    <%--var maj_id = "${sessionScope.maj_id}";--%>
-                    <%--var requery = function () {--%>
-                        <%--var url = 'courseManagement?param=queryCourse&inst_id=' + inst_id + '&maj_id' + maj_id;--%>
-                        <%--// 使用get提交，将url和想要传递到后台的参数进行拼接，便于后台获取数据--%>
-                        <%--var request = new XMLHttpRequest();  // 新建XMLHttpRequest对象--%>
-                        <%--// 发送请求:--%>
-                        <%--request.open("GET", url);--%>
-                        <%--request.send();--%>
-                    <%--}();--%>
-                    <%--// window.refresh();--%>
+                    var inst_id = "${sessionScope.inst_id}";
+                    var maj_id = "${sessionScope.maj_id}";
+                    window.location.href='courseManagement?param=queryCourse&inst_id=' + inst_id + '&maj_id=' + maj_id;
                 }
                 else {
                     alert("删除失败！");
