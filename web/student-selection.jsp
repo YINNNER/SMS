@@ -24,7 +24,7 @@
         $(document).ready(function () {
             // var result = urlSearch();
             var stu_id = "${requestScope.stu_id}";
-            var stu_name = decodeURI("${requestScope.stu_name}");  // 使用decodeURI解决中文编码问题
+            var stu_name = decodeURI("${sessionScope.stu_name}");  // 使用decodeURI解决中文编码问题
             // var a_list = $(".sub-bar .nav-sidebar a");
             // for(var i = 0; i < a_list.length; i++) {
             //     var a = a_list[i];
@@ -62,12 +62,9 @@
 					</div>
 					<ul class="nav nav-sidebar">
 						<li class="active"><a href="#" style="border-top: 2px solid #eee;">选课</a></li>
-						<li>
-							<a href="scoreManagement?param=queryScore&stu_id=${requestScope.stu_id}&stu_name=${requestScope.stu_name}">成绩
-							</a>
-						</li>
-						<li><a href="student-statistic.jsp">统计</a></li>
-						<li><a href="student-info.jsp">信息</a></li>
+						<li><a href="scoreManagement?param=queryScore&stu_id=${requestScope.stu_id}">成绩</a></li>
+						<li><a href="gpaAnalysis?stu_id=${requestScope.stu_id}">统计</a></li>
+						<li><a href="studentManagement?param=querySingleStudent&stu_id=${requestScope.stu_id}">信息</a></li>
 					</ul>
 				</div>
 				
