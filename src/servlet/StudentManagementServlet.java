@@ -49,12 +49,7 @@ public class StudentManagementServlet extends HttpServlet {
             Student student = getStudentInfo(request);
             boolean flag = studentDAO.addStuInfo(student);
             request.setAttribute("flag", flag);
-            if (flag) {
-                request.getRequestDispatcher("student-info.jsp").forward(request, response);
-            }
-            else {
-                request.getRequestDispatcher("student-info-add.jsp").forward(request, response);
-            }
+            request.getRequestDispatcher("student-info-add.jsp").forward(request, response);
         }
 
         //修改学生信息
