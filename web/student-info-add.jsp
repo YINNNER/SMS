@@ -59,8 +59,6 @@
 					<div class="col-sm-12 col-md-12 main">
 						
 						<form class="form-horizontal" action="studentManagement">
-							<jsp:useBean id="myStudent" class="entity.Student" scope="request" />
-							<jsp:setProperty name="myStudent" property="*"/>
 							
 							<div class="form-group">
 								<label for="inputId" class="col-sm-2 col-sm-offset-1 control-label">学号</label>

@@ -43,26 +43,50 @@ public class InstituteManagementServlet extends HttpServlet {
 
         // 添加学院
         if (param.contains("addInstitute")){
-            Institute institute = (Institute) request.getAttribute("addInstitute");
+            Institute institute = getInstInfo(request);
             boolean flag = instituteDAO.addInstInfo(institute);
+            request.setAttribute("flag", flag);
+            if (flag) {
+                request.getRequestDispatcher(".jsp").forward(request, response);
+            }
+            else {
+                request.getRequestDispatcher(".jsp").forward(request, response);
+            }
         }
 
         // 修改学院信息
         if (param.contains("modifiedInstitute")){
-            Institute institute = (Institute) request.getAttribute("modifiedInstitute");
+            Institute institute = getInstInfo(request);
             boolean flag = instituteDAO.modifyInstInfo(institute);
+            request.setAttribute("flag", flag);
+            if (flag) {
+                request.getRequestDispatcher(".jsp").forward(request, response);
+            }
+            else {
+                request.getRequestDispatcher(".jsp").forward(request, response);
+            }
         }
 
         // 删除学院
         if (param.contains("deleteInstitute")){
             int inst_id = Integer.parseInt(request.getParameter("inst_id"));
             boolean flag = instituteDAO.deleteInstInfoById(inst_id);
+            request.setAttribute("flag", flag);
+            request.getRequestDispatcher(".jsp").forward(request, response);
         }
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         this.doPost(request, response);
     }
+
+    private Institute getInstInfo(HttpServletRequest request) {
+        int inst_id = Integer.parseInt(request.getParameter("inst_id"));
+        String inst_name = request.getParameter("inst_name");
+
+        return new Institute(inst_id, inst_name);
+    }
+
 
     /**
      * Initialization of the servlet. <br>

@@ -45,25 +45,49 @@ public class MajorManagementServlet extends HttpServlet {
 
         // 添加学院
         if (param.contains("addMajor")){
-            Major major = (Major) request.getAttribute("myAddMajor");
+            Major major = getMajorInfo(request);
             boolean flag = majorDAO.addMajInfo(major);
+            request.setAttribute("flag", flag);
+            if (flag) {
+                request.getRequestDispatcher(".jsp").forward(request, response);
+            }
+            else {
+                request.getRequestDispatcher(".jsp").forward(request, response);
+            }
         }
 
         // 修改学院信息
         if (param.contains("modifiedMajor")){
-            Major major = (Major) request.getAttribute("myModifiedMajor");
+            Major major = getMajorInfo(request);
             boolean flag = majorDAO.modifyMajorInfo(major);
+            request.setAttribute("flag", flag);
+            if (flag) {
+                request.getRequestDispatcher(".jsp").forward(request, response);
+            }
+            else {
+                request.getRequestDispatcher(".jsp").forward(request, response);
+            }
         }
 
         // 删除学院
         if (param.contains("deleteMajor")){
             int maj_id = Integer.parseInt(request.getParameter("maj_id"));
             boolean flag = majorDAO.deleteMajInfoById(maj_id);
+            request.setAttribute("flag", flag);
+            request.getRequestDispatcher(".jsp").forward(request, response);
         }
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         this.doPost(request, response);
+    }
+
+    private Major getMajorInfo(HttpServletRequest request) {
+        int maj_id = Integer.parseInt(request.getParameter("maj_id"));
+        String maj_name = request.getParameter("maj_name");
+        int inst_id = Integer.parseInt(request.getParameter("inst_id"));
+
+        return new Major(maj_id, maj_name, inst_id);
     }
 
     /**
