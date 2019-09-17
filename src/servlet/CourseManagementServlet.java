@@ -39,6 +39,11 @@ public class CourseManagementServlet extends HttpServlet {
                 queryResults.add(courseFront);
             }
 
+            JSONArray jsonArray = new JSONArray(queryResults);
+            System.out.println(jsonArray.toString());
+            //发送响应
+            response.getWriter().print(jsonArray.toString());
+
             request.setAttribute("queryResult", queryResults);
             request.getRequestDispatcher("lesson-list.jsp").forward(request, response);
         }

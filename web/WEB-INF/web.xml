@@ -35,43 +35,43 @@
     </servlet-mapping>
 
     <servlet>
-        <servlet-name>queryCourse</servlet-name>
+        <servlet-name>courseManagement</servlet-name>
         <servlet-class>servlet.CourseManagementServlet</servlet-class>
     </servlet>
 
     <servlet-mapping>
-        <servlet-name>queryCourse</servlet-name>
-        <url-pattern>/queryCourse</url-pattern>
+        <servlet-name>courseManagement</servlet-name>
+        <url-pattern>/courseManagement</url-pattern>
     </servlet-mapping>
 
     <servlet>
-        <servlet-name>queryInstitute</servlet-name>
+        <servlet-name>instituteManagement</servlet-name>
         <servlet-class>servlet.InstituteManagementServlet</servlet-class>
     </servlet>
 
     <servlet-mapping>
-        <servlet-name>queryInstitute</servlet-name>
-        <url-pattern>/queryInstitute</url-pattern>
+        <servlet-name>instituteManagement</servlet-name>
+        <url-pattern>/instituteManagement</url-pattern>
     </servlet-mapping>
 
     <servlet>
-        <servlet-name>queryMajor</servlet-name>
+        <servlet-name>majorManagement</servlet-name>
         <servlet-class>servlet.MajorManagementServlet</servlet-class>
     </servlet>
 
     <servlet-mapping>
-        <servlet-name>queryMajor</servlet-name>
-        <url-pattern>/queryMajor</url-pattern>
+        <servlet-name>majorManagement</servlet-name>
+        <url-pattern>/majorManagement</url-pattern>
     </servlet-mapping>
 
     <servlet>
-        <servlet-name>queryClass</servlet-name>
+        <servlet-name>classManagement</servlet-name>
         <servlet-class>servlet.ClassManagementServlet</servlet-class>
     </servlet>
 
     <servlet-mapping>
-        <servlet-name>queryClass</servlet-name>
-        <url-pattern>/queryClass</url-pattern>
+        <servlet-name>classManagement</servlet-name>
+        <url-pattern>/classManagement</url-pattern>
     </servlet-mapping>
 
 </web-app>
