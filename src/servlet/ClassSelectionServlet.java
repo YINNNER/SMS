@@ -44,6 +44,19 @@ public class ClassSelectionServlet extends HttpServlet {
             request.getRequestDispatcher(".jsp").forward(request, response);
         }
 
+        // 添加课程
+        if (param.contains("addCourseSelection")){
+            Score score = getCourseSelectInfo(request);
+            boolean flag = courseSelectDAO.addCourseSelect(score);
+            request.setAttribute("flag", flag);
+            if (flag) {
+                request.getRequestDispatcher(".jsp").forward(request, response);
+            }
+            else {
+                request.getRequestDispatcher(".jsp").forward(request, response);
+            }
+        }
+
         // 删除学生选课信息
         if (param.contains("deleteCourseSelection")) {
             int stu_id = Integer.parseInt(request.getParameter("stu_id"));
@@ -56,6 +69,13 @@ public class ClassSelectionServlet extends HttpServlet {
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         this.doPost(request, response);
+    }
+
+    private Score getCourseSelectInfo(HttpServletRequest request) {
+        int stu_id = Integer.parseInt(request.getParameter("stu_id"));
+        int coz_id = Integer.parseInt(request.getParameter("coz_id"));
+
+        return new Score(stu_id, coz_id);
     }
 
     /**

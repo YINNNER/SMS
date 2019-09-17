@@ -54,7 +54,7 @@ public class ClassManagementServlet extends HttpServlet {
 
         // 修改学院信息
         if (param.contains("modifiedClass")){
-            Class cls = (Class) request.getAttribute("myModifiedClass");
+            Class cls = (Class) getClassInfo(request);
             boolean flag = classDAO.modifyClassInfo(cls);
             request.setAttribute("flag", flag);
             if (flag) {
