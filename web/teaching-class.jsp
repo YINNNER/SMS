@@ -42,7 +42,7 @@
 						<span class="navbar-brand" id="sub-nav-name" style="font-size: 14px; padding: 5px;"></span>
 					</div>
 					<ul class="nav nav-sidebar">
-						<li><a href="queryInstitute?param=queryInstitute" style="border-top: 2px solid #eee;">学院</a></li>
+						<li><a href="instituteManagement?param=queryInstitute" style="border-top: 2px solid #eee;">学院</a></li>
 						<li><a href="teaching-major.jsp">专业</a></li>
 						<li class="active"><a href="#">班级</a></li>
 					</ul>

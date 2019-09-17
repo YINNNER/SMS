@@ -42,7 +42,7 @@
 						<span class="navbar-brand" id="sub-nav-name" style="font-size: 14px; padding: 5px;"></span>
 					</div>
 					<ul class="nav nav-sidebar">
-						<li><a href="queryInstitute?param=queryInstitute" style="border-top: 2px solid #eee;">学院</a></li>
+						<li><a href="instituteManagement?param=queryInstitute" style="border-top: 2px solid #eee;">学院</a></li>
 						<li class="active"><a href="#">专业</a></li>
 						<li><a href="teaching-class.jsp">班级</a></li>
 					</ul>
@@ -75,7 +75,7 @@
 					
 					<div class="col-sm-12 col-md-12 main">
 						
-						<form class="form-horizontal" action="queryMajor">
+						<form class="form-horizontal" action="majorManagement">
 							<div class="form-group">
 								<label for="chooseInstitute" class="col-sm-2 col-sm-offset-2 control-label">学院</label>
 								<div class="col-sm-3">

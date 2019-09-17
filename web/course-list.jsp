@@ -16,6 +16,34 @@
 		
 		<!-- Custom styles for this page -->
 		<link href="css/index.css" rel="stylesheet">
+		
+		<!-- Custom scripts for this page -->
+		<script>window.jQuery || document.write('<script src="bootstrap/js/vendor/jquery.min.js"><\/script>')</script>
+		<script type="text/javascript">
+        $(document).ready(function () {
+            var flag = "${requestScope.flag}";
+            if (flag!==""){
+                if (flag === "true"){
+                    alert("删除成功！");
+                    window.location.href='course-management.jsp';
+                    <%--var inst_id = "${sessionScope.inst_id}";--%>
+                    <%--var maj_id = "${sessionScope.maj_id}";--%>
+                    <%--var requery = function () {--%>
+                        <%--var url = 'courseManagement?param=queryCourse&inst_id=' + inst_id + '&maj_id' + maj_id;--%>
+                        <%--// 使用get提交，将url和想要传递到后台的参数进行拼接，便于后台获取数据--%>
+                        <%--var request = new XMLHttpRequest();  // 新建XMLHttpRequest对象--%>
+                        <%--// 发送请求:--%>
+                        <%--request.open("GET", url);--%>
+                        <%--request.send();--%>
+                    <%--}();--%>
+                    <%--// window.refresh();--%>
+                }
+                else {
+                    alert("删除失败！");
+                }
+            }
+        });
+		</script>
 	</head>
 	<body>
 		<div class="container-fluid">
@@ -27,7 +55,7 @@
 					</div>
 					<ul class="nav nav-sidebar">
 						<li><a href="index.jsp">学生管理</a></li>
-						<li><a href="queryInstitute?param=queryInstitute">教学管理</a></li>
+						<li><a href="instituteManagement?param=queryInstitute">教学管理</a></li>
 						<li class="active"><a href="#">课程管理 <span class="sr-only">(current)</span></a></li>
 					</ul>
 				</div>
@@ -92,8 +120,17 @@
 											<td>${course.coz_time}</td>
 											<td>${course.coz_year}</td>
 											<td>${course.coz_semester}</td>
-											<td><button class="btn btn-default">修改</button></td>
-											<td><button class="btn btn-default">删除</button></td>
+											<td><button class="btn btn-default" onclick="location='course-info.jsp?coz_id=${course.coz_id}'">修改</button></td>
+											<td>
+												<form action="courseManagement">
+													<input type="hidden" name="coz_id" value="${course.coz_id}">
+													<input type="hidden" name="inst_id" value="${course.inst_id}">
+													<input type="hidden" name="maj_id" value="${course.maj_id}">
+													<button class="btn btn-default"
+													        type="submit" name="param" value="deleteCourse">删除</button>
+												</form>
+											</td>
+											
 										</tr>
 									</c:forEach>
 								</tbody>

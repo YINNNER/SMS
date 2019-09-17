@@ -31,7 +31,7 @@
 					</div>
 					<ul class="nav nav-sidebar">
 						<li><a href="index.jsp">学生管理</a></li>
-						<li><a href="queryInstitute?param=queryInstitute">教学管理</a></li>
+						<li><a href="instituteManagement?param=queryInstitute">教学管理</a></li>
 						<li class="active"><a href="#">课程管理 <span class="sr-only">(current)</span></a></li>
 					</ul>
 				</div>
@@ -59,7 +59,7 @@
 						
 						<h4 class="sub-header">选择开设院系</h4>
 						
-						<form class="form-horizontal" action="queryCourse">
+						<form class="form-horizontal" action="courseManagement">
 							<div class="form-group">
 								<label for="chooseInstitute" class="col-sm-2 col-sm-offset-1 control-label">学院</label>
 								<div class="col-sm-6">

@@ -12,6 +12,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
@@ -73,8 +74,11 @@ public class CourseManagementServlet extends HttpServlet {
         if (param.contains("deleteCourse")){
             int coz_id = Integer.parseInt(request.getParameter("coz_id"));
             boolean flag = courseDAO.deleteCourseInfoById(coz_id);
+            HttpSession session = request.getSession();
+            session.setAttribute("inst_id", request.getParameter("inst_id"));
+            session.setAttribute("maj_id", request.getParameter("maj_id"));
             request.setAttribute("flag", flag);
-            request.getRequestDispatcher(".jsp").forward(request, response);
+            request.getRequestDispatcher("course-list.jsp").forward(request, response);
         }
     }
 

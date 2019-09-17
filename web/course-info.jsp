@@ -1,4 +1,5 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <html>
 	<head>
 		<meta charset="utf-8">
@@ -15,6 +16,32 @@
 		
 		<!-- Custom styles for this page -->
 		<link href="css/index.css" rel="stylesheet">
+		
+		<!-- Custom scripts for this page -->
+		<script type="text/javascript" src="js/query-student-option.js"></script>
+		<script type="text/javascript">
+        getInst();
+		</script>
+		<script>window.jQuery || document.write('<script src="bootstrap/js/vendor/jquery.min.js"><\/script>')</script>
+		<script type="text/javascript">
+        $(document).ready(function () {
+            var coz_id = "${requestScope.coz_id}";
+            if(coz_id!==""){
+            
+            }
+            
+            var flag = "${requestScope.flag}";
+            if (flag!==""){
+                if (flag === "true"){
+                    alert("添加成功！");
+                    window.location.href='course-management.jsp';
+                }
+                else {
+                    alert("添加失败！");
+                }
+            }
+        });
+		</script>
 	</head>
 	<body>
 		<div class="container-fluid">
@@ -26,7 +53,7 @@
 					</div>
 					<ul class="nav nav-sidebar">
 						<li><a href="index.jsp">学生管理</a></li>
-						<li><a href="queryInstitute?param=queryInstitute">教学管理</a></li>
+						<li><a href="instituteManagement?param=queryInstitute">教学管理</a></li>
 						<li class="active"><a href="#">课程管理 <span class="sr-only">(current)</span></a></li>
 					</ul>
 				</div>
@@ -64,20 +91,20 @@
 					
 					<div class="col-sm-12 col-md-12 main">
 						
-						<%--判断是否添加成功--%>
-						<c:if test="${not empty requestScope.flag}">
-							<c:if test="${requestScope.flag == true}">
-								<script>
-                    alert("添加成功！");
-                    window.location.href='index.jsp';
-								</script>
-							</c:if>
-							<c:if test="${requestScope.flag == false}">
-								<script>
-                    alert("添加失败！");
-								</script>
-							</c:if>
-						</c:if>
+						<%--&lt;%&ndash;判断是否添加成功&ndash;%&gt;--%>
+						<%--<c:if test="${not empty requestScope.flag}">--%>
+							<%--<c:if test="${requestScope.flag == true}">--%>
+								<%--<script>--%>
+                    <%--alert("添加成功！");--%>
+                    <%--window.location.href='index.jsp';--%>
+								<%--</script>--%>
+							<%--</c:if>--%>
+							<%--<c:if test="${requestScope.flag == false}">--%>
+								<%--<script>--%>
+                    <%--alert("添加失败！");--%>
+								<%--</script>--%>
+							<%--</c:if>--%>
+						<%--</c:if>--%>
 						
 						<form class="form-horizontal" action="courseManagement">
 							
@@ -119,6 +146,7 @@
 								<label for="chooseTeacher" class="col-sm-2 col-sm-offset-1 control-label">老师</label>
 								<div class="col-sm-6">
 									<select class="form-control" id="chooseTeacher" name="tch_id">
+										<option>1</option>
 									</select>
 								</div>
 							</div>
@@ -141,9 +169,13 @@
 								</div>
 							</div>
 							<div class="form-group">
-								<label for="inputSemester" class="col-sm-2 col-sm-offset-1 control-label">学期</label>
+								<label for="chooseSemester" class="col-sm-2 col-sm-offset-1 control-label">学期</label>
 								<div class="col-sm-6">
-									<input type="number" class="form-control" id="inputSemester" name="coz_year"  placeholder="学期">
+									<select class="form-control" id="chooseSemester" name="coz_semester">
+										<option>1</option>
+										<option>2</option>
+										<option>3</option>
+									</select>
 								</div>
 							</div>
 							<div class="form-group">
@@ -161,7 +193,6 @@
 		<!-- Bootstrap core JavaScript
 		================================================== -->
 		<!-- Placed at the end of the document so the pages load faster -->
-		<script>window.jQuery || document.write('<script src="bootstrap/js/vendor/jquery.min.js"><\/script>')</script>
 		<script src="bootstrap/js/bootstrap.min.js"></script>
 	</body>
 </html>
