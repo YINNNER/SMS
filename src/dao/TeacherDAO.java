@@ -1,7 +1,6 @@
 package dao;
 
-import dbutils.DBUtils;
-import entity.Student;
+import utils.DBUtils;
 import entity.Teacher;
 
 import java.util.ArrayList;
