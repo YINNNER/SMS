@@ -62,7 +62,16 @@ public class ScoreManagementServlet extends HttpServlet {
             request.getRequestDispatcher(".jsp").forward(request, response);
         }
 
-        // 修改学生选课信息
+        // 添加成绩
+        if (param.contains("addScore")){
+            Score score = (Score) getScoreInfo(request);
+            boolean flag = courseSelectDAO.addCourseSelect(score);
+            request.setAttribute("flag", flag);
+            request.getRequestDispatcher(".jsp").forward(request, response);
+            
+        }
+
+        // 修改成绩
         if (param.contains("modifyScore")) {
             Score score = (Score) getScoreInfo(request);
             boolean flag = scoreDAO.modifyScoreSelect(score);

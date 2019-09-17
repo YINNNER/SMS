@@ -1,6 +1,7 @@
 package servlet;
 
 import dao.CourseDAO;
+import dao.GpaDAO;
 import dao.ScoreDAO;
 import entity.AnalysisFront;
 import entity.Course;
@@ -24,68 +25,11 @@ import java.util.Map;
 public class AnalysisServlet extends HttpServlet {
     private ScoreDAO scoreDAO;
     private CourseDAO courseDAO;
-
-    private int getTotalCredit(int stu_id) {
-        int credit = 0;
-        List<Score> scores = scoreDAO.queryAllScoreInfoByStuId(stu_id);
-        for (Score score : scores) {
-            Course course = courseDAO.queryCourseInfoByCourseId(score.getCoz_id());
-            credit += course.getCoz_credit();
-        }
-        return credit;
-    }
-
-    private int getTotalCreditBySemester(int stu_id, int year, int semester) {
-        int credit = 0;
-        List<Score> scores = scoreDAO.queryScoreBySemester(stu_id, year, semester);
-        for (Score score : scores) {
-            Course course = courseDAO.queryCourseInfoByCourseId(score.getCoz_id());
-            credit += course.getCoz_credit();
-        }
-        return credit;
-    }
-
-    private List<AnalysisFront> getAnalysisResult(int stu_id) {
-        List<AnalysisFront> analysisFronts = new ArrayList<>();
-        Map<String, List<Course>> courseMap = new HashMap<>();
-        List<Score> scores = scoreDAO.queryAllScoreInfoByStuId(stu_id);
-        for (Score score : scores) {
-            Course course = courseDAO.queryCourseInfoByCourseId(score.getCoz_id());
-            int year = course.getCoz_year();
-            int semester = course.getCoz_semester();
-            String key = StringKeyUtils.encode(year, semester);
-            if (courseMap.containsKey(key)) {
-                courseMap.get(key).add(course);
-            }
-            else {
-                List<Course> courseList = new ArrayList<>();
-                courseList.add(course);
-                courseMap.put(key,courseList);
-            }
-        }
-
-        for(Map.Entry<String, List<Course>> map : courseMap.entrySet()){
-            String mapKey = map.getKey();
-            List<Course> mapValue = map.getValue();
-            List<Integer> key = StringKeyUtils.decode(mapKey);
-            int year = key.get(0);
-            int semester = key.get(1);
-            int credit = getTotalCreditBySemester(stu_id, year, semester);;
-            float totalGPA = 0;
-            for (Course course : mapValue) {
-                float score = scoreDAO.queryScoreById(stu_id, course.getCoz_id()).getScore();
-                totalGPA += GPAUtils.getGPAByScore(score) * credit;
-            }
-            float gpa = totalGPA / credit;
-            AnalysisFront analysisFront = new AnalysisFront(year, semester, credit, gpa);
-            analysisFronts.add(analysisFront);
-        }
-        return analysisFronts;
-    }
+    private GpaDAO gpaDAO;
 
     private float getTotalGPA(int stu_id) {
         float gpa = 0;
-        int totalCredit = getTotalCredit(stu_id);
+        int totalCredit = gpaDAO.getTotalCredit(stu_id);
         float weightedGPA = 0;
         List<Score> scores = scoreDAO.queryAllScoreInfoByStuId(stu_id);
         for (Score score : scores) {
@@ -104,9 +48,9 @@ public class AnalysisServlet extends HttpServlet {
         // 获得每学期的GPA统计信息
         if (param.contains("getAnalysis")) {
             int stu_id = Integer.parseInt(request.getParameter("stu_id"));
-            int credit = getTotalCredit(stu_id);
+            int credit = gpaDAO.getTotalCredit(stu_id);
             float totalGPA = getTotalGPA(stu_id);
-            List<AnalysisFront> analysisFronts = getAnalysisResult(stu_id);
+            List<AnalysisFront> analysisFronts = gpaDAO.getAnalysisResult(stu_id);
 
             request.setAttribute("creditSum", credit);
             request.setAttribute("gpaSum", totalGPA);
@@ -125,6 +69,7 @@ public class AnalysisServlet extends HttpServlet {
     public void init() throws ServletException {
         scoreDAO = new ScoreDAO();
         courseDAO = new CourseDAO();
+        gpaDAO = new GpaDAO();
     }
 
 }
