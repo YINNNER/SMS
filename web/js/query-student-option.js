@@ -59,6 +59,7 @@ function getMajor() {
                 select.append(opt);
             }
             getClass();
+            getTeacher();
         }
     }
 }
