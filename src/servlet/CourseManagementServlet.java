@@ -6,6 +6,7 @@ import entity.CourseFront;
 import entity.Institute;
 import entity.Teacher;
 import org.json.JSONArray;
+import org.json.JSONObject;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -47,6 +48,19 @@ public class CourseManagementServlet extends HttpServlet {
 
             request.setAttribute("queryResult", queryResults);
             request.getRequestDispatcher("course-list.jsp").forward(request, response);
+        }
+
+        // 查询单个课程
+        if (param.contains("querySingleCourse")) {
+            int coz_id = Integer.parseInt(request.getParameter("coz_id"));
+            Course query_course = courseDAO.queryCourseInfoByCourseId(coz_id);
+            Teacher query_teacher = teacherDAO.queryTchInfoById(query_course.getTch_id());
+            CourseFront courseFront = new CourseFront(query_course, query_teacher);
+
+            JSONObject jsonObject = new JSONObject(courseFront);
+            System.out.println(jsonObject.toString());
+            //发送响应
+            response.getWriter().print(jsonObject.toString());
         }
 
         // 添加课程

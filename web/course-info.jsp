@@ -157,7 +157,6 @@
 								<label for="chooseTeacher" class="col-sm-2 col-sm-offset-1 control-label">老师</label>
 								<div class="col-sm-6">
 									<select class="form-control" id="chooseTeacher" name="tch_id">
-										<option>1</option>
 									</select>
 								</div>
 							</div>
