@@ -1,4 +1,5 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <html>
 	<head>
 		<meta charset="utf-8">
@@ -15,6 +16,11 @@
 		
 		<!-- Custom styles for this page -->
 		<link href="css/index.css" rel="stylesheet">
+		<!-- Custom scripts for this page -->
+		<script type="text/javascript" src="js/query-student-option.js"></script>
+		<script type="text/javascript">
+        getInst();
+		</script>
 	</head>
 	<body>
 		<div class="container-fluid">
@@ -58,6 +64,21 @@
 					
 					<div class="col-sm-12 col-md-12 main">
 						
+						<%--判断是否添加成功--%>
+						<c:if test="${not empty requestScope.flag}">
+							<c:if test="${requestScope.flag == true}">
+								<script>
+                    alert("添加成功！");
+                    window.location.href='index.jsp';
+								</script>
+							</c:if>
+							<c:if test="${requestScope.flag == false}">
+								<script>
+                    alert("添加失败！");
+								</script>
+							</c:if>
+						</c:if>
+						
 						<form class="form-horizontal" action="studentManagement">
 							
 							<div class="form-group">
@@ -75,26 +96,34 @@
 							<div class="form-group">
 								<label for="inputSex" class="col-sm-2 col-sm-offset-1 control-label">性别</label>
 								<div class="col-sm-6">
-									<input type="text" class="form-control" id="inputSex" name="stu_sex" placeholder="性别">
+									<select class="form-control" id="inputSex" name="stu_sex">
+										<option>男</option>
+										<option>女</option>
+									</select>
 								</div>
 							</div>
 							<div class="form-group">
-								<label for="inputInstitute" class="col-sm-2 col-sm-offset-1 control-label">学院</label>
+								<label for="chooseInstitute" class="col-sm-2 col-sm-offset-1 control-label">学院</label>
 								<div class="col-sm-6">
-									<input type="text" class="form-control" id="inputInstitute" name="inst_id"  placeholder="学院">
+									<select class="form-control" id="chooseInstitute" name="inst_id" onchange="getMajor()">
+									
+									</select>
 								</div>
 							</div>
 							<div class="form-group">
-								<label for="inputMajor" class="col-sm-2 col-sm-offset-1 control-label">专业</label>
+								<label for="chooseMajor" class="col-sm-2 col-sm-offset-1 control-label">专业</label>
 								<div class="col-sm-6">
-									<input type="text" class="form-control" id="inputMajor" name="maj_id"  placeholder="专业">
+									<select class="form-control" id="chooseMajor" name="maj_id">
+									
+									</select>
 								</div>
 							</div>
 							<div class="form-group">
 								
-								<label for="inputClass" class="col-sm-2 col-sm-offset-1 control-label">班级</label>
+								<label for="chooseClass" class="col-sm-2 col-sm-offset-1 control-label">班级</label>
 								<div class="col-sm-6">
-									<input type="text" class="form-control" id="inputClass" name="class_id"  placeholder="班级">
+									<select class="form-control" id="chooseClass" name="class_id">
+									</select>
 								</div>
 							</div>
 							<div class="form-group">

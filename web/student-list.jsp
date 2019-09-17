@@ -65,24 +65,12 @@
 					</nav>
 					
 					<div class="col-sm-12 col-md-12 main">
-						
+						<%--判断是否删除成功--%>
 						<c:if test="${not empty requestScope.flag}">
-							<input type="hidden" value="${requestScope.flag}" id="flag"/>
 							<c:if test="${requestScope.flag == true}">
-								<input type="hidden" value="${sessionScope.class_id}" id="class_id"/>
 								<script>
                     alert("删除成功！");
-                    var class_id = $("#class_id").attr("value");
-                    console.log(class_id);
-                    var requery = function () {
-                        var url = 'queryStudent?param=querySubmit&class_id=' + class_id;
-                        console.log(url);
-                        // 使用get提交，将url和想要传递到后台的参数进行拼接，便于后台获取数据
-                        var request = new XMLHttpRequest();  // 新建XMLHttpRequest对象
-                        // 发送请求:
-                        request.open("GET", url);
-                        request.send();
-                    }();
+                    window.location.href='index.jsp';
 								</script>
 							</c:if>
 							<c:if test="${requestScope.flag == false}">
