@@ -1,6 +1,7 @@
 package servlet;
 
 import dao.CourseDAO;
+import dao.GpaDAO;
 import dao.ScoreDAO;
 import entity.AnalysisFront;
 import entity.Course;
@@ -24,25 +25,19 @@ import java.util.Map;
 public class AnalysisServlet extends HttpServlet {
     private ScoreDAO scoreDAO;
     private CourseDAO courseDAO;
+    private GpaDAO gpaDAO;
 
-    private int getTotalCredit(int stu_id) {
-        int credit = 0;
+    private float getTotalGPA(int stu_id) {
+        float gpa = 0;
+        int totalCredit = gpaDAO.getTotalCredit(stu_id);
+        float weightedGPA = 0;
         List<Score> scores = scoreDAO.queryAllScoreInfoByStuId(stu_id);
         for (Score score : scores) {
             Course course = courseDAO.queryCourseInfoByCourseId(score.getCoz_id());
-            credit += course.getCoz_credit();
+            weightedGPA += course.getCoz_credit() * GPAUtils.getGPAByScore(score.getScore());
         }
-        return credit;
-    }
-
-    private int getTotalCreditBySemester(int stu_id, int year, int semester) {
-        int credit = 0;
-        List<Score> scores = scoreDAO.queryScoreBySemester(stu_id, year, semester);
-        for (Score score : scores) {
-            Course course = courseDAO.queryCourseInfoByCourseId(score.getCoz_id());
-            credit += course.getCoz_credit();
-        }
-        return credit;
+        gpa = weightedGPA / totalCredit;
+        return gpa;
     }
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -50,66 +45,15 @@ public class AnalysisServlet extends HttpServlet {
         response.setContentType("text/html; charset=utf-8");
         String param = request.getParameter("param");
 
-        // 获得总学分
-        if (param.contains("getCreditSum")) {
-            int stu_id = Integer.parseInt(request.getParameter("stu_id"));
-            int credit = getTotalCredit(stu_id);
-
-            request.setAttribute("creditSum", credit);
-        }
-
-        // 获得总GPA
-        if (param.contains("getGPASum")) {
-            float gpa = 0;
-            int stu_id = Integer.parseInt(request.getParameter("stu_id"));
-            int totalCredit = getTotalCredit(stu_id);
-            float weightedGPA = 0;
-            List<Score> scores = scoreDAO.queryAllScoreInfoByStuId(stu_id);
-            for (Score score : scores) {
-                Course course = courseDAO.queryCourseInfoByCourseId(score.getCoz_id());
-                weightedGPA += course.getCoz_credit() * GPAUtils.getGPAByScore(score.getScore());
-            }
-            gpa = weightedGPA / totalCredit;
-            request.setAttribute("gpaSum", gpa);
-        }
-
         // 获得每学期的GPA统计信息
         if (param.contains("getAnalysis")) {
-            List<AnalysisFront> analysisFronts = new ArrayList<>();
-            Map<String, List<Course>> courseMap = new HashMap<>();
             int stu_id = Integer.parseInt(request.getParameter("stu_id"));
-            List<Score> scores = scoreDAO.queryAllScoreInfoByStuId(stu_id);
-            for (Score score : scores) {
-                Course course = courseDAO.queryCourseInfoByCourseId(score.getCoz_id());
-                int year = course.getCoz_year();
-                int semester = course.getCoz_semester();
-                String key = StringKeyUtils.encode(year, semester);
-                if (courseMap.containsKey(key)) {
-                    courseMap.get(key).add(course);
-                }
-                else {
-                    List<Course> courseList = new ArrayList<>();
-                    courseList.add(course);
-                    courseMap.put(key,courseList);
-                }
-            }
-            for(Map.Entry<String, List<Course>> map : courseMap.entrySet()){
-                String mapKey = map.getKey();
-                List<Course> mapValue = map.getValue();
-                List<Integer> key = StringKeyUtils.decode(mapKey);
-                int year = key.get(0);
-                int semester = key.get(1);
-                int credit = 0;
-                float totalGPA = 0;
-                for (Course course : mapValue) {
-                    credit += course.getCoz_credit();
-                    float score = scoreDAO.queryScoreById(stu_id, course.getCoz_id()).getScore();
-                    totalGPA += GPAUtils.getGPAByScore(score) * credit;
-                }
-                float gpa = totalGPA / credit;
-                AnalysisFront analysisFront = new AnalysisFront(year, semester, credit, gpa);
-                analysisFronts.add(analysisFront);
-            }
+            int credit = gpaDAO.getTotalCredit(stu_id);
+            float totalGPA = getTotalGPA(stu_id);
+            List<AnalysisFront> analysisFronts = gpaDAO.getAnalysisResult(stu_id);
+
+            request.setAttribute("creditSum", credit);
+            request.setAttribute("gpaSum", totalGPA);
             request.setAttribute("analysisResult", analysisFronts);
         }
     }
@@ -125,6 +69,7 @@ public class AnalysisServlet extends HttpServlet {
     public void init() throws ServletException {
         scoreDAO = new ScoreDAO();
         courseDAO = new CourseDAO();
+        gpaDAO = new GpaDAO();
     }
 
 }
