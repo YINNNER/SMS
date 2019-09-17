@@ -153,3 +153,43 @@ function getTeacher() {
         }
     }
 }
+
+function getSingleCourse(coz_id) {
+    //使用get提交，将url和想要传递到后台的参数进行拼接，便于后台获取数据
+    var request = new XMLHttpRequest(); // 新建XMLHttpRequest对象
+    // 发送请求:
+    request.open("GET", "courseManagement?param=querySingleCourse&coz_id=" + coz_id);
+    request.send();
+    //监听Ajax的状态变化
+    request.onreadystatechange = function () {
+        if (request.status === 200 && request.readyState === 4) {
+            document.getElementById("chooseTeacher").innerHTML = "";
+            //当Ajax对象状态为4，并且status为200时，responseText接收数据
+            var data = request.responseText;
+            //将接收到的字符串转换成json格式
+            var course = JSON.parse(data);
+            //循环得到的json数组，将值添加到表单中
+            var inputId = document.getElementById("inputId");
+            var inputName = document.getElementById("inputName");
+            var inputCredit = document.getElementById("inputCredit");
+            var chooseInstitute = document.getElementById("chooseInstitute");
+            var chooseMajor = document.getElementById("chooseMajor");
+            var chooseTeacher = document.getElementById("chooseTeacher");
+            var inputPlace = document.getElementById("inputTime");
+            var inputTime = document.getElementById("inputTime");
+            var inputYear = document.getElementById("inputYear");
+            var chooseSemester = document.getElementById("chooseSemester");
+            //给option的value属性和具体内容赋值
+            inputId.value = course.coz_id;
+            inputName.value = course.coz_name;
+            inputCredit.value = course.coz_credit;
+            chooseInstitute.value = course.inst_id;
+            chooseMajor.value = course.maj_id;
+            chooseTeacher.value = course.tch_id;
+            inputPlace.value = course.coz_place;
+            inputTime.value = course.coz_time;
+            inputYear.value = course.coz_year;
+            chooseSemester.value = course.coz_semester;
+        }
+    }
+}
