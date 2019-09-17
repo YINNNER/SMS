@@ -184,13 +184,41 @@ function getSingleCourse(coz_id) {
             inputId.value = course.coz_id;
             inputName.value = course.coz_name;
             inputCredit.value = course.coz_credit;
-            chooseInstitute.value = course.inst_id;
-            chooseMajor.value = course.maj_id;
-            chooseTeacher.value = course.tch_id;
+            for (var inst_i = 0; inst_i < chooseInstitute.options.length; inst_i++){
+
+                if (chooseInstitute.options[inst_i].value == course.inst_id){
+                    chooseInstitute.options[inst_i].selected = true;
+                    break;
+                }
+            }
+            // chooseInstitute.value = course.inst_id;
+            for (var maj_i = 0; maj_i < chooseMajor.options.length; maj_i++){
+
+                if (chooseMajor.options[maj_i].value == course.maj_id){
+                    chooseMajor.options[maj_i].selected = true;
+                    break;
+                }
+            }
+            // chooseMajor.value = course.maj_id;
+            for (var tch_i = 0; tch_i < chooseTeacher.options.length; tch_i++){
+
+                if (chooseTeacher.options[tch_i].value == course.tch_id){
+                    chooseTeacher.options[tch_i].selected = true;
+                    break;
+                }
+            }
+            // chooseTeacher.value = course.tch_id;
             inputPlace.value = course.coz_place;
             inputTime.value = course.coz_time;
             inputYear.value = course.coz_year;
-            chooseSemester.value = course.coz_semester;
+            for (var semester_i = 0; semester_i < chooseSemester.options.length; semester_i++){
+
+                if (chooseSemester.options[semester_i].value == course.coz_semester){
+                    chooseSemester.options[semester_i].selected = true;
+                    break;
+                }
+            }
+            // chooseSemester.value = course.coz_semester;
         }
     }
 }
