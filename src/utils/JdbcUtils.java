@@ -16,7 +16,8 @@ public class JdbcUtils {
     //驱动信息   
     private static final String DRIVER = "com.mysql.jdbc.Driver";
     //数据库地址  
-    private static final String URL = "jdbc:mysql://192.168.1.106:3306/sms?characterEncoding=UTF-8";
+    //private static final String URL = "jdbc:mysql://192.168.1.106:3306/sms?characterEncoding=UTF-8";
+    private static final String URL = "jdbc:mysql://192.168.2.25:3306/sms?characterEncoding=UTF-8";
     private Connection connection;
     private PreparedStatement pstmt;
     private ResultSet resultSet;

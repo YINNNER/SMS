@@ -89,9 +89,9 @@ public class GpaDAO {
 
     public static void main(String[] args) {
         GpaDAO gpaDAO = new GpaDAO();
-        int totalCredit = gpaDAO.getTotalCredit(2);
-        int gpa = gpaDAO.getTotalCreditBySemester(2, 2019, 1);
-        List<AnalysisFront> analysisFronts = gpaDAO.getAnalysisResult(2);
+        int totalCredit = gpaDAO.getTotalCredit(1);
+        int gpa = gpaDAO.getTotalCreditBySemester(1, 2019, 1);
+        List<AnalysisFront> analysisFronts = gpaDAO.getAnalysisResult(1);
 
         System.out.println(totalCredit);
         System.out.println(gpa);
