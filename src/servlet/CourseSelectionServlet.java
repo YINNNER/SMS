@@ -1,10 +1,7 @@
 package servlet;
 
 import dao.*;
-import entity.Course;
-import entity.Score;
-import entity.ScoreFront;
-import entity.Teacher;
+import entity.*;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -20,6 +17,7 @@ public class CourseSelectionServlet extends HttpServlet {
     private CourseSelectDAO courseSelectDAO;
     private TeacherDAO teacherDAO;
     private ScoreDAO scoreDAO;
+    private InstituteDAO instituteDAO;
     private static final int CURRENTCOZYEAR = 2019;
     private static final int CURRENTCOZSEMSETER = 1;
 
@@ -36,7 +34,8 @@ public class CourseSelectionServlet extends HttpServlet {
             for (Course course : queryCourses) {
                 Score score = scoreDAO.queryScoreById(stu_id, course.getCoz_id());
                 Teacher teacher = teacherDAO.queryTchInfoById(course.getTch_id());
-                ScoreFront scoreFront = new ScoreFront(stu_id, course, score, teacher);
+                Institute institute = instituteDAO.queryInstInfoById(course.getInst_id());
+                ScoreFront scoreFront = new ScoreFront(stu_id, course, score, teacher, institute);
                 queryResults.add(scoreFront);
             }
 
@@ -89,5 +88,6 @@ public class CourseSelectionServlet extends HttpServlet {
         courseSelectDAO = new CourseSelectDAO();
         teacherDAO = new TeacherDAO();
         scoreDAO = new ScoreDAO();
+        instituteDAO = new InstituteDAO();
     }
 }
