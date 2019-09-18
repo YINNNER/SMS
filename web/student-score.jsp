@@ -77,7 +77,7 @@
 							<h4 class="nav-title">成绩列表</h4>
 							
 							<span class="nav navbar-nav navbar-right">
-                <button type="button" class="btn btn-default btn-lg">
+                <button type="button" class="btn btn-default btn-lg" onclick="location='student-score-add.jsp'">
                   <span class="glyphicon glyphicon glyphicon-plus" aria-hidden="true"></span>
                 </button>
 							</span>
@@ -87,11 +87,26 @@
 					
 					<div class="col-sm-12 col-md-12 main">
 						
+						<%--判断是否删除成功--%>
+						<c:if test="${not empty requestScope.flag}">
+							<c:if test="${requestScope.flag == true}">
+								<script>
+                    alert("删除成功！");
+                    window.location.href='scoreManagement?param=queryScore&stu_id=${sessionScope.stu_id}';
+								</script>
+							</c:if>
+							<c:if test="${requestScope.flag == false}">
+								<script>
+                    alert("删除失败！");
+								</script>
+							</c:if>
+						</c:if>
+						
 						<form class="form-horizontal" action="scoreManagement">
 							<div class="form-group">
 								<label for="chooseYear" class="col-sm-2 control-label">学年</label>
 								<div class="col-sm-3">
-									<input type="number" class="form-control" id="chooseYear" name="coz_year">
+									<input type="number" class="form-control" id="chooseYear" name="coz_year" value="${requestScope.coz_year}">
 								</div>
 								
 								<label for="chooseTerm" class="col-sm-2 control-label">学期</label>
@@ -101,6 +116,14 @@
 										<option>2</option>
 										<option>3</option>
 									</select>
+									<%--查询后选择对应的学期选项--%>
+									<script>
+                      var i="${requestScope.coz_semester}";
+                      if (i !== "") {
+                          var opt_list = document.getElementById('chooseTerm').children;
+                          opt_list[i-1].selected = true;
+                      }
+									</script>
 								</div>
 								
 								<div class="col-sm-2">
@@ -125,21 +148,21 @@
 									</tr>
 								</thead>
 								<tbody>
-									<c:forEach items="${requestScope.queryResult}" var="course">
+									<c:forEach items="${requestScope.queryResult}" var="item">
 										<tr>
-											<td>${course.coz_id}</td>
-											<td>${course.coz_name}</td>
-											<td>${course.tch_name}</td>
-											<td>${course.inst_name}</td>
-											<td>${course.coz_credit}</td>
-											<td>${course.score}</td>
+											<td>${item.coz_id}</td>
+											<td>${item.coz_name}</td>
+											<td>${item.tch_name}</td>
+											<td>${item.inst_name}</td>
+											<td>${item.coz_credit}</td>
+											<td>${item.score}</td>
 											<td><button class="btn btn-default">更新</button></td>
 											<td>
 												<form action="scoreManagement">
-													<input type="hidden" name="coz_id" value="${course.coz_id}">
+													<input type="hidden" name="coz_id" value="${item.coz_id}">
 													<input type="hidden" name="stu_id" class="stu_id" value="${sessionScope.stu_id}">
 													<button class="btn btn-default"
-													        type="submit" name="param" value="deleteCourseSelection">删除</button>
+													        type="submit" name="param" value="deleteScore">删除</button>
 												</form>
 											</td>
 										</tr>

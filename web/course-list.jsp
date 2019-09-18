@@ -101,26 +101,26 @@
 									</tr>
 								</thead>
 								<tbody>
-									<c:forEach items="${requestScope.queryResult}" var="course">
+									<c:forEach items="${requestScope.queryResult}" var="item">
 										<tr>
-											<td>${course.coz_id}</td>
-											<td>${course.coz_name}</td>
-											<td>${course.tch_name}</td>
-											<td>${course.coz_credit}</td>
-											<td>${course.coz_place}</td>
-											<td>${course.coz_time}</td>
-											<td>${course.coz_year}</td>
-											<td>${course.coz_semester}</td>
+											<td>${item.coz_id}</td>
+											<td>${item.coz_name}</td>
+											<td>${item.tch_name}</td>
+											<td>${item.coz_credit}</td>
+											<td>${item.coz_place}</td>
+											<td>${item.coz_time}</td>
+											<td>${item.coz_year}</td>
+											<td>${item.coz_semester}</td>
 											<td>
 												<button class="btn btn-default"
-											            onclick="location='course-info.jsp?coz_id=${course.coz_id}'">修改
+											            onclick="location='course-info.jsp?coz_id=${item.coz_id}'">修改
 												</button>
 											</td>
 											<td>
 												<form action="courseManagement">
-													<input type="hidden" name="coz_id" value="${course.coz_id}">
-													<input type="hidden" name="inst_id" value="${course.inst_id}">
-													<input type="hidden" name="maj_id" value="${course.maj_id}">
+													<input type="hidden" name="coz_id" value="${item.coz_id}">
+													<input type="hidden" name="inst_id" value="${item.inst_id}">
+													<input type="hidden" name="maj_id" value="${item.maj_id}">
 													<button class="btn btn-default"
 													        type="submit" name="param" value="deleteCourse">删除</button>
 												</form>

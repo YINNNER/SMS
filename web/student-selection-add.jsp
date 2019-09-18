@@ -16,7 +16,6 @@
 		
 		<!-- Custom styles for this page -->
 		<link href="css/index.css" rel="stylesheet">
-		<link href="css/student-statistic.css" rel="stylesheet">
 		
 		<!-- Custom scripts for this page -->
 		<script>window.jQuery || document.write('<script src="bootstrap/js/vendor/jquery.min.js"><\/script>')</script>
@@ -47,9 +46,9 @@
 						<span class="navbar-brand" id="sub-nav-name" style="font-size: 14px; padding: 5px;"></span>
 					</div>
 					<ul class="nav nav-sidebar">
-						<li><a href="courseSelection?param=queryCourseSelection&stu_id=${sessionScope.stu_id}" style="border-top: 2px solid #eee;">选课</a></li>
+						<li class="active"><a href="#" style="border-top: 2px solid #eee;">选课</a></li>
 						<li><a href="scoreManagement?param=queryScore&stu_id=${sessionScope.stu_id}">成绩</a></li>
-						<li class="active"><a href="#">统计</a></li>
+						<li><a href="gpaAnalysis?stu_id=${sessionScope.stu_id}">统计</a></li>
 						<li><a href="studentManagement?type=querySingleStudent&stu_id=${sessionScope.stu_id}">信息</a></li>
 					</ul>
 				</div>
@@ -59,11 +58,12 @@
 					<nav class="col-sm-12 col-md-12 navbar my-top-nav">
 						<div class="container-fluid" style="text-align: center">
 	  
-							<span class="nav navbar-nav navbar-left">
-                <button type="button" class="btn btn-default btn-lg" onclick="location='index.jsp'">
+              <span class="nav navbar-nav navbar-left">
+                <button type="button" class="btn btn-default btn-lg" onclick="location='courseSelection?' +
+				                'param=queryCourseSelection&stu_id=${sessionScope.stu_id}'">
                   <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
                 </button>
-							</span >
+              </span >
 							
 							<div class="navbar-header">
 								<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
@@ -74,47 +74,50 @@
 								</button>
 							</div>
 							
-							<h4 class="nav-title">数据统计</h4>
+							<h4 class="nav-title" id="select-class">添加选课</h4>
 						
 						</div>
 					</nav>
 					
 					<div class="col-sm-12 col-md-12 main">
 						
-						<h2 class="sub-header">学分和GPA统计</h2>
-						<div class="table-responsive">
-							<table class="table table-striped">
-								<thead>
-									<tr>
-										<th>学年</th>
-										<th>学期</th>
-										<th>学分</th>
-										<th>GPA</th>
-									</tr>
-								</thead>
-								<tbody>
-									<c:forEach items="${requestScope.analysisResult}" var="item">
-										<tr>
-											<td>${item.year}</td>
-											<td>${item.semester}</td>
-											<td>${item.credit}</td>
-											<td>${item.gpa}</td>
-										</tr>
-									</c:forEach>
-								</tbody>
-							</table>
-						</div>
+						<%--判断是否添加成功--%>
+						<c:if test="${not empty requestScope.flag}">
+							<c:if test="${requestScope.flag == true}">
+								<script>
+                    alert("添加成功！");
+                    window.location.href='courseSelection?param=queryCourseSelection&stu_id=${sessionScope.stu_id}';
+								</script>
+							</c:if>
+							<c:if test="${requestScope.flag == false}">
+								<script>
+                    alert("添加失败！");
+								</script>
+							</c:if>
+						</c:if>
 						
-						<div id="sum-area">
-							<span>
-								<label>总学分</label>
-								<label>${requestScope.creditSum}</label>
-							</span>
-							<span>
-								<label>总GPA</label>
-								<label>${requestScope.gpaSum}</label>
-							</span>
-						</div>
+						<h4 class="sub-header" style="margin-top: 15%;">选择课程</h4>
+						<form class="form-horizontal" action="courseSelection">
+							<div class="form-group">
+								<label for="chooseCourse" class="col-sm-2 col-sm-offset-1 control-label">课程名</label>
+								<div class="col-sm-6">
+									<select class="form-control" id="chooseCourse" name="coz_id">
+										<option>6</option>
+										<option>2</option>
+										<option>3</option>
+										<option>4</option>
+									</select>
+								</div>
+							</div>
+							
+							<div class="form-group">
+								<div style="text-align: center;">
+									<input type="hidden" name="stu_id" class="stu_id" value="${sessionScope.stu_id}">
+									<button type="submit" class="btn btn-default" name="param" value="addCourseSelection">确定</button>
+								</div>
+							</div>
+						</form>
+						
 					</div>
 				
 				</div>
@@ -124,7 +127,6 @@
 		<!-- Bootstrap core JavaScript
 		================================================== -->
 		<!-- Placed at the end of the document so the pages load faster -->
-		<script>window.jQuery || document.write('<script src="bootstrap/js/vendor/jquery.min.js"><\/script>')</script>
 		<script src="bootstrap/js/bootstrap.min.js"></script>
 	</body>
 </html>

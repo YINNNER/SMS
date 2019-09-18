@@ -1,0 +1,17 @@
+#sum-area {
+	margin: 20px 15%;
+	padding: 10px 0;
+	background-color: #444444;
+	border-color: #444444;
+	border-radius: 5px;
+	color: #ffffff;
+	text-align: center;
+}
+
+#sum-area span {
+	display: block;
+}
+
+#sum-area label {
+	padding: 5px 10px;
+}

@@ -60,6 +60,8 @@ public class ScoreManagementServlet extends HttpServlet {
                 ScoreFront scoreFront = new ScoreFront(stu_id, course, score, teacher, institute);
                 queryResults.add(scoreFront);
             }
+            request.setAttribute("coz_year", coz_year);
+            request.setAttribute("coz_semester", coz_semester);
             request.setAttribute("queryResult", queryResults);
         }
 
@@ -68,8 +70,7 @@ public class ScoreManagementServlet extends HttpServlet {
             Score score = (Score) getScoreInfo(request);
             boolean flag = courseSelectDAO.addCourseSelect(score);
             request.setAttribute("flag", flag);
-            request.getRequestDispatcher(".jsp").forward(request, response);
-            
+            request.getRequestDispatcher("student-score-add.jsp").forward(request, response);
         }
 
         // 修改成绩

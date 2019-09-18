@@ -76,7 +76,7 @@
 							<h4 class="nav-title" id="select-class">选课列表</h4>
 							
 							<span class="nav navbar-nav navbar-right">
-	                <button type="button" class="btn btn-default btn-lg">
+	                <button type="button" class="btn btn-default btn-lg" onclick="location='student-selection-add.jsp'">
 	                  <span class="glyphicon glyphicon glyphicon-plus" aria-hidden="true"></span>
 	                </button>
 	              </span>
@@ -85,6 +85,21 @@
 					</nav>
 					
 					<div class="col-sm-12 col-md-12 main">
+						
+						<%--判断是否删除成功--%>
+						<c:if test="${not empty requestScope.flag}">
+							<c:if test="${requestScope.flag == true}">
+								<script>
+                    alert("删除成功！");
+                    window.location.href='courseSelection?param=queryCourseSelection&stu_id=${sessionScope.stu_id}';
+								</script>
+							</c:if>
+							<c:if test="${requestScope.flag == false}">
+								<script>
+                    alert("删除失败！");
+								</script>
+							</c:if>
+						</c:if>
 						
 						<div class="table-responsive">
 							<table class="table table-striped">
@@ -102,19 +117,19 @@
 								</tr>
 								</thead>
 								<tbody>
-									<c:forEach items="${requestScope.queryResult}" var="course">
+									<c:forEach items="${requestScope.queryResult}" var="item">
 										<tr>
-											<td>${course.coz_id}</td>
-											<td>${course.coz_name}</td>
-											<td>${course.tch_name}</td>
-											<td>${course.coz_credit}</td>
-											<td>${course.coz_place}</td>
-											<td>${course.coz_time}</td>
-											<td>${course.coz_year}</td>
-											<td>${course.coz_semester}</td>
+											<td>${item.coz_id}</td>
+											<td>${item.coz_name}</td>
+											<td>${item.tch_name}</td>
+											<td>${item.coz_credit}</td>
+											<td>${item.coz_place}</td>
+											<td>${item.coz_time}</td>
+											<td>${item.coz_year}</td>
+											<td>${item.coz_semester}</td>
 											<td>
 												<form action="courseSelection">
-													<input type="hidden" name="coz_id" value="${course.coz_id}">
+													<input type="hidden" name="coz_id" value="${item.coz_id}">
 													<input type="hidden" name="stu_id" class="stu_id" value="${sessionScope.stu_id}">
 													<button class="btn btn-default"
 													        type="submit" name="param" value="deleteCourseSelection">删除</button>

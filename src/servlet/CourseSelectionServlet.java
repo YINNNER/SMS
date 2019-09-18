@@ -52,12 +52,7 @@ public class CourseSelectionServlet extends HttpServlet {
             Score score = getCourseSelectInfo(request);
             boolean flag = courseSelectDAO.addCourseSelect(score);
             request.setAttribute("flag", flag);
-            if (flag) {
-                request.getRequestDispatcher(".jsp").forward(request, response);
-            }
-            else {
-                request.getRequestDispatcher(".jsp").forward(request, response);
-            }
+            request.getRequestDispatcher("student-selection-add.jsp").forward(request, response);
         }
 
         // 删除学生选课信息
@@ -66,7 +61,7 @@ public class CourseSelectionServlet extends HttpServlet {
             int coz_id = Integer.parseInt(request.getParameter("coz_id"));
             boolean flag = scoreDAO.deleteScoreSelectById(stu_id, coz_id);
             request.setAttribute("flag", flag);
-            request.getRequestDispatcher(".jsp").forward(request, response);
+            request.getRequestDispatcher("student-selection.jsp").forward(request, response);
         }
     }
 
