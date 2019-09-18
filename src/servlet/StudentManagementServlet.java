@@ -6,6 +6,8 @@ import dao.MajorDAO;
 import dao.StudentDAO;
 import entity.*;
 import entity.Class;
+import netscape.javascript.JSObject;
+import org.json.JSONObject;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -40,8 +42,29 @@ public class StudentManagementServlet extends HttpServlet {
             Major major = majorDAO.queryMajInfoById(student.getMaj_id());
             Class cls = classDAO.queryClassInfoById(student.getClass_id());
             StudentFront studentFront = new StudentFront(student, institute, major, cls);
+
+            JSONObject jsonObject = new JSONObject(studentFront);
+            System.out.println(jsonObject.toString());
+            //发送响应
+            response.getWriter().print(jsonObject.toString());
             request.setAttribute("studentInfo", studentFront);
             request.getRequestDispatcher("student-info.jsp").forward(request, response);
+        }
+
+        //查询单个学生信息
+        if (type.equals("querySingleJsonStudent")) {
+            int stu_id = Integer.parseInt(request.getParameter("stu_id"));
+            Student student = studentDAO.queryStuInfoById(stu_id);
+            Institute institute = instituteDAO.queryInstInfoById(student.getInst_id());
+            Major major = majorDAO.queryMajInfoById(student.getMaj_id());
+            Class cls = classDAO.queryClassInfoById(student.getClass_id());
+
+            StudentFront studentFront = new StudentFront(student, institute, major, cls);
+
+            JSONObject jsonObject = new JSONObject(studentFront);
+            System.out.println(jsonObject.toString());
+            //发送响应
+            response.getWriter().print(jsonObject.toString());
         }
 
         //添加学生信息
@@ -76,10 +99,10 @@ public class StudentManagementServlet extends HttpServlet {
     private Student getStudentInfo(HttpServletRequest request) {
         HttpSession session = request.getSession();
         session.setAttribute("class_id", request.getParameter("class_id"));
-        DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
         int stu_id = Integer.parseInt(request.getParameter("stu_id"));
         String stu_name = request.getParameter("stu_name");
         String stu_sex = request.getParameter("stu_sex");
+        DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
         Date stu_birth_date = null;
         try {
             stu_birth_date = dateFormat.parse(request.getParameter("stu_birth_date"));

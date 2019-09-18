@@ -1,4 +1,4 @@
-function getInst() {
+function getInstAddStudent(stu_id) {
     //使用get提交，将url和想要传递到后台的参数进行拼接，便于后台获取数据
     var request = new XMLHttpRequest(); // 新建XMLHttpRequest对象
     // 发送请求:
@@ -9,9 +9,6 @@ function getInst() {
     var current_inst_id;
     request.onreadystatechange = function () {
         if (request.status === 200 && request.readyState === 4) {
-            var chooseInst = document.getElementById("chooseMajor");
-            if (chooseInst != null)
-                chooseInst.innerHTML = "";
             //当Ajax对象状态为4，并且status为200时，responseText接收数据
             var data = request.responseText;
             //将接收到的字符串转换成json格式
@@ -28,13 +25,17 @@ function getInst() {
                 //将option添加到select中
                 select.append(opt);
             }
-            getMajor();
+            result = urlSearch();
+            var stu_id = result["stu_id"];
+            if(stu_id!="") {
+                getStudentInfo(stu_id);
+            }
         }
     }
 
 }
 
-function getMajor() {
+function getMajorAddStudent(chooseMajor, chooseClass, student) {
     var select_inst = document.getElementById("chooseInstitute");
     var inst_id = select_inst.options[select_inst.selectedIndex].value; //获取option的value
     //使用get提交，将url和想要传递到后台的参数进行拼接，便于后台获取数据
@@ -45,9 +46,7 @@ function getMajor() {
     //监听Ajax的状态变化
     request.onreadystatechange = function () {
         if (request.status === 200 && request.readyState === 4) {
-            var chooseMajor = document.getElementById("chooseMajor");
-            if (chooseMajor != null)
-                chooseMajor.innerHTML = "";
+            document.getElementById("chooseMajor").innerHTML = "";
             //当Ajax对象状态为4，并且status为200时，responseText接收数据
             var data = request.responseText;
             //将接收到的字符串转换成json格式
@@ -63,13 +62,20 @@ function getMajor() {
                 //将option添加到select中
                 select.append(opt);
             }
-            getClass();
-            getTeacher();
+            for (var maj_i = 0; maj_i < chooseMajor.options.length; maj_i++){
+
+                if (chooseMajor.options[maj_i].value == student.maj_id){
+                    chooseMajor.options[maj_i].selected = true;
+                    break;
+                }
+            }
+            getClassAddStudent(chooseClass, student);
+
         }
     }
 }
 
-function getClass() {
+function getClassAddStudent(chooseClass, student) {
     var select_maj = document.getElementById("chooseMajor");
     var maj_id = select_maj.options[select_maj.selectedIndex].value; //获取option的value
     //使用get提交，将url和想要传递到后台的参数进行拼接，便于后台获取数据
@@ -98,36 +104,64 @@ function getClass() {
                 //将option添加到select中
                 select.append(opt);
             }
-        }
-    }
-}
+            for (var class_i = 0; class_i < chooseClass.options.length; class_i++){
 
-function getTeacher() {
-    //使用get提交，将url和想要传递到后台的参数进行拼接，便于后台获取数据
-    var request = new XMLHttpRequest(); // 新建XMLHttpRequest对象
-    // 发送请求:
-    request.open("GET", "queryTeacher?param=queryAllTeacher");
-    request.send();
-    //监听Ajax的状态变化
-    request.onreadystatechange = function () {
-        if (request.status === 200 && request.readyState === 4) {
-            document.getElementById("chooseTeacher").innerHTML = "";
-            //当Ajax对象状态为4，并且status为200时，responseText接收数据
-            var data = request.responseText;
-            //将接收到的字符串转换成json格式
-            var teacherList = JSON.parse(data);
-            //循环得到的json数组，将值添加到select中
-            for (var i = 0; i < teacherList.length; i++) {
-                //创建一个option
-                var opt = document.createElement("option");
-                var select = document.getElementById("chooseTeacher");
-                //给option的value属性和具体内容赋值
-                opt.value = teacherList[i].tch_id;
-                opt.innerHTML = teacherList[i].tch_name;
-                //将option添加到select中
-                select.append(opt);
+                if (chooseClass.options[class_i].value == student.class_id){
+                    chooseClass.options[class_i].selected = true;
+                    break;
+                }
             }
         }
     }
 }
 
+
+function getStudentInfo(stu_id) {
+    //使用get提交，将url和想要传递到后台的参数进行拼接，便于后台获取数据
+    var request = new XMLHttpRequest(); // 新建XMLHttpRequest对象
+    // 发送请求:
+    request.open("GET", "studentManagement?type=querySingleJsonStudent&stu_id=" + stu_id);
+    request.send();
+    //监听Ajax的状态变化
+    request.onreadystatechange = function () {
+        if (request.status === 200 && request.readyState === 4) {
+            //当Ajax对象状态为4，并且status为200时，responseText接收数据
+            var data = request.responseText;
+            //将接收到的字符串转换成json格式
+            var student = JSON.parse(data);
+            //循环得到的json数组，将值添加到表单中
+            var inputId = document.getElementById("inputId");
+            var inputName = document.getElementById("inputName");
+            var chooseSex = document.getElementById("chooseSex");
+            var chooseInstitute = document.getElementById("chooseInstitute");
+            var chooseMajor = document.getElementById("chooseMajor");
+            var chooseClass = document.getElementById("chooseClass");
+            var inputBirth = document.getElementById("inputBirth");
+            var inputBirthPlace = document.getElementById("inputBirthPlace");
+            var inputPolitical = document.getElementById("inputPolitical");
+            //给option的value属性和具体内容赋值
+            inputId.value = student.stu_id;
+            inputName.value = student.stu_name;
+            for (var sex_i = 0; sex_i < chooseSex.options.length; sex_i++){
+
+                if (chooseSex.options[sex_i].innerHTML === student.stu_sex){
+                    chooseSex.options[sex_i].selected = true;
+                    break;
+                }
+            }
+            inputBirth.value = student.stu_birth_date;
+            inputBirthPlace.value = student.stu_birth_place;
+            inputPolitical.value = student.stu_political;
+
+            for (var inst_i = 0; inst_i < chooseInstitute.options.length; inst_i++){
+
+                if (chooseInstitute.options[inst_i].value == student.inst_id){
+                    chooseInstitute.options[inst_i].selected = true;
+                    getMajorAddStudent(chooseMajor, chooseClass, student);
+                    break;
+                }
+            }
+
+        }
+    }
+}

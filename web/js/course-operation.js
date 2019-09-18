@@ -1,4 +1,4 @@
-function getInst() {
+function getInstModifyCourse() {
     //使用get提交，将url和想要传递到后台的参数进行拼接，便于后台获取数据
     var request = new XMLHttpRequest(); // 新建XMLHttpRequest对象
     // 发送请求:
@@ -27,7 +27,7 @@ function getInst() {
             }
             result = urlSearch();
             var coz_id = result["coz_id"];
-            if(coz_id!==""){
+            if(coz_id!=""){
                 getSingleCourse(coz_id);
             }
         }
@@ -35,7 +35,7 @@ function getInst() {
 
 }
 
-function getMajor(chooseMajor, course) {
+function getMajorModifyCourse(chooseMajor, course) {
     var select_inst = document.getElementById("chooseInstitute");
     var inst_id = select_inst.options[select_inst.selectedIndex].value; //获取option的value
     //使用get提交，将url和想要传递到后台的参数进行拼接，便于后台获取数据
@@ -74,7 +74,7 @@ function getMajor(chooseMajor, course) {
     }
 }
 
-function getTeacher() {
+function getTeacherModifyCourse() {
     //使用get提交，将url和想要传递到后台的参数进行拼接，便于后台获取数据
     var request = new XMLHttpRequest(); // 新建XMLHttpRequest对象
     // 发送请求:
@@ -99,7 +99,7 @@ function getTeacher() {
                 //将option添加到select中
                 select.append(opt);
             }
-            getInst();
+            getInstModifyCourse();
 
         }
     }
@@ -176,7 +176,7 @@ function getSingleCourse(coz_id) {
 
                 if (chooseInstitute.options[inst_i].value == course.inst_id){
                     chooseInstitute.options[inst_i].selected = true;
-                    getMajor(chooseMajor, course);
+                    getMajorModifyCourse(chooseMajor, course);
                     break;
                 }
             }
