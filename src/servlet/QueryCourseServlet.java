@@ -26,7 +26,7 @@ public class QueryCourseServlet extends HttpServlet {
         response.setContentType("text/html; charset=utf-8");
         String param = request.getParameter("param");
 
-        // 获取所有课程信息
+        // 获取所有未选的课程信息
         if (param.contains("queryAllCourse")) {
             List<Course> queryCourses = courseDAO.queryAllCourseInfo();
             JSONArray jsonArray = new JSONArray(queryCourses);
@@ -43,7 +43,7 @@ public class QueryCourseServlet extends HttpServlet {
             for (Course course : queryCourses) {
                 int coz_id = course.getCoz_id();
                 Score score = scoreDAO.queryScoreById(stu_id, coz_id);
-                if (score == null)
+                if (score != null && score.getScore() == null)
                     result.add(course);
             }
             JSONArray jsonArray = new JSONArray(result);
