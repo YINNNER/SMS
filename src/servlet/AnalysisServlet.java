@@ -43,19 +43,18 @@ public class AnalysisServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         request.setCharacterEncoding("UTF-8");
         response.setContentType("text/html; charset=utf-8");
-        String param = request.getParameter("param");
 
         // 获得每学期的GPA统计信息
-        if (param.contains("getAnalysis")) {
-            int stu_id = Integer.parseInt(request.getParameter("stu_id"));
-            int credit = gpaDAO.getTotalCredit(stu_id);
-            float totalGPA = getTotalGPA(stu_id);
-            List<AnalysisFront> analysisFronts = gpaDAO.getAnalysisResult(stu_id);
+        int stu_id = Integer.parseInt(request.getParameter("stu_id"));
+        int credit = gpaDAO.getTotalCredit(stu_id);
+        float totalGPA = getTotalGPA(stu_id);
+        List<AnalysisFront> analysisFronts = gpaDAO.getAnalysisResult(stu_id);
 
-            request.setAttribute("creditSum", credit);
-            request.setAttribute("gpaSum", totalGPA);
-            request.setAttribute("analysisResult", analysisFronts);
-        }
+        request.setAttribute("creditSum", credit);
+        request.setAttribute("gpaSum", totalGPA);
+        request.setAttribute("analysisResult", analysisFronts);
+
+        request.getRequestDispatcher("student-statistic.jsp").forward(request, response);
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
