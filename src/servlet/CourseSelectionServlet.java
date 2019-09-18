@@ -41,7 +41,9 @@ public class CourseSelectionServlet extends HttpServlet {
 
             request.setAttribute("queryResult", queryResults);
             request.getSession().setAttribute("stu_id", request.getParameter("stu_id"));
-            request.getSession().setAttribute("stu_name", request.getParameter("stu_name"));
+            String stu_name = request.getParameter("stu_name");
+            // 只在点击查看学生信息的时候设置一次
+            if (stu_name != null) request.getSession().setAttribute("stu_name", stu_name);
             request.getRequestDispatcher("student-selection.jsp").forward(request, response);
         }
 
