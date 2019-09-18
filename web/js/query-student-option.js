@@ -9,6 +9,9 @@ function getInst() {
     var current_inst_id;
     request.onreadystatechange = function () {
         if (request.status === 200 && request.readyState === 4) {
+            var chooseInst = document.getElementById("chooseMajor");
+            if (chooseInst != null)
+                chooseInst.innerHTML = "";
             //当Ajax对象状态为4，并且status为200时，responseText接收数据
             var data = request.responseText;
             //将接收到的字符串转换成json格式
@@ -42,7 +45,9 @@ function getMajor() {
     //监听Ajax的状态变化
     request.onreadystatechange = function () {
         if (request.status === 200 && request.readyState === 4) {
-            document.getElementById("chooseMajor").innerHTML = "";
+            var chooseMajor = document.getElementById("chooseMajor");
+            if (chooseMajor != null)
+                chooseMajor.innerHTML = "";
             //当Ajax对象状态为4，并且status为200时，responseText接收数据
             var data = request.responseText;
             //将接收到的字符串转换成json格式
@@ -59,6 +64,7 @@ function getMajor() {
                 select.append(opt);
             }
             getClass();
+            getTeacher();
         }
     }
 }
@@ -89,6 +95,35 @@ function getClass() {
                 //给option的value属性和具体内容赋值
                 opt.value = classList[i].class_id;
                 opt.innerHTML = classList[i].class_name;
+                //将option添加到select中
+                select.append(opt);
+            }
+        }
+    }
+}
+
+function getTeacher() {
+    //使用get提交，将url和想要传递到后台的参数进行拼接，便于后台获取数据
+    var request = new XMLHttpRequest(); // 新建XMLHttpRequest对象
+    // 发送请求:
+    request.open("GET", "queryTeacher?param=queryAllTeacher");
+    request.send();
+    //监听Ajax的状态变化
+    request.onreadystatechange = function () {
+        if (request.status === 200 && request.readyState === 4) {
+            document.getElementById("chooseTeacher").innerHTML = "";
+            //当Ajax对象状态为4，并且status为200时，responseText接收数据
+            var data = request.responseText;
+            //将接收到的字符串转换成json格式
+            var teacherList = JSON.parse(data);
+            //循环得到的json数组，将值添加到select中
+            for (var i = 0; i < teacherList.length; i++) {
+                //创建一个option
+                var opt = document.createElement("option");
+                var select = document.getElementById("chooseTeacher");
+                //给option的value属性和具体内容赋值
+                opt.value = teacherList[i].tch_id;
+                opt.innerHTML = teacherList[i].tch_name;
                 //将option添加到select中
                 select.append(opt);
             }
