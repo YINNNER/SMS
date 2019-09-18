@@ -68,7 +68,7 @@ public class ScoreManagementServlet extends HttpServlet {
         // 添加成绩
         if (param.contains("addScore")){
             Score score = (Score) getScoreInfo(request);
-            boolean flag = courseSelectDAO.addCourseSelect(score);
+            boolean flag = scoreDAO.modifyScoreSelect(score);
             request.setAttribute("flag", flag);
             request.getRequestDispatcher("student-score-add.jsp").forward(request, response);
         }
@@ -77,7 +77,7 @@ public class ScoreManagementServlet extends HttpServlet {
         if (param.contains("modifyScore")) {
             Score score = (Score) getScoreInfo(request);
             boolean flag = scoreDAO.modifyScoreSelect(score);
-            request.setAttribute("flag", flag);
+            request.setAttribute("modify_flag", flag);
         }
 
         // 删除学生成绩信息
@@ -85,7 +85,7 @@ public class ScoreManagementServlet extends HttpServlet {
             int stu_id = Integer.parseInt(request.getParameter("stu_id"));
             int coz_id = Integer.parseInt(request.getParameter("coz_id"));
             boolean flag = scoreDAO.deleteScoreSelectById(stu_id, coz_id);
-            request.setAttribute("flag", flag);
+            request.setAttribute("delete_flag", flag);
         }
 
         request.getRequestDispatcher("student-score.jsp").forward(request, response);

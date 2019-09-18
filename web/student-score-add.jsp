@@ -97,7 +97,7 @@
 							</c:if>
 						</c:if>
 						
-						<h4 class="sub-header" style="margin-top: 15%;">选择课程</h4>
+						<h4 class="sub-header" style="margin-top: 15%;">选择课程并添加成绩</h4>
 						<form class="form-horizontal" action="scoreManagement">
 							<div class="form-group">
 								<label for="chooseCourse" class="col-sm-2 col-sm-offset-1 control-label">课程名</label>

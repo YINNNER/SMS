@@ -24,7 +24,41 @@
         $(document).ready(function () {
             var stu_name = decodeURI("${sessionScope.stu_name}");  // 使用decodeURI解决中文编码问题
             $('#sub-nav-name').text(stu_name);
+						
+            // 确认修改是否成功
+            var url = 'scoreManagement?param=queryScore&stu_id=${sessionScope.stu_id}';
+            var modify_flag = "${requestScope.modify_flag}";
+            if (modify_flag !=="") modifyOpt(modify_flag, url);
         });
+
+        function modify(i) {  //
+            var modify_tr = $('tbody tr')[i-1];  //需要i-1获得对应的tr
+            var old_score = modify_tr.children[5];
+            var old_btn = modify_tr.children[6];
+            var td_score = $('<td><input type="text" class="form-control" id="inputScore" name="score" value=\"' + old_score.textContent + '\"></td>');
+            var td_btn = $('<td><button type="submit" class="btn btn-default confirm-btn" onclick="confirmModify(this)">确定</button></td>');
+            modify_tr.replaceChild(td_score[0], old_score);
+            modify_tr.replaceChild(td_btn[0], old_btn);
+        }
+
+        function confirmModify(btn) {
+            var modify_tr = btn.parentNode.parentNode;
+            var td_id = modify_tr.children[0].textContent;
+            var td_score = modify_tr.children[5].children[0].value;
+            var url = 'scoreManagement?param=modifyScore&stu_id=${sessionScope.stu_id}&coz_id=' + td_id + '&score=' + td_score;
+            window.location.href = url;
+        }
+
+        function modifyOpt(flag, url) {
+            if (flag === "true"){
+                alert("修改成功！");
+            }
+            else {
+                alert("修改失败！");
+            }
+            window.location.href = url;
+        }
+        
 		</script>
 	</head>
 	<body>
@@ -88,14 +122,14 @@
 					<div class="col-sm-12 col-md-12 main">
 						
 						<%--判断是否删除成功--%>
-						<c:if test="${not empty requestScope.flag}">
-							<c:if test="${requestScope.flag == true}">
+						<c:if test="${not empty requestScope.delete_flag}">
+							<c:if test="${requestScope.delete_flag == true}">
 								<script>
                     alert("删除成功！");
                     window.location.href='scoreManagement?param=queryScore&stu_id=${sessionScope.stu_id}';
 								</script>
 							</c:if>
-							<c:if test="${requestScope.flag == false}">
+							<c:if test="${requestScope.delete_flag == false}">
 								<script>
                     alert("删除失败！");
 								</script>
@@ -148,7 +182,7 @@
 									</tr>
 								</thead>
 								<tbody>
-									<c:forEach items="${requestScope.queryResult}" var="item">
+									<c:forEach items="${requestScope.queryResult}" var="item" varStatus="i">
 										<tr>
 											<td>${item.coz_id}</td>
 											<td>${item.coz_name}</td>
@@ -156,7 +190,7 @@
 											<td>${item.inst_name}</td>
 											<td>${item.coz_credit}</td>
 											<td>${item.score}</td>
-											<td><button class="btn btn-default">更新</button></td>
+											<td><button class="btn btn-default" onclick="modify(${i.count})">更新</button></td>
 											<td>
 												<form action="scoreManagement">
 													<input type="hidden" name="coz_id" value="${item.coz_id}">

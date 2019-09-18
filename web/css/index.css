@@ -93,6 +93,9 @@
   color: #444444!important;
 }
 
+.navbar-brand {
+  padding: 15px 5px;
+}
 
 /*
  * Sub-Sidebar
@@ -139,4 +142,12 @@
  */
 .form-group {
   margin-bottom: 25px;
+}
+
+td form {
+  margin-bottom: 0;
+}
+
+.table>tbody>tr>td {
+  vertical-align: middle;
 }
