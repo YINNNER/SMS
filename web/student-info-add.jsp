@@ -16,11 +16,28 @@
 		
 		<!-- Custom styles for this page -->
 		<link href="css/index.css" rel="stylesheet">
+		
 		<!-- Custom scripts for this page -->
+		<script>window.jQuery || document.write('<script src="bootstrap/js/vendor/jquery.min.js"><\/script>')</script>
 		<script type="text/javascript" src="js/query-student-option.js"></script>
+		<script type="text/javascript" src="js/util.js"></script>
 		<script type="text/javascript">
         getInst();
+
+        $(document).ready(function () {
+            var result = urlSearch();
+            if (result.length != 0){  // 表示是修改学生信息
+                var stu_id = result["stu_id"];
+                $('#add').css('display', 'none');
+                $('#modify').css('display', 'block');
+                $('#add-title').css('display', 'none');
+                $('#modify-title').css('display', 'inline-flex');
+                // 加载学生已有信息
+            }
+            
+        });
 		</script>
+		
 	</head>
 	<body>
 		<div class="container-fluid">
@@ -57,7 +74,8 @@
 								</button>
 							</div>
 							
-							<h4 class="nav-title">添加学生信息</h4>
+							<h4 class="nav-title" id="add-title">添加学生信息</h4>
+							<h4 class="nav-title" id="modify-title" style="display:none;">修改学生信息</h4>
 							
 						</div>
 					</nav>
@@ -65,16 +83,31 @@
 					<div class="col-sm-12 col-md-12 main">
 						
 						<%--判断是否添加成功--%>
-						<c:if test="${not empty requestScope.flag}">
-							<c:if test="${requestScope.flag == true}">
+						<c:if test="${not empty requestScope.add_flag}">
+							<c:if test="${requestScope.add_flag == true}">
 								<script>
                     alert("添加成功！");
                     window.location.href='index.jsp';
 								</script>
 							</c:if>
-							<c:if test="${requestScope.flag == false}">
+							<c:if test="${requestScope.add_flag == false}">
 								<script>
                     alert("添加失败！");
+								</script>
+							</c:if>
+						</c:if>
+						
+						<%--判断是否修改成功--%>
+						<c:if test="${not empty requestScope.modify_flag}">
+							<c:if test="${requestScope.modify_flag == true}">
+								<script>
+                    alert("修改成功！");
+                    window.location.href='studentManagement?type=querySingleStudent&stu_id=${sessionScope.stu_id}';
+								</script>
+							</c:if>
+							<c:if test="${requestScope.modify_flag == false}">
+								<script>
+                    alert("修改失败！");
 								</script>
 							</c:if>
 						</c:if>
@@ -145,8 +178,11 @@
 								</div>
 							</div>
 							<div class="form-group">
-								<div class="col-sm-offset-5 col-sm-2">
-									<button type="submit" class="btn btn-default" name="type" value="addStudent">确定</button>
+								<div class="col-sm-offset-5 col-sm-2" id="add">
+									<button type="submit" class="btn btn-default" name="type" value="addStudent">确定添加</button>
+								</div>
+								<div class="col-sm-offset-5 col-sm-2" id="modify" style="display:none;">
+									<button type="submit" class="btn btn-default" name="type" value="modifyStudent">确定修改</button>
 								</div>
 							</div>
 						</form>
@@ -159,7 +195,6 @@
 		<!-- Bootstrap core JavaScript
 		================================================== -->
 		<!-- Placed at the end of the document so the pages load faster -->
-		<script>window.jQuery || document.write('<script src="bootstrap/js/vendor/jquery.min.js"><\/script>')</script>
 		<script src="bootstrap/js/bootstrap.min.js"></script>
 	</body>
 </html>

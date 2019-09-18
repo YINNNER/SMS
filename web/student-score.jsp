@@ -59,6 +59,12 @@
 					<nav class="col-sm-12 col-md-12 navbar my-top-nav">
 						<div class="container-fluid" style="text-align: center">
 							
+							<span class="nav navbar-nav navbar-left">
+                <button type="button" class="btn btn-default btn-lg" onclick="location='index.jsp'">
+                  <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+                </button>
+							</span >
+							
 							<div class="navbar-header">
 								<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
 									<span class="sr-only">Toggle navigation</span>
@@ -71,9 +77,9 @@
 							<h4 class="nav-title">成绩列表</h4>
 							
 							<span class="nav navbar-nav navbar-right">
-	                <button type="button" class="btn btn-default btn-lg">
-	                  <span class="glyphicon glyphicon glyphicon-plus" aria-hidden="true"></span>
-	                </button>
+                <button type="button" class="btn btn-default btn-lg">
+                  <span class="glyphicon glyphicon glyphicon-plus" aria-hidden="true"></span>
+                </button>
 							</span>
 						
 						</div>

@@ -48,7 +48,7 @@ public class StudentManagementServlet extends HttpServlet {
         if (type.contains("addStudent")){
             Student student = getStudentInfo(request);
             boolean flag = studentDAO.addStuInfo(student);
-            request.setAttribute("flag", flag);
+            request.setAttribute("add_flag", flag);
             request.getRequestDispatcher("student-info-add.jsp").forward(request, response);
         }
 
@@ -56,7 +56,7 @@ public class StudentManagementServlet extends HttpServlet {
         if (type.contains("modifyStudent")){
             Student student = getStudentInfo(request);
             boolean flag = studentDAO.modifyStuInfoById(student);
-            request.setAttribute("flag", flag);
+            request.setAttribute("modify_flag", flag);
             request.getRequestDispatcher("student-info-add.jsp").forward(request, response);
         }
 

@@ -59,7 +59,7 @@
 						<div class="container-fluid" style="text-align: center">
 	  
 	              <span class="nav navbar-nav navbar-left">
-	                <button type="button" class="btn btn-default btn-lg" onclick="history.back()">
+	                <button type="button" class="btn btn-default btn-lg" onclick="location='index.jsp'">
 	                  <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
 	                </button>
 	              </span >

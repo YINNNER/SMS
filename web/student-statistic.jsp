@@ -58,10 +58,10 @@
 						<div class="container-fluid" style="text-align: center">
 	  
 							<span class="nav navbar-nav navbar-left">
-	                <button type="button" class="btn btn-default btn-lg" onclick="history.back()">
-	                  <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
-	                </button>
-	              </span >
+                <button type="button" class="btn btn-default btn-lg" onclick="location='index.jsp'">
+                  <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+                </button>
+							</span >
 							
 							<div class="navbar-header">
 								<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
