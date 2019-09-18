@@ -19,9 +19,7 @@
 		
 		<!-- Custom scripts for this page -->
 		<script type="text/javascript" src="js/course-operation.js"></script>
-		<script type="text/javascript">
-        getTeacher();
-		</script>
+		<script type="text/javascript" src="js/query-student-option.js"></script>
 		<script>window.jQuery || document.write('<script src="bootstrap/js/vendor/jquery.min.js"><\/script>')</script>
 		<script type="text/javascript">
         function urlSearch() {
@@ -42,6 +40,15 @@
                 }
             }
             return result;
+        }
+
+        result = urlSearch();
+        var coz_id = result["coz_id"];
+        if(coz_id != null){
+            getTeacherModifyCourse();
+        }
+        else {
+            getInst();
         }
 			
         $(document).ready(function () {
@@ -142,7 +149,7 @@
 							<div class="form-group">
 								<label for="chooseInstitute" class="col-sm-2 col-sm-offset-1 control-label">学院</label>
 								<div class="col-sm-6">
-									<select class="form-control" id="chooseInstitute" name="inst_id" onchange="getMajor()">
+									<select class="form-control" id="chooseInstitute" name="inst_id" onchange="getMajorModifyCourse()">
 									
 									</select>
 								</div>

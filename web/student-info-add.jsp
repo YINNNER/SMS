@@ -19,20 +19,19 @@
 		
 		<!-- Custom scripts for this page -->
 		<script>window.jQuery || document.write('<script src="bootstrap/js/vendor/jquery.min.js"><\/script>')</script>
-		<script type="text/javascript" src="js/query-student-option.js"></script>
+		<script type="text/javascript" src="js/student-operation.js"></script>
 		<script type="text/javascript" src="js/util.js"></script>
 		<script type="text/javascript">
-        getInst();
-
         $(document).ready(function () {
             var result = urlSearch();
-            if (result.length != 0){  // 表示是修改学生信息
+            if (result.length !== 0){  // 表示是修改学生信息
                 var stu_id = result["stu_id"];
                 $('#add').css('display', 'none');
                 $('#modify').css('display', 'block');
                 $('#add-title').css('display', 'none');
                 $('#modify-title').css('display', 'inline-flex');
                 // 加载学生已有信息
+		            getInstAddStudent(stu_id);
             }
             
         });
@@ -127,18 +126,18 @@
 								</div>
 							</div>
 							<div class="form-group">
-								<label for="inputSex" class="col-sm-2 col-sm-offset-1 control-label">性别</label>
+								<label for="chooseSex" class="col-sm-2 col-sm-offset-1 control-label">性别</label>
 								<div class="col-sm-6">
-									<select class="form-control" id="inputSex" name="stu_sex">
-										<option>男</option>
-										<option>女</option>
+									<select class="form-control" id="chooseSex" name="stu_sex">
+										<option value="0">男</option>
+										<option value="1">女</option>
 									</select>
 								</div>
 							</div>
 							<div class="form-group">
 								<label for="chooseInstitute" class="col-sm-2 col-sm-offset-1 control-label">学院</label>
 								<div class="col-sm-6">
-									<select class="form-control" id="chooseInstitute" name="inst_id" onchange="getMajor()">
+									<select class="form-control" id="chooseInstitute" name="inst_id" onchange="getMajorAddStudent()">
 									
 									</select>
 								</div>
