@@ -19,7 +19,10 @@
 		
 		<!-- Custom scripts for this page -->
 		<script>window.jQuery || document.write('<script src="bootstrap/js/vendor/jquery.min.js"><\/script>')</script>
+		<script src="js/query-course.js"></script>
+
 		<script type="text/javascript">
+        getAllCourseList();
         $(document).ready(function () {
             var stu_name = decodeURI("${sessionScope.stu_name}");  // 使用decodeURI解决中文编码问题
             $('#sub-nav-name').text(stu_name);

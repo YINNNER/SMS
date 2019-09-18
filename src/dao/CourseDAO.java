@@ -14,6 +14,26 @@ public class CourseDAO {
     }
 
     /**
+     * 获得所有课程信息
+     * @return List<Course>
+     */
+    public List<Course> queryAllCourseInfo(){
+        List<Course> courseList = new ArrayList<>();
+        List<Object> params = new ArrayList<>();
+        List<Object> values = new ArrayList<>();
+        try {
+            courseList = dBUtils.querySubsetRef("course_table", params, values, Course.class);
+            System.out.print(courseList);
+            System.out.println("获得所有课程信息成功");
+        } catch (Exception e) {
+            System.out.println("获得所有课程信息失败");
+            e.printStackTrace();
+        }
+
+        return courseList;
+    }
+
+    /**
      * 获得某学院专业所有课程信息
      * @param inst_id：学院id
      * @param maj_id：专业id
