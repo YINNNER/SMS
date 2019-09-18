@@ -20,11 +20,13 @@
 		<!-- Custom scripts for this page -->
 		<script>window.jQuery || document.write('<script src="bootstrap/js/vendor/jquery.min.js"><\/script>')</script>
 		<script type="text/javascript" src="js/student-operation.js"></script>
+		<script type="text/javascript" src="js/query-student-option.js"></script>
 		<script type="text/javascript" src="js/util.js"></script>
 		<script type="text/javascript">
         $(document).ready(function () {
             var result = urlSearch();
-            if (result.length !== 0){  // 表示是修改学生信息
+            var result_json = (JSON.stringify(result));
+            if (result_json !== "{}"){  // 表示是修改学生信息
                 var stu_id = result["stu_id"];
                 $('#add').css('display', 'none');
                 $('#modify').css('display', 'block');
@@ -32,6 +34,9 @@
                 $('#modify-title').css('display', 'inline-flex');
                 // 加载学生已有信息
 		            getInstAddStudent(stu_id);
+            }
+            else {
+                getInst();
             }
             
         });

@@ -114,4 +114,14 @@
         <url-pattern>/gpaAnalysis</url-pattern>
     </servlet-mapping>
 
+    <servlet>
+        <servlet-name>queryCourse</servlet-name>
+        <servlet-class>servlet.QueryCourseServlet</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>queryCourse</servlet-name>
+        <url-pattern>/queryCourse</url-pattern>
+    </servlet-mapping>
+
 </web-app>
