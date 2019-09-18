@@ -28,7 +28,7 @@
                             </div>
 
                             <div>
-                                <input type="submit" value="登录" class="button_blue"/>
+                                <input type="submit" value="登录" class="button_black"/>
                             </div>
                         </form>
                     </div>
