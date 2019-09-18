@@ -87,20 +87,23 @@
 						
 						<div class="table-responsive">
 							<table class="table table-striped">
-								<thead>
-								<tr>
-									<th>课程号</th>
-									<th>课程名</th>
-									<th>教师名</th>
-									<th>授课学院</th>
-									<th>学分</th>
-									<th>成绩</th>
-									<th>修改</th>
-									<th>删除</th>
-								</tr>
-								</thead>
+								<%--<thead>--%>
+								<%--<tr>--%>
+									<%--<th>课程号</th>--%>
+									<%--<th>课程名</th>--%>
+									<%--<th>教师名</th>--%>
+									<%--<th>授课学院</th>--%>
+									<%--<th>学分</th>--%>
+									<%--<th>成绩</th>--%>
+									<%--<th>修改</th>--%>
+									<%--<th>删除</th>--%>
+								<%--</tr>--%>
+								<%--</thead>--%>
 								<tbody>
-								
+									<tr>
+										<th>a</th>
+										<td>b</td>
+									</tr>
 								</tbody>
 							</table>
 						</div>
