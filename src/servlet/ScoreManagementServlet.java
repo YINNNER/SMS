@@ -34,6 +34,8 @@ public class ScoreManagementServlet extends HttpServlet {
             List<Course> queryCourses = courseSelectDAO.queryAllCourseIdInfoByStuId(stu_id);
             for (Course course : queryCourses) {
                 Score score = scoreDAO.queryScoreById(stu_id, course.getCoz_id());
+                if (score.getScore() == null)
+                    continue;
                 Teacher teacher = teacherDAO.queryTchInfoById(course.getTch_id());
                 Institute institute = instituteDAO.queryInstInfoById(course.getInst_id());
                 ScoreFront scoreFront = new ScoreFront(stu_id, course, score, teacher, institute);
@@ -51,6 +53,8 @@ public class ScoreManagementServlet extends HttpServlet {
             List<Course> queryCourses = courseSelectDAO.queryAllCurrentCourseIdInfoByStuId(stu_id, coz_year, coz_semester);
             for (Course course : queryCourses) {
                 Score score = scoreDAO.queryScoreById(stu_id, course.getCoz_id());
+                if (score.getScore() == null)
+                    continue;
                 Teacher teacher = teacherDAO.queryTchInfoById(course.getTch_id());
                 Institute institute = instituteDAO.queryInstInfoById(course.getInst_id());
                 ScoreFront scoreFront = new ScoreFront(stu_id, course, score, teacher, institute);

@@ -33,6 +33,8 @@ public class AnalysisServlet extends HttpServlet {
         float weightedGPA = 0;
         List<Score> scores = scoreDAO.queryAllScoreInfoByStuId(stu_id);
         for (Score score : scores) {
+            if (score.getScore() == null)
+                continue;
             Course course = courseDAO.queryCourseInfoByCourseId(score.getCoz_id());
             weightedGPA += course.getCoz_credit() * GPAUtils.getGPAByScore(score.getScore());
         }

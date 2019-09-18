@@ -2,7 +2,7 @@ package entity;
 
 public class ScoreFront extends Course {
     private int stu_id;
-    private float score;
+    private Float score;
     private String tch_name;
     private String inst_name;
 
@@ -30,11 +30,11 @@ public class ScoreFront extends Course {
         this.stu_id = stu_id;
     }
 
-    public float getScore() {
+    public Float getScore() {
         return score;
     }
 
-    public void setScore(float score) {
+    public void setScore(Float score) {
         this.score = score;
     }
 
