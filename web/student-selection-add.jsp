@@ -95,6 +95,7 @@
 							<c:if test="${requestScope.flag == false}">
 								<script>
                     alert("添加失败！");
+                    window.location.href='student-selection-add.jsp';
 								</script>
 							</c:if>
 						</c:if>
@@ -105,10 +106,6 @@
 								<label for="chooseCourse" class="col-sm-2 col-sm-offset-1 control-label">课程名</label>
 								<div class="col-sm-6">
 									<select class="form-control" id="chooseCourse" name="coz_id">
-										<option>6</option>
-										<option>2</option>
-										<option>3</option>
-										<option>4</option>
 									</select>
 								</div>
 							</div>
